@@ -217,7 +217,7 @@
     vertical-align: middle;
     padding: 6px 10px;
     border-bottom: none;
-    word-break: break-all;
+    /* word-break: break-all; */
 }
 
 .shadow-admin-box .table-admin-all tbody tr .set-12 {
