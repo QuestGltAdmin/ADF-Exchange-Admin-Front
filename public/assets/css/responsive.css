@@ -1,0 +1,43 @@
+@media (max-width: 992px) {
+    .dashboard-layout {
+        padding-left: 0px;
+        padding-top: 60px;
+    }
+    .inner-dash-bpx {
+        padding: 0.938rem 0;
+    }
+    .dashboard-layout .login-header-home .navbar-brand img {
+        height: 50px;
+    }
+    .dashboard-layout .navbar-collapse {
+        position: absolute !important;
+        top: 70px;
+        width: 100%;
+        left: 0;
+        right: 0;
+        padding: 1.25rem 0.938rem;
+    }
+    .admin-section.dashboard-layout  .navbar-collapse .navbar-nav {
+        top: 60px !important;
+        left: -290px !important;
+        transition: all ease-in-out 0.5s;
+    }
+    .admin-section.dashboard-layout .login-header-home .navbar-expand-lg .navbar-nav .nav-link {
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+    }
+    .profile-dropdown {
+        font-size: 0.75rem;
+        margin-right: 3px;
+    }
+    .navbar-light .navbar-toggler {
+        border: none !important;
+        margin-left: 30px !important;
+    }
+    .shadow-admin-box, .dashboard-admin-box, .user-activity-box {
+        margin: 0 8px;
+    }
+    .shadow-admin-box {
+        padding: 0.75rem;
+    }
+}
