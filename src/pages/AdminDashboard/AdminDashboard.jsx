@@ -54,7 +54,7 @@ const AdminDashboard = () => {
                           <td className="set-12 green">
                             <label className="head-mobile">Status</label>
                             Complete</td>
-                        </tr>
+                        </tr> 
 
                       </tbody>
                     </Table>
