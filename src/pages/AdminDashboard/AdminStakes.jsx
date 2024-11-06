@@ -331,7 +331,7 @@ const AdminStakes = () => {
                               </td>
                               <td className="set-12 set-600">
                               <label className="head-mobile">Transaction ID</label>
-                                12sfsaa4asfa1asfd
+                                12sfsa
                               </td>
                               <td className="set-12 set-600">
                               <label className="head-mobile">Interest Rate</label>
