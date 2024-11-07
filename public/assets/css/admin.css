@@ -619,6 +619,9 @@
     display: none;
 }
 @media (max-width:991px) {
+    .admin-section.dashboard-layout .filter-sort-sec{
+        margin-bottom: 0.6rem;
+    }
     .profile-admin-sec .profile-detail {
         padding-left: 0;
     }
@@ -689,6 +692,23 @@
 }
 
 @media (max-width:768.2px) {
+    .shadow-admin-box .nav-tabs .nav-link, .shadow-admin-box .head-same-all h4{
+        font-size: 0.78rem;
+    }
+    .shadow-admin-box .nav-tabs{
+        gap:0.5rem;
+    }
+    .shadow-admin-box .table-admin-all tbody tr .set-14, .shadow-admin-box .table-admin-all tbody tr td{
+        padding:6px  8px;
+    }
+   
+    .table-mobile-view tbody tr td .head-mobile, .shadow-admin-box .table-admin-all tbody tr .set-14, .shadow-admin-box .table-admin-all tbody tr .set-12{
+        font-size: 0.7rem;
+    }
+    .shadow-admin-box .table-admin-all tbody tr td.img-crypto img{
+        height: 1rem;
+        width: 1rem;
+    }
     .shadow-admin-box .document-img img {
         height: 80px;
     }

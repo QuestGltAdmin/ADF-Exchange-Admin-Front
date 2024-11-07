@@ -11,7 +11,7 @@ const AdminDashboard = () => {
         <div>
           <AdminGraph />
           <Row>
-            <Col md="6">
+            <Col md="6" sm="6">
               <div className="shadow-admin-box mt-3">
                 <div className="head-same-all">
                   <h4>Latest Transactions</h4>
@@ -62,7 +62,7 @@ const AdminDashboard = () => {
                 </div>
               </div>
             </Col>
-            <Col md="6">
+            <Col md="6" sm="6">
               <div className="shadow-admin-box mt-3">
                 <div className="head-same-all">
                   <h4>Top Cryptocurrencies</h4>
@@ -113,7 +113,7 @@ const AdminDashboard = () => {
             </Col>
           </Row>
           <Row className="">
-            <Col md="8">
+            <Col md="8" sm="6">
               <div className="shadow-admin-box mt-3">
                 <Tabs
                   defaultActiveKey="transaction"
@@ -212,7 +212,7 @@ const AdminDashboard = () => {
                 </Tabs>
               </div>
             </Col>
-            <Col md="4" className="d-flex">
+            <Col md="4" sm="6" className="d-flex">
               <div className="shadow-admin-box w-100 mt-3">
                 <div className="head-same-all">
                   <h4>Support List</h4>

@@ -95,47 +95,14 @@ const AdminStakes = () => {
                   </Row>
                 </div>
               </Col>
-              <Col xl={4} lg="12" className="order-responsive d-flex align-self-stretch">
+              <Col xl={4} lg="12" md="6"  sm="6" className="order-responsive d-flex align-self-stretch">
                 <div className="shadow-admin-box mt-3 " style={{width:'-webkit-fill-available'}}>
                   <div class="head-same-all mb-3">
                     <h3>Top Staking</h3>
                   </div>
                   <div className="">
                     <div className="table-responsive">
-                      {/* <Table className="table-admin-all min-width-tab stake-table">
-                          <thead>
-                            <tr>
-                              <th>User Name</th>
-                              <th>Currency</th>
-                              <th>Amount</th>
-                              <th>Interest</th>
-                              <th>Status</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {topstake &&
-                              topstake.map((item, index) => {
-                                return (
-                                  <tr>
-                                    <td className="set-12">
-                                      {item?.user?.name}
-                                    </td>
-                                    <td className="set-12">
-                                      {item?.currency_code}
-                                    </td>
-                                    <td className="set-12">
-                                      {item?.closing_balance?.toFixed(4)}
-                                    </td>
-                                    <td className="set-12">
-                                      {item?.interest_rate}%
-                                    </td>
-                                    <td className="set-12">{item?.status}</td>
-                                  </tr>
-                                );
-                              })}
-                            <br></br>
-                          </tbody>
-                        </Table> */}
+                      
                       <Table className="table-admin-all min-width-tab stake-table table-mobile-view">
                         <thead>
                           <tr>
@@ -161,14 +128,26 @@ const AdminStakes = () => {
                             <td className="set-12"> <label className="head-mobile">Status</label>Active</td>
                           </tr>
 
+                          <tr>
+                            <td className="">
+                            <label className="head-mobile">Token</label> 
+                              <img src="assets/images/admin/bitcoin.png" className="img-fluid" alt="bitcoin" /></td>
+                            <td className="set-12">
+                            <label className="head-mobile">Name</label>Bitcoin</td>
+                            <td className="set-12"> <label className="head-mobile">Amount</label>5.121 ETH</td>
+                            <td className="set-12"> <label className="head-mobile">Participants</label>2000</td>
+                            <td className="set-12"> <label className="head-mobile">Interest</label>14%</td>
+                            <td className="set-12"> <label className="head-mobile">Status</label>Active</td>
+                          </tr>
+
                         </tbody>
                       </Table>
                     </div>
                   </div>
                 </div>
               </Col>
-              <Col xl={4} lg="6" md="6">
-                <div className="shadow-admin-box stake-rule-box mt-3">
+              <Col xl={4} lg="6" md="6" className="d-flex">
+                <div className="shadow-admin-box stake-rule-box mt-3 w-100">
                   <div class="head-same-all">
                     <h3>Staking Rules</h3>
                   </div>
@@ -226,10 +205,8 @@ const AdminStakes = () => {
                   </Row>
                 </div>
               </Col>
-            </Row>
-            {/* )} */}
-            <Row className="">
-              <Col md="12">
+           
+              <Col  xl="12" lg="12" md="6" sm="6" className="order-responsive-2">
                 <div className="shadow-admin-box mt-3">
                   <div className="head-same-all">
                     <h3>Stakes List</h3>

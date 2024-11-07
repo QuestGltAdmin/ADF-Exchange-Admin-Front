@@ -599,6 +599,9 @@
         .order-responsive{
             order: 2;
         }
+        .order-responsive-2 {
+            order: 3;
+        }
     }
 
     @media (max-width: 992px) {
@@ -661,7 +664,7 @@
             padding: 0.75rem;
         }
         .shadow-admin-box {
-            padding: 0.75rem;
+            padding: 0.5rem;
         }
     }
 
