@@ -1,4 +1,4 @@
-import axiosMain from "../configs/axios";
+import axiosMain from "../http/axios/axios_main";
 import { errorHandler } from "./error-handler";
 
 export const login = errorHandler(async (email, password) => {
