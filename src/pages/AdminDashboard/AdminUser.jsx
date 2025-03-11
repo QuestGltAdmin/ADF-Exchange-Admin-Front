@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import AdminLayout from "../../Components/AdminLayout/AdminLayout";
-import { Col, Container, InputGroup, Row, Table, Form } from "react-bootstrap";
+import { Col, Container, InputGroup, Row, Table, Form, Dropdown } from "react-bootstrap";
 import AdminGraph from "./AdminGraph";
 
 const AdminUser = () => {
@@ -10,90 +10,101 @@ const AdminUser = () => {
       <AdminLayout>
         <div>
           <Container fluid>
-            <AdminGraph />
+          
             <Row className="">
               <Col md="12">
+              <h3 className="common-page-heading">Users Data</h3>
                 <div className="shadow-admin-box mt-3">
-                  <div className="head-same-all">
-                    <h3>Users Data</h3>
-                  </div>
+                 
+                 
                   <div className="filter-sort-sec">
                     <Row>
-                      <Col md="8">
-                        <InputGroup className="">
-                          <Form.Control
-                            placeholder="Search name,email or phone number"
-                            name="OldPassword"
-                          />
-                          <InputGroup.Text className="search-space">
-                            {/* <img
-                              src="assets/images/admin/search.png"
-                              className="img-fluid"
-                              alt="icon"
-                            /> */}
-                             <i className="fa fa-search" aria-hidden="true"></i>
-                          </InputGroup.Text>
-                        </InputGroup>
+                      <Col md="12">
+                         <h4 className="filter-icon"><img src="assets/images/filter.png"  alt="" /> Filter</h4>
+                           <div className="filter-with-show-data">
+                              <div className="outer-box-filter">
+                                    
+                                    <InputGroup className="outer-input-search ">
+                                      <Form.Control
+                                        placeholder="Search..."
+                                        name="OldPassword"
+                                      />
+                                      <InputGroup.Text className="search-space">
+                                        <i className="fa fa-search" aria-hidden="true"></i>
+                                      </InputGroup.Text>
+                                    </InputGroup>
+                                    <Dropdown className="dropdwon-border-box">
+                                      <Dropdown.Toggle>
+                                        Sort By
+                                      </Dropdown.Toggle>
+
+                                      <Dropdown.Menu>
+                                        <Dropdown.Item href="#">Newest</Dropdown.Item>
+                                        <Dropdown.Item href="#">Oldest</Dropdown.Item>
+                                        <Dropdown.Item href="#">Something else</Dropdown.Item>
+                                      </Dropdown.Menu>
+                                    </Dropdown>
+                                    <button className="common-btn">Clear Filter</button>
+                              </div>
+                              <Dropdown className="dropdwon-border-box">
+                                      <Dropdown.Toggle>
+                                        Show
+                                      </Dropdown.Toggle>
+
+                                      <Dropdown.Menu>
+                                        <Dropdown.Item href="#">1 - 25</Dropdown.Item>
+                                        <Dropdown.Item href="#">25 - 50</Dropdown.Item>
+                                        <Dropdown.Item href="#">50 - 75</Dropdown.Item>
+                                        <Dropdown.Item href="#">75 - 100</Dropdown.Item>
+                                      </Dropdown.Menu>
+                                    </Dropdown>
+                           </div>
                       </Col>
                     </Row>
                   </div>
-                  <div>
-                    <div className="set-height-table">
-                      <div className="table-responsive">
-                        <Table className="table-admin-all max-width-tab table-mobile-view">
+                  <hr/>
+                  <div className="table-responsive">
+                        <Table className="table-common-new">
                           <thead>
                             <tr>
                               <th>Sr. No</th>
                               <th>Image</th>
-                              <th>Name</th>
-                              <th>Email</th>
+                              <th ><span className="d-flex">Name  <span className="arrow-filter"><a href="" className="up"><img src="assets/images/arrow-up.png" alt="" /></a><a className="down" href=""><img src="assets/images/arrow-down.png" alt="" /></a></span></span></th>
+                              <th ><span className="d-flex"> Email  <span className="arrow-filter"><a href="" className="up"><img src="assets/images/arrow-up.png" alt="" /></a><a className="down" href=""><img src="assets/images/arrow-down.png" alt="" /></a></span></span></th>
                               <th>Phone Number</th>
                               <th>KYC</th>
                               <th>Wallet</th>
                               <th>Profile</th>
                             </tr>
                           </thead>
-                          <br></br>
+                         
                           <tbody>
 
                             <tr>
-                              <td>
-                              <label className="head-mobile">S.No</label>1</td>
+                              <td>S.No 1</td>
                               <td className="admin-table-img">
 
-                              <label className="head-mobile">Image</label>
                                 <img
                                   src="/assets/images/admin/table-img.png"
                                   className="img-fluid"
                                   alt="icon"
                                 />
                               </td>
-                              <td className="set-14 set-700">
-                              <label className="head-mobile">Name</label>
+                              <td className="">
                                 User
                               </td>
-                              <td className="set-12">
-                              <label className="head-mobile">Email</label>user@gmail.com</td>
+                              <td className="">
+                             user@gmail.com</td>
 
-                              <td className="set-12">
-                              <label className="head-mobile">Phone No.</label>
+                              <td className="">
+                              
                                 +91 &nbsp;{" "}
                                 8782772877
                               </td>
 
                               <td>
-                              <label className="head-mobile">KYC</label>
                                 <div className="kyc-set">
-
-                                  <div className="kyc-set ">
-                                    <img
-                                      src="assets/images/admin/tick.png"
-                                      className="img-fluid"
-                                      alt="icon"
-                                    />
-                                    <p className="set-14 set-600">
-                                      KYC
-                                    </p>
+                                    KYC
                                     <img
                                       style={{ cursor: "pointer" }}
 
@@ -101,26 +112,16 @@ const AdminUser = () => {
                                       className="img-fluid"
                                       alt="icon"
                                     />
-                                  </div>
-
-                                  {/* // <p className="set-14 set-600">
-                                            //   INCOMPLETE
-                                            // </p> */}
                                 </div>
                               </td>
 
-                              <td className="set-14 green set-700">
-                              <label className="head-mobile">Wallet</label>
+                              <td className="">
+                              
                                 $434
                                 USD
                               </td>
-                              <td
-                                className="set-14 blue set-600"
-                                style={{ cursor: "pointer" }}
-
-                              >
-                                <label className="head-mobile">Profile</label>
-                                View
+                              <td>
+                                <a href=""><i className="fa fa-eye"></i></a>
                               </td>
                             </tr>
 
@@ -132,21 +133,26 @@ const AdminUser = () => {
                           </tbody>
                         </Table>
                       </div>
-                      <div className="custom-pagination">
-                        {/* <ReactPaginate
-                          previousLabel={"<"}
-                          nextLabel={">"}
-                          pageCount={pageCountuser}
-                          onPageChange={changeuserPage}
-                          containerClassName={"paginationBttns"}
-                          previousLinkClassName={"previousBttn"}
-                          nextLinkClassName={"nextBttn"}
-                          disabledClassName={"paginationDisabled"}
-                          activeClassName={"paginationActive"}
-                        /> */}
-                      </div>
-                    </div>
-                  </div>
+                      <div className="mt-3">
+                             <div className="d-flex justify-content-end list-pagination pb-5 pt-0">
+                              <button
+                                className="page-link"
+                                
+                              >
+                                <i className="fa fa-angle-left"></i>
+                              </button>
+                              <button className="page-link">
+                                
+                                Page 1 of 5
+                              </button>
+                              <button
+                                className="page-link"
+                                
+                              >
+                                <i className="fa fa-angle-right"></i>
+                              </button>
+                            </div>
+                        </div>
                 </div>
               </Col>
             </Row>

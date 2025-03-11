@@ -22,7 +22,7 @@ const AdminStakes = () => {
     title: "",
     legend: "none",
     backgroundColor: '#212023',  
-    colors:  ["#E07A00", "#fba338", "#f3bd7c"],
+    colors:  ["#ffa800", "#fba338", "#f3bd7c"],
     vAxis: {
       gridlines: {
         color: "transparent",

@@ -25,7 +25,7 @@ const AdminGraph = () => {
     backgroundColor: '#212023',  
     slices: {
       0: { color: "#E9F1FF" },
-      1: { color: "#E07A00" },
+      1: { color: "#ffa800" },
      
     },
   };
@@ -46,7 +46,7 @@ const AdminGraph = () => {
     title: "",
     legend: "none",
     backgroundColor: '#212023',  
-    colors:  ["#E07A00", "#fba338", "#f3bd7c"],
+    colors:  ["#ffa800", "#fba338", "#f3bd7c"],
     vAxis: {
       gridlines: {
         color: "transparent",
@@ -80,7 +80,7 @@ const AdminGraph = () => {
     title: "",
     legend: "none",
     backgroundColor: '#212023',  
-    colors: ["#E07A00", "#fba338", "#f3bd7c"],
+    colors: ["#ffa800", "#fba338", "#f3bd7c"],
     vAxis: {
       gridlines: {
         color: "transparent",
@@ -114,7 +114,7 @@ const AdminGraph = () => {
     title: "",
     legend: "non0e",
     backgroundColor: '#212023',  
-    colors:  ["#E07A00", "#fba338", "#f3bd7c"],
+    colors:  ["#ffa800", "#fba338", "#f3bd7c"],
     vAxis: {
       gridlines: {
         color: "transparent",

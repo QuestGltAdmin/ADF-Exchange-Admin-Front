@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Col, Form, Row } from "react-bootstrap";
+import { Col, Container, Form, InputGroup, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import OtpInput from "react-otp-input";
 import ShowHideIcon from "../../Components/show-hide-icon";
@@ -66,60 +66,75 @@ const Login = () => {
   switch (screen) {
     case "login": {
       return (
-        <div className="outer-bridge-box">
-          <h3>Login now</h3>
-          <Row>
-            <Col lg={12}>
-              <Form.Group className="mb-3">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control
-                  type="email"
-                  name="email"
-                  placeholder="Enter your email"
-                  className="mb-0"
-                  onChange={(e) => handleChange("email", e.target.value)}
-                />
-                <small className="text-red">{errors.email}</small>
-              </Form.Group>
-            </Col>
-          </Row>
-          <Row>
-            <Col lg={12}>
-              <Form.Group className="mb-3 password-eye-field">
-                <Form.Label className="d-flex justify-content-between">
-                  <span>Password</span>{" "}
-                  <ShowHideIcon
-                    hidden={!showPassword}
-                    onClick={() => setShowPassword(!showPassword)}
-                  />
-                </Form.Label>
-                <Form.Control
-                  type={showPassword ? "text" : "password"}
-                  className="mb-0"
-                  placeholder="Enter your password"
-                  name="password"
-                  onChange={(e) => handleChange("password", e.target.value)}
-                />
-                <small className="text-red">{errors.password}</small>
-              </Form.Group>
-            </Col>
-          </Row>
-          {/* <Link to="/forgot-password" className="forgot-password-link">
+        <section className="section-login-main">
+          <Container>
+            <Row>
+              <Col lg={6} md={6} className="m-auto">
+                <div className="shadow-admin-box">
+                  <h3 className="common-page-heading mb-4">Login now</h3>
+                  <Row>
+                    <Col lg={12}>
+                      <Form.Group className="mb-3">
+                        <Form.Label>Email address</Form.Label>
+                        <Form.Control
+                          type="email"
+                          name="email"
+                          placeholder="Enter your email"
+                          className="mb-0 email"
+                          onChange={(e) =>
+                            handleChange("email", e.target.value)
+                          }
+                        />
+                        <small className="text-red">{errors.email}</small>
+                      </Form.Group>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col lg={12}>
+                      <Form.Group className="mb-3 password-eye-field">
+                        <Form.Label className="d-flex justify-content-between">
+                          <span>Password</span>{" "}
+                          
+                        </Form.Label>
+                        <InputGroup className="outer-input-group ">
+                              <Form.Control
+                                type={showPassword ? "text" : "password"}
+                                className="mb-0"
+                                placeholder="Enter your password"
+                                name="password"
+                                onChange={(e) =>
+                                  handleChange("password", e.target.value)
+                                }
+                              />
+                               <InputGroup.Text className="search-space">
+                                      <ShowHideIcon
+                                    hidden={!showPassword}
+                                    onClick={() => setShowPassword(!showPassword)}
+                                  />
+                              </InputGroup.Text>
+                             
+                        </InputGroup>
+                        
+                        <small className="text-red">{errors.password}</small>
+                      </Form.Group>
+                    </Col>
+                  </Row>
+                  {/* <Link to="/forgot-password" className="forgot-password-link">
                 Forgot Password?
               </Link> */}
-          <div className="text-center btn-box verify-btn">
-            <button
-              className="common-btn w-100 mt-4"
-              type="submit"
-              onClick={handleLogin}
-            >
-              Login
-            </button>
-            {/* <p className="mt-4">
+                  <div className="text-center btn-box verify-btn">
+                    <button
+                      className="common-btn w-100 mt-4"
+                      type="submit"
+                      onClick={handleLogin}
+                    >
+                      Login
+                    </button>
+                    {/* <p className="mt-4">
                   Don't have an account? <Link to="/signup">Signup</Link>{" "}
                 </p> */}
-          </div>
-          {/* <div>
+                  </div>
+                  {/* <div>
                 <button
                   type="button"
                   className="common-btn w-100 mt-4"
@@ -130,37 +145,49 @@ const Login = () => {
                   {disablegoogle === true ? "Processing" : "Continue with Google"}
                 </button>
               </div> */}
-        </div>
+                </div>
+              </Col>
+            </Row>
+          </Container>
+        </section>
       );
     }
     case "verify-otp": {
       return (
-        <div className="outer-bridge-box">
-          <h3 className="mb-2">Verify Your Email</h3>
-          <p className="verify-line">
-            Please enter the code we sent you by email to verify
-          </p>
-          <Row>
-            <Col lg={12}>
-              <Form.Group className="mb-3" controlId="">
-                <Form.Label>Email*</Form.Label>
-                <Form.Control type="email" value={userData.email} disabled />
-              </Form.Group>
-              <Form.Group className="mb-3">
-                <Form.Label>OTP*</Form.Label>
-                <div className="otp-field">
-                  <OtpInput
-                    className=""
-                    name="otp"
-                    value={userData.otp}
-                    renderInput={(props) => <input {...props} />}
-                    numInputs={6}
-                    onChange={(val) => handleChange("otp", val)}
-                  />
-                </div>
-              </Form.Group>
+        <section className="section-login-main">
+          <Container>
+            <Row>
+            <Col lg={6} md={6} className="m-auto">
+                <div className="shadow-admin-box">
+                  <h3 className="mb-2">Verify Your Email</h3>
+                  <p className="verify-line">
+                    Please enter the code we sent you by email to verify
+                  </p>
+                  <Row>
+                    <Col lg={12}>
+                      <Form.Group className="mb-3" controlId="">
+                        <Form.Label>Email*</Form.Label>
+                        <Form.Control
+                          type="email"
+                          value={userData.email}
+                          disabled
+                        />
+                      </Form.Group>
+                      <Form.Group className="mb-3">
+                        <Form.Label>OTP*</Form.Label>
+                        <div className="otp-field">
+                          <OtpInput
+                            className=""
+                            name="otp"
+                            value={userData.otp}
+                            renderInput={(props) => <input {...props} />}
+                            numInputs={6}
+                            onChange={(val) => handleChange("otp", val)}
+                          />
+                        </div>
+                      </Form.Group>
 
-              {/* <Row>
+                      {/* <Row>
                 <Col lg={8}>
                   {resendTime > 0 && (
                     <p className="resend-otp-line">
@@ -178,18 +205,22 @@ const Login = () => {
                   </button>
                 </Col>
               </Row> */}
-            </Col>
-          </Row>
-          <div className="text-center btn-box verify-btn">
-            <button
-              className="common-btn w-100 mt-4"
-              disabled={userData.otp.length !== 6}
-              onClick={handleVerify}
-            >
-              Submit
-            </button>
-          </div>
-        </div>
+                    </Col>
+                  </Row>
+                  <div className="text-center btn-box verify-btn">
+                    <button
+                      className="common-btn w-100 mt-4"
+                      disabled={userData.otp.length !== 6}
+                      onClick={handleVerify}
+                    >
+                      Submit
+                    </button>
+                  </div>
+                </div>
+              </Col>
+            </Row>
+          </Container>
+        </section>
       );
     }
   }

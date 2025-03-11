@@ -1,8 +1,16 @@
+body{
+    background-color: #0B0B15;
+    color: #b5b5c3;
+    font-family: "Rubik", sans-serif;
+}
+html{
+    font-size: 16px;
+}
 .dashboard-layout {
     padding-top: 80px;
     padding-left: 260px;
     min-height: 100vh;
-    background-color: #000;
+    background-color: #0B0B15;
 }
 
 .login-header-home {
@@ -19,7 +27,7 @@
     left: 0;
     right: 0;
     border-radius: 0;
-    background-color: #000 !important;
+    background-color: #0B0B15 !important;
     width: 100%;
     margin: 0 auto;
     border-bottom: 1px solid rgba(255, 255, 255, 0.20);
@@ -37,12 +45,11 @@
 }
 .dashboard-layout .login-header-home .navbar-collapse .navbar-nav {
     position: fixed;
-    background-color: #19191A;
+    background-color: #000;
     width: 250px;
-    box-shadow:  8px 0px 32px 0px rgba(0, 0, 0, 0.25);
-    padding-bottom: 55px;
+    box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.25);
     max-height: 100vh;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
     height: 100vh !important;
     display: block;
@@ -54,21 +61,21 @@
     /* background: #00BF61; */
     /* box-shadow: 0px 2px 4px 1px rgba(0, 191, 97, 0.2) !important; */
     border-radius: 0px 8px 8px 0px;
-    color: #E07A00 !important;
+    color: #ffa800 !important;
 }
 .admin-section.dashboard-layout .login-header-home .navbar-expand-lg .navbar-nav .nav-link:hover i, .admin-section.dashboard-layout .login-header-home .navbar-expand-lg .navbar-nav .nav-link.nav-link.bottom-fix:hover i, .admin-section.dashboard-layout .login-header-home .navbar-expand-lg .navbar-nav .nav-link.active i{
-    color: #e07a00;
+    color: #ffa800;
 }
 .admin-section.dashboard-layout .login-header-home .navbar-expand-lg .navbar-nav .nav-link {
-    padding: 8px 24px;
+    padding: 0.5rem 1.5rem;
     margin: 6px 5px 6px 0;
     gap: 1rem;
-    font-weight: 500;
+    font-weight: 300;
     font-size: 1rem;
     line-height: 1.5rem;
-    color: #737373;
+    color: #fff;
     position: relative;
-}   
+}  
 .admin-section.dashboard-layout .login-header-home .navbar-expand-lg .navbar-nav .nav-link:hover ::before{
     content: '';
     position: absolute;
@@ -122,18 +129,20 @@
     font-weight: 600;
 }
 .shadow-admin-box {
-    background: #212023;
+    background: transparent;
     box-shadow: 1px 3px 5px 1px rgba(0, 0, 0, 0.1);
     border-radius: 0.875rem;
     padding: 20px;
-    min-height: 230px;
+    min-height: 12rem;
+    border: 2px solid #292931 !important;
+    border-radius: 1rem;
 }
 .inner-dash-bpx {
     padding: 0.938rem;
 }
 .dashboard-layout .input-group .input-group-text {
     background-color: transparent !important;
-    color: #E07A00;
+    color: #ffa800;
     border: none !important;
 }
 .dashboard-layout .input-group .form-control {
@@ -319,7 +328,7 @@
     font-size: 0.75rem;
     line-height: 1.125rem;
     letter-spacing: 0.7px;
-    color: #e07a00;
+    color: #ffa800;
     margin: 0;
 }
 .inner-chat-box p small {
@@ -329,13 +338,13 @@
     line-height: 0.625rem;
     text-align: center;
     letter-spacing: 0.004em;
-    color: #e07a00;
+    color: #ffa800;
     display: block;
     text-align: right;
     margin-top: 5px;
 }
 .inner-chat-box .chat-text{
-    border: 0.6px solid #e07a00;
+    border: 0.6px solid #ffa800;
     border-radius: 0 8px 8px 8px;
     padding: 0.625rem;
     padding-bottom: 0;
@@ -446,11 +455,13 @@
    }
    
    .dashboard-admin-box {
-    background: #212023;
+    background: transparent;
     box-shadow: 1px 3px 5px 1px rgba(0, 0, 0, 0.1);
     border-radius: 0.875rem;
     padding: 20px;
     min-height: 272px;
+    border: 2px solid #292931 !important;
+    border-radius: 2rem;
 }
 .dashboard-admin-box h5{
     font-style: normal;
@@ -466,7 +477,7 @@
     font-size: 2rem;
     line-height: 43px;
     letter-spacing: 0.004em;
-    color: #e07a00;
+    color: #ffa800;
     margin: 0.938rem 0;
 }                                                                            
 .dashboard-admin-box h3{
@@ -519,7 +530,7 @@
         margin-bottom: 1.25rem;
     }
     .user-activity-box .first-box h3.green-text{
-        color: #e07a00;
+        color: #ffa800;
     }
     .user-activity-box .first-box h3.gray-text{
         color: #fff;
@@ -549,7 +560,7 @@
         font-size: 0.75rem;
         line-height: 0.938rem;
         letter-spacing: 0.004em;
-        color: #e07a00;
+        color: #ffa800;
     }
     .graph-heading {
         display: flex;
@@ -585,7 +596,7 @@
         margin-right: 0.625rem;
     }
     .month-color-box p.first-line span {
-        background-color:#E07A00;
+        background-color:#ffa800;
         
     }
     .month-color-box p.sec-line span{

@@ -10,6 +10,7 @@ import { Adminkycedit } from "./pages/AdminDashboard/Adminkycedit";
 import AdminProfile from "./pages/AdminDashboard/AdminProfile";
 import Login from "./pages/AdminDashboard/Login";
 import { Toaster } from "react-hot-toast";
+import { AdminUserDetails } from "./pages/AdminDashboard/AdminUserDetails";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route path="/admin-kyc-edit" element={<Adminkycedit />} />
             <Route path="/admin-support" element={<Adminsupport />} />
             <Route path="/admin-profile" element={<AdminProfile />} />
+            <Route path="/admin-user-details" element={<AdminUserDetails />} />
           </Routes>
         </BrowserRouter>
       </div>

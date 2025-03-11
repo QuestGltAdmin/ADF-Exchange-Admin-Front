@@ -1,160 +1,1378 @@
 import React, { useEffect, useState } from "react";
 import AdminLayout from "../../Components/AdminLayout/AdminLayout";
-import { Col, Container, InputGroup, Row, Table, Form } from "react-bootstrap";
-// import axiosMain from "../../http/axios/axios_main";
-// import moment from "moment";
-// import ReactPaginate from "react-paginate";
-import AdminGraph from "./AdminGraph";
+import {
+  Col,
+  Container,
+  InputGroup,
+  Row,
+  Table,
+  Form,
+  Dropdown,
+  Tabs,
+  Tab,
+} from "react-bootstrap";
 
 const AdminTransaction = () => {
 
   return (
     <>
-      <AdminLayout>
-        <div>
-          <Container fluid>
-            <AdminGraph />
-            <Row className="">
-              <Col md="12">
-                <div className="shadow-admin-box mt-3">
-                  <div className="head-same-all">
-                    <h3>Transactions</h3>
-                  </div>
-                  <div className="filter-sort-sec">
-                    <Row>
-                      <Col md="8">
-                        <InputGroup className="">
-                          <Form.Control
-                            placeholder="Search name,email or phone number"
-                            name="OldPassword"
+    <AdminLayout>
+      <div>
+        <Container fluid>
+          <Row className="">
+            <Col md="12">
+              <h3 className="common-page-heading">All Transactions</h3>
+             
+              <div className="user-all-tabs">
+                <Tabs defaultActiveKey="tab1" className="mb-3">
+                  <Tab eventKey="tab1" title="KYC">
+                    <div className="shadow-admin-box mt-3">
+                    <div className="user-profile-box kyc-profile-box">
+                      <h4>
+                        <span className="mb-3 d-block text-orange">Driving License</span>
+                       
+                          <img
+                            src="https://adf-star-s3-bucket.s3.ap-south-1.amazonaws.com/exchange_kyc_document/1740035554584-CB23-CARDjpg.webp"
+                            className="img-fluid user-img"
+                            alt="icon"
                           />
-                          <InputGroup.Text className="search-space">
-                            {/* <img
-                              src="assets/images/admin/search.png"
-                              className="img-fluid"
-                              alt="icon"
-                            /> */}
-                            <i className="fa fa-search" aria-hidden="true"></i>
-                          </InputGroup.Text>
-                        </InputGroup>
-                      </Col>
-                    </Row>
-                  </div>
-                  <div>
-                    <div className="set-height-table">
+                      </h4>
+                      <div>
+                        <h4 className="text-orange">Arpit Patidar</h4>
+                        <p className="mb-3">Date of Birth : 12/10/2002</p>
+                        <p className="mb-3">Mobile No. : +91 2345678900</p>
+                        <p className="mb-3">Landmark : -</p>
+                        <p className="mb-3">City : Surat</p>
+                        <p className="mb-3">State : gujarat</p>
+                        <p className="mb-3">Country : India</p>
+                        
+                        
+                      </div>
+                    </div>
+                    </div>
+                  </Tab>
+                  <Tab eventKey="tab2" title="Wallet Balance">
+                    <div className="shadow-admin-box mt-3">
+                      <div className="filter-sort-sec">
+                        <Row>
+                          <Col md="12">
+                            <h4 className="filter-icon">
+                              <img src="assets/images/filter.png" alt="" />{" "}
+                              Filter
+                            </h4>
+                            <div className="filter-with-show-data">
+                            <div className="outer-box-filter">
+                                  
+                                  <InputGroup className="outer-input-search ">
+                                    <Form.Control
+                                      placeholder="Search..."
+                                      name="OldPassword"
+                                    />
+                                    <InputGroup.Text className="search-space">
+                                      <i className="fa fa-search" aria-hidden="true"></i>
+                                    </InputGroup.Text>
+                                  </InputGroup>
+                                  <Dropdown className="dropdwon-border-box">
+                                    <Dropdown.Toggle>
+                                      Sort By
+                                    </Dropdown.Toggle>
+
+                                    <Dropdown.Menu>
+                                      <Dropdown.Item href="#">Newest</Dropdown.Item>
+                                      <Dropdown.Item href="#">Oldest</Dropdown.Item>
+                                      <Dropdown.Item href="#">Something else</Dropdown.Item>
+                                    </Dropdown.Menu>
+                                  </Dropdown>
+                                  <button className="common-btn">Clear Filter</button>
+                            </div>
+                            <Dropdown className="dropdwon-border-box">
+                                    <Dropdown.Toggle>
+                                      Show
+                                    </Dropdown.Toggle>
+
+                                    <Dropdown.Menu>
+                                      <Dropdown.Item href="#">1 - 25</Dropdown.Item>
+                                      <Dropdown.Item href="#">25 - 50</Dropdown.Item>
+                                      <Dropdown.Item href="#">50 - 75</Dropdown.Item>
+                                      <Dropdown.Item href="#">75 - 100</Dropdown.Item>
+                                    </Dropdown.Menu>
+                                  </Dropdown>
+                         </div>
+                          </Col>
+                        </Row>
+                      </div>
+                      <hr />
                       <div className="table-responsive">
-                        <Table className="table-admin-all max-width-tab table-mobile-view">
+                        <Table className="table-common-new">
                           <thead>
                             <tr>
-                              <th>S.No</th>
-                              <th>Image</th>
+                              <th>Sr. No</th>
                               <th>Name</th>
-                              <th>Credentials</th>
-                              <th>Type</th>
-                              <th>From</th>
-                              <th>To</th>
-                              <th>Transaction ID</th>
-                              <th>From Amount</th>
-                              <th>To Amount</th>
-                              <th>Status</th>
+                              <th>
+                                <span className="d-flex">
+                                  Name{" "}
+                                  <span className="arrow-filter">
+                                    <a href="" className="up">
+                                      <img
+                                        src="assets/images/arrow-up.png"
+                                        alt=""
+                                      />
+                                    </a>
+                                    <a className="down" href="">
+                                      <img
+                                        src="assets/images/arrow-down.png"
+                                        alt=""
+                                      />
+                                    </a>
+                                  </span>
+                                </span>
+                              </th>
+                              <th>
+                                <span className="d-flex">
+                                  {" "}
+                                  Email{" "}
+                                  <span className="arrow-filter">
+                                    <a href="" className="up">
+                                      <img
+                                        src="assets/images/arrow-up.png"
+                                        alt=""
+                                      />
+                                    </a>
+                                    <a className="down" href="">
+                                      <img
+                                        src="assets/images/arrow-down.png"
+                                        alt=""
+                                      />
+                                    </a>
+                                  </span>
+                                </span>
+                              </th>
+                              <th>Phone Number</th>
+                              <th>KYC</th>
+                              <th>Wallet</th>
+                              <th>Profile</th>
                             </tr>
                           </thead>
-                          <br></br>
-                          <tbody>
 
+                          <tbody>
                             <tr>
-                              <td>
-                                <label className="head-mobile">S.No</label>  1
-                              </td>
+                              <td>S.No 1</td>
                               <td className="admin-table-img">
-                                <label className="head-mobile">Image</label>
                                 <img
                                   src="/assets/images/admin/table-img.png"
                                   className="img-fluid"
                                   alt="icon"
                                 />
+                              </td>
+                              <td className="">User</td>
+                              <td className="">user@gmail.com</td>
 
-                              </td>
-                              <td className="set-14   ">
-                                <label className="head-mobile">Name</label>
-                                <div className=" set-700">
-                                  Rohit
+                              <td className="">+91 &nbsp; 8782772877</td>
+
+                              <td>
+                                <div className="kyc-set">
+                                  KYC
+                                  <img
+                                    style={{ cursor: "pointer" }}
+                                    src="assets/images/admin/attach.png"
+                                    className="img-fluid"
+                                    alt="icon"
+                                  />
                                 </div>
-                                <div className="set-10 set-600 text-left grey">
-                                  uey
-                                </div>
                               </td>
-                              <td className="set-10 grey text-left">
-                                <label className="head-mobile">Credentials</label>
-                                ishitarathore@gmail.com
-                                <br></br>+91 &nbsp;
-                                8727367263
-                              </td>
-                              <td className="set-10 set-600 text-left">
-                                <label className="head-mobile">Type</label>
-                                Swap
-                              </td>
-                              <td className="set-10 set-600">
-                                <label className="head-mobile">From</label>
-                                91
-                              </td>
-                              <td className="set-10 set-600">
-                                <label className="head-mobile">To</label>
-                                jsdd
-                              </td>
-                              <td className="set-12 set-600">  <label className="head-mobile">Transaction ID</label>
-                                dfsf                                      </td>
-                              <td className="set-12 set-600">
-                                <label className="head-mobile">From Amount</label>
-                                fdfsdfsdf
-                              </td>
-                              <td className="set-12 set-600">
-                                <label className="head-mobile"></label>To Amount
-                                dsfsf
-                              </td>
-                              <td
-                                className="set-12 blue set-600"
-                              // style={{
-                              //   color:
-                              //     item?.status === "SUCCESS"
-                              //       ? "#2bc92b"
-                              //       : item?.status === "PENDING"
-                              //       ? "red"
-                              //       : item?.status === "CLOSED"
-                              //       ? "red"
-                              //       : "",
-                              // }}
-                              >
-                                <label className="head-mobile">Status</label>
-                                Success
+
+                              <td className="">$434 USD</td>
+                              <td>
+                                <a href="">
+                                  <i className="fa fa-eye"></i>
+                                </a>
                               </td>
                             </tr>
 
+                            {/* <tr>
+                                      <td colSpan={8} className="text-center">
+                                      No Data Found
+                                      </td>
+                                  </tr> */}
                           </tbody>
                         </Table>
                       </div>
-                      <div className="custom-pagination">
-                        {/* <ReactPaginate
-                          previousLabel={"<"}
-                          nextLabel={">"}
-                          pageCount={pageCountuser}
-                          onPageChange={changeuserPage}
-                          containerClassName={"paginationBttns"}
-                          previousLinkClassName={"previousBttn"}
-                          nextLinkClassName={"nextBttn"}
-                          disabledClassName={"paginationDisabled"}
-                          activeClassName={"paginationActive"}
-                        /> */}
+                    </div>
+                  </Tab>
+                  <Tab eventKey="tab3" title="Stakes">
+                    <div className="shadow-admin-box mt-3">
+                      <div className="filter-sort-sec">
+                        <Row>
+                          <Col md="12">
+                            <h4 className="filter-icon">
+                              <img src="assets/images/filter.png" alt="" />{" "}
+                              Filter
+                            </h4>
+                            <div className="filter-with-show-data">
+                            <div className="outer-box-filter">
+                                  
+                                  <InputGroup className="outer-input-search ">
+                                    <Form.Control
+                                      placeholder="Search..."
+                                      name="OldPassword"
+                                    />
+                                    <InputGroup.Text className="search-space">
+                                      <i className="fa fa-search" aria-hidden="true"></i>
+                                    </InputGroup.Text>
+                                  </InputGroup>
+                                  <Dropdown className="dropdwon-border-box">
+                                    <Dropdown.Toggle>
+                                      Sort By
+                                    </Dropdown.Toggle>
+
+                                    <Dropdown.Menu>
+                                      <Dropdown.Item href="#">Newest</Dropdown.Item>
+                                      <Dropdown.Item href="#">Oldest</Dropdown.Item>
+                                      <Dropdown.Item href="#">Something else</Dropdown.Item>
+                                    </Dropdown.Menu>
+                                  </Dropdown>
+                                  <button className="common-btn">Clear Filter</button>
+                            </div>
+                            <Dropdown className="dropdwon-border-box">
+                                    <Dropdown.Toggle>
+                                      Show
+                                    </Dropdown.Toggle>
+
+                                    <Dropdown.Menu>
+                                      <Dropdown.Item href="#">1 - 25</Dropdown.Item>
+                                      <Dropdown.Item href="#">25 - 50</Dropdown.Item>
+                                      <Dropdown.Item href="#">50 - 75</Dropdown.Item>
+                                      <Dropdown.Item href="#">75 - 100</Dropdown.Item>
+                                    </Dropdown.Menu>
+                                  </Dropdown>
+                         </div>
+                          </Col>
+                        </Row>
+                      </div>
+                      <hr />
+                      <div className="table-responsive">
+                        <Table className="table-common-new">
+                          <thead>
+                            <tr>
+                              <th>Sr. No</th>
+                              <th>Name</th>
+                              <th>
+                                <span className="d-flex">
+                                  Name{" "}
+                                  <span className="arrow-filter">
+                                    <a href="" className="up">
+                                      <img
+                                        src="assets/images/arrow-up.png"
+                                        alt=""
+                                      />
+                                    </a>
+                                    <a className="down" href="">
+                                      <img
+                                        src="assets/images/arrow-down.png"
+                                        alt=""
+                                      />
+                                    </a>
+                                  </span>
+                                </span>
+                              </th>
+                              <th>
+                                <span className="d-flex">
+                                  {" "}
+                                  Email{" "}
+                                  <span className="arrow-filter">
+                                    <a href="" className="up">
+                                      <img
+                                        src="assets/images/arrow-up.png"
+                                        alt=""
+                                      />
+                                    </a>
+                                    <a className="down" href="">
+                                      <img
+                                        src="assets/images/arrow-down.png"
+                                        alt=""
+                                      />
+                                    </a>
+                                  </span>
+                                </span>
+                              </th>
+                              <th>Phone Number</th>
+                              <th>KYC</th>
+                              <th>Wallet</th>
+                              <th>Profile</th>
+                            </tr>
+                          </thead>
+
+                          <tbody>
+                            <tr>
+                              <td>S.No 1</td>
+                              <td className="admin-table-img">
+                                <img
+                                  src="/assets/images/admin/table-img.png"
+                                  className="img-fluid"
+                                  alt="icon"
+                                />
+                              </td>
+                              <td className="">User</td>
+                              <td className="">user@gmail.com</td>
+
+                              <td className="">+91 &nbsp; 8782772877</td>
+
+                              <td>
+                                <div className="kyc-set">
+                                  KYC
+                                  <img
+                                    style={{ cursor: "pointer" }}
+                                    src="assets/images/admin/attach.png"
+                                    className="img-fluid"
+                                    alt="icon"
+                                  />
+                                </div>
+                              </td>
+
+                              <td className="">$434 USD</td>
+                              <td>
+                                <a href="">
+                                  <i className="fa fa-eye"></i>
+                                </a>
+                              </td>
+                            </tr>
+
+                            {/* <tr>
+                                      <td colSpan={8} className="text-center">
+                                      No Data Found
+                                      </td>
+                                  </tr> */}
+                          </tbody>
+                        </Table>
                       </div>
                     </div>
-                  </div>
-                </div>
-              </Col>
-            </Row>
-          </Container>
-        </div>
-      </AdminLayout>
-    </>
+                  </Tab>
+                  <Tab eventKey="tab4" title="Deposit/Withdraw">
+                    <div className="shadow-admin-box mt-3">
+                      <div className="filter-sort-sec">
+                        <Row>
+                          <Col md="12">
+                            <h4 className="filter-icon">
+                              <img src="assets/images/filter.png" alt="" />{" "}
+                              Filter
+                            </h4>
+                            <div className="filter-with-show-data">
+                            <div className="outer-box-filter">
+                                  
+                                  <InputGroup className="outer-input-search ">
+                                    <Form.Control
+                                      placeholder="Search..."
+                                      name="OldPassword"
+                                    />
+                                    <InputGroup.Text className="search-space">
+                                      <i className="fa fa-search" aria-hidden="true"></i>
+                                    </InputGroup.Text>
+                                  </InputGroup>
+                                  <Dropdown className="dropdwon-border-box">
+                                    <Dropdown.Toggle>
+                                      Sort By
+                                    </Dropdown.Toggle>
+
+                                    <Dropdown.Menu>
+                                      <Dropdown.Item href="#">Newest</Dropdown.Item>
+                                      <Dropdown.Item href="#">Oldest</Dropdown.Item>
+                                      <Dropdown.Item href="#">Something else</Dropdown.Item>
+                                    </Dropdown.Menu>
+                                  </Dropdown>
+                                  <button className="common-btn">Clear Filter</button>
+                            </div>
+                            <Dropdown className="dropdwon-border-box">
+                                    <Dropdown.Toggle>
+                                      Show
+                                    </Dropdown.Toggle>
+
+                                    <Dropdown.Menu>
+                                      <Dropdown.Item href="#">1 - 25</Dropdown.Item>
+                                      <Dropdown.Item href="#">25 - 50</Dropdown.Item>
+                                      <Dropdown.Item href="#">50 - 75</Dropdown.Item>
+                                      <Dropdown.Item href="#">75 - 100</Dropdown.Item>
+                                    </Dropdown.Menu>
+                                  </Dropdown>
+                         </div>
+                          </Col>
+                        </Row>
+                      </div>
+                      <hr />
+                      <div className="table-responsive">
+                        <Table className="table-common-new">
+                          <thead>
+                            <tr>
+                              <th>Sr. No</th>
+                              <th>Name</th>
+                              <th>
+                                <span className="d-flex">
+                                  Name{" "}
+                                  <span className="arrow-filter">
+                                    <a href="" className="up">
+                                      <img
+                                        src="assets/images/arrow-up.png"
+                                        alt=""
+                                      />
+                                    </a>
+                                    <a className="down" href="">
+                                      <img
+                                        src="assets/images/arrow-down.png"
+                                        alt=""
+                                      />
+                                    </a>
+                                  </span>
+                                </span>
+                              </th>
+                              <th>
+                                <span className="d-flex">
+                                  {" "}
+                                  Email{" "}
+                                  <span className="arrow-filter">
+                                    <a href="" className="up">
+                                      <img
+                                        src="assets/images/arrow-up.png"
+                                        alt=""
+                                      />
+                                    </a>
+                                    <a className="down" href="">
+                                      <img
+                                        src="assets/images/arrow-down.png"
+                                        alt=""
+                                      />
+                                    </a>
+                                  </span>
+                                </span>
+                              </th>
+                              <th>Phone Number</th>
+                              <th>KYC</th>
+                              <th>Wallet</th>
+                              <th>Profile</th>
+                            </tr>
+                          </thead>
+
+                          <tbody>
+                            <tr>
+                              <td>S.No 1</td>
+                              <td className="admin-table-img">
+                                <img
+                                  src="/assets/images/admin/table-img.png"
+                                  className="img-fluid"
+                                  alt="icon"
+                                />
+                              </td>
+                              <td className="">User</td>
+                              <td className="">user@gmail.com</td>
+
+                              <td className="">+91 &nbsp; 8782772877</td>
+
+                              <td>
+                                <div className="kyc-set">
+                                  KYC
+                                  <img
+                                    style={{ cursor: "pointer" }}
+                                    src="assets/images/admin/attach.png"
+                                    className="img-fluid"
+                                    alt="icon"
+                                  />
+                                </div>
+                              </td>
+
+                              <td className="">$434 USD</td>
+                              <td>
+                                <a href="">
+                                  <i className="fa fa-eye"></i>
+                                </a>
+                              </td>
+                            </tr>
+
+                            {/* <tr>
+                                      <td colSpan={8} className="text-center">
+                                      No Data Found
+                                      </td>
+                                  </tr> */}
+                          </tbody>
+                        </Table>
+                      </div>
+                    </div>
+                  </Tab>
+                  <Tab eventKey="tab5" title="Orders">
+                    <div className="shadow-admin-box mt-3">
+                      <div>
+                        <Tabs
+                          defaultActiveKey="ordertab1"
+                          className="mb-3 mt-0"
+                        >
+                          <Tab eventKey="ordertab1" title="Open Order">
+                            <div className="filter-sort-sec">
+                              <Row>
+                                <Col md="12">
+                                  <h4 className="filter-icon">
+                                    <img
+                                      src="assets/images/filter.png"
+                                      alt=""
+                                    />{" "}
+                                    Filter
+                                  </h4>
+                                  <div className="outer-box-filter">
+                                    <InputGroup className="outer-input-search ">
+                                      <Form.Control
+                                        placeholder="Search..."
+                                        name="OldPassword"
+                                      />
+                                      <InputGroup.Text className="search-space">
+                                        <i
+                                          className="fa fa-search"
+                                          aria-hidden="true"
+                                        ></i>
+                                      </InputGroup.Text>
+                                    </InputGroup>
+                                    <Dropdown className="dropdwon-border-box">
+                                      <Dropdown.Toggle>
+                                        Sort By
+                                      </Dropdown.Toggle>
+
+                                      <Dropdown.Menu>
+                                        <Dropdown.Item href="#">
+                                          Newest
+                                        </Dropdown.Item>
+                                        <Dropdown.Item href="#">
+                                          Oldest
+                                        </Dropdown.Item>
+                                        <Dropdown.Item href="#">
+                                          Something else
+                                        </Dropdown.Item>
+                                      </Dropdown.Menu>
+                                    </Dropdown>
+                                    <button className="common-btn">
+                                      Clear Filter
+                                    </button>
+                                  </div>
+                                </Col>
+                              </Row>
+                            </div>
+                            <hr />
+                            <div className="table-responsive">
+                              <Table className="table-common-new">
+                                <thead>
+                                  <tr>
+                                    <th>Sr. No</th>
+                                    <th>Name</th>
+                                    <th>
+                                      <span className="d-flex">
+                                        Name{" "}
+                                        <span className="arrow-filter">
+                                          <a href="" className="up">
+                                            <img
+                                              src="assets/images/arrow-up.png"
+                                              alt=""
+                                            />
+                                          </a>
+                                          <a className="down" href="">
+                                            <img
+                                              src="assets/images/arrow-down.png"
+                                              alt=""
+                                            />
+                                          </a>
+                                        </span>
+                                      </span>
+                                    </th>
+                                    <th>
+                                      <span className="d-flex">
+                                        {" "}
+                                        Email{" "}
+                                        <span className="arrow-filter">
+                                          <a href="" className="up">
+                                            <img
+                                              src="assets/images/arrow-up.png"
+                                              alt=""
+                                            />
+                                          </a>
+                                          <a className="down" href="">
+                                            <img
+                                              src="assets/images/arrow-down.png"
+                                              alt=""
+                                            />
+                                          </a>
+                                        </span>
+                                      </span>
+                                    </th>
+                                    <th>Phone Number</th>
+                                    <th>KYC</th>
+                                    <th>Wallet</th>
+                                    <th>Profile</th>
+                                  </tr>
+                                </thead>
+
+                                <tbody>
+                                  <tr>
+                                    <td>S.No 1</td>
+                                    <td className="admin-table-img">
+                                      <img
+                                        src="/assets/images/admin/table-img.png"
+                                        className="img-fluid"
+                                        alt="icon"
+                                      />
+                                    </td>
+                                    <td className="">User</td>
+                                    <td className="">user@gmail.com</td>
+
+                                    <td className="">
+                                      +91 &nbsp; 8782772877
+                                    </td>
+
+                                    <td>
+                                      <div className="kyc-set">
+                                        KYC
+                                        <img
+                                          style={{ cursor: "pointer" }}
+                                          src="assets/images/admin/attach.png"
+                                          className="img-fluid"
+                                          alt="icon"
+                                        />
+                                      </div>
+                                    </td>
+
+                                    <td className="">$434 USD</td>
+                                    <td>
+                                      <a href="">
+                                        <i className="fa fa-eye"></i>
+                                      </a>
+                                    </td>
+                                  </tr>
+
+                                  {/* <tr>
+                                      <td colSpan={8} className="text-center">
+                                      No Data Found
+                                      </td>
+                                  </tr> */}
+                                </tbody>
+                              </Table>
+                            </div>
+                          </Tab>
+                          <Tab eventKey="ordertab2" title="Order History">
+                            <div className="filter-sort-sec">
+                              <Row>
+                                <Col md="12">
+                                  <h4 className="filter-icon">
+                                    <img
+                                      src="assets/images/filter.png"
+                                      alt=""
+                                    />{" "}
+                                    Filter
+                                  </h4>
+                                  <div className="outer-box-filter">
+                                    <InputGroup className="outer-input-search ">
+                                      <Form.Control
+                                        placeholder="Search..."
+                                        name="OldPassword"
+                                      />
+                                      <InputGroup.Text className="search-space">
+                                        <i
+                                          className="fa fa-search"
+                                          aria-hidden="true"
+                                        ></i>
+                                      </InputGroup.Text>
+                                    </InputGroup>
+                                    <Dropdown className="dropdwon-border-box">
+                                      <Dropdown.Toggle>
+                                        Sort By
+                                      </Dropdown.Toggle>
+
+                                      <Dropdown.Menu>
+                                        <Dropdown.Item href="#">
+                                          Newest
+                                        </Dropdown.Item>
+                                        <Dropdown.Item href="#">
+                                          Oldest
+                                        </Dropdown.Item>
+                                        <Dropdown.Item href="#">
+                                          Something else
+                                        </Dropdown.Item>
+                                      </Dropdown.Menu>
+                                    </Dropdown>
+                                    <button className="common-btn">
+                                      Clear Filter
+                                    </button>
+                                  </div>
+                                </Col>
+                              </Row>
+                            </div>
+                            <hr />
+                            <div className="table-responsive">
+                              <Table className="table-common-new">
+                                <thead>
+                                  <tr>
+                                    <th>Sr. No</th>
+                                    <th>Name</th>
+                                    <th>
+                                      <span className="d-flex">
+                                        Name{" "}
+                                        <span className="arrow-filter">
+                                          <a href="" className="up">
+                                            <img
+                                              src="assets/images/arrow-up.png"
+                                              alt=""
+                                            />
+                                          </a>
+                                          <a className="down" href="">
+                                            <img
+                                              src="assets/images/arrow-down.png"
+                                              alt=""
+                                            />
+                                          </a>
+                                        </span>
+                                      </span>
+                                    </th>
+                                    <th>
+                                      <span className="d-flex">
+                                        {" "}
+                                        Email{" "}
+                                        <span className="arrow-filter">
+                                          <a href="" className="up">
+                                            <img
+                                              src="assets/images/arrow-up.png"
+                                              alt=""
+                                            />
+                                          </a>
+                                          <a className="down" href="">
+                                            <img
+                                              src="assets/images/arrow-down.png"
+                                              alt=""
+                                            />
+                                          </a>
+                                        </span>
+                                      </span>
+                                    </th>
+                                    <th>Phone Number</th>
+                                    <th>KYC</th>
+                                    <th>Wallet</th>
+                                    <th>Profile</th>
+                                  </tr>
+                                </thead>
+
+                                <tbody>
+                                  <tr>
+                                    <td>S.No 1</td>
+                                    <td className="admin-table-img">
+                                      <img
+                                        src="/assets/images/admin/table-img.png"
+                                        className="img-fluid"
+                                        alt="icon"
+                                      />
+                                    </td>
+                                    <td className="">User</td>
+                                    <td className="">user@gmail.com</td>
+
+                                    <td className="">
+                                      +91 &nbsp; 8782772877
+                                    </td>
+
+                                    <td>
+                                      <div className="kyc-set">
+                                        KYC
+                                        <img
+                                          style={{ cursor: "pointer" }}
+                                          src="assets/images/admin/attach.png"
+                                          className="img-fluid"
+                                          alt="icon"
+                                        />
+                                      </div>
+                                    </td>
+
+                                    <td className="">$434 USD</td>
+                                    <td>
+                                      <a href="">
+                                        <i className="fa fa-eye"></i>
+                                      </a>
+                                    </td>
+                                  </tr>
+
+                                  {/* <tr>
+                                      <td colSpan={8} className="text-center">
+                                      No Data Found
+                                      </td>
+                                  </tr> */}
+                                </tbody>
+                              </Table>
+                            </div>
+                          </Tab>
+                          <Tab eventKey="ordertab3" title="Trade History">
+                            <div className="filter-sort-sec">
+                              <Row>
+                                <Col md="12">
+                                  <h4 className="filter-icon">
+                                    <img
+                                      src="assets/images/filter.png"
+                                      alt=""
+                                    />{" "}
+                                    Filter
+                                  </h4>
+                                  <div className="outer-box-filter">
+                                    <InputGroup className="outer-input-search ">
+                                      <Form.Control
+                                        placeholder="Search..."
+                                        name="OldPassword"
+                                      />
+                                      <InputGroup.Text className="search-space">
+                                        <i
+                                          className="fa fa-search"
+                                          aria-hidden="true"
+                                        ></i>
+                                      </InputGroup.Text>
+                                    </InputGroup>
+                                    <Dropdown className="dropdwon-border-box">
+                                      <Dropdown.Toggle>
+                                        Sort By
+                                      </Dropdown.Toggle>
+
+                                      <Dropdown.Menu>
+                                        <Dropdown.Item href="#">
+                                          Newest
+                                        </Dropdown.Item>
+                                        <Dropdown.Item href="#">
+                                          Oldest
+                                        </Dropdown.Item>
+                                        <Dropdown.Item href="#">
+                                          Something else
+                                        </Dropdown.Item>
+                                      </Dropdown.Menu>
+                                    </Dropdown>
+                                    <button className="common-btn">
+                                      Clear Filter
+                                    </button>
+                                  </div>
+                                </Col>
+                              </Row>
+                            </div>
+                            <hr />
+                            <div className="table-responsive">
+                              <Table className="table-common-new">
+                                <thead>
+                                  <tr>
+                                    <th>Sr. No</th>
+                                    <th>Name</th>
+                                    <th>
+                                      <span className="d-flex">
+                                        Name{" "}
+                                        <span className="arrow-filter">
+                                          <a href="" className="up">
+                                            <img
+                                              src="assets/images/arrow-up.png"
+                                              alt=""
+                                            />
+                                          </a>
+                                          <a className="down" href="">
+                                            <img
+                                              src="assets/images/arrow-down.png"
+                                              alt=""
+                                            />
+                                          </a>
+                                        </span>
+                                      </span>
+                                    </th>
+                                    <th>
+                                      <span className="d-flex">
+                                        {" "}
+                                        Email{" "}
+                                        <span className="arrow-filter">
+                                          <a href="" className="up">
+                                            <img
+                                              src="assets/images/arrow-up.png"
+                                              alt=""
+                                            />
+                                          </a>
+                                          <a className="down" href="">
+                                            <img
+                                              src="assets/images/arrow-down.png"
+                                              alt=""
+                                            />
+                                          </a>
+                                        </span>
+                                      </span>
+                                    </th>
+                                    <th>Phone Number</th>
+                                    <th>KYC</th>
+                                    <th>Wallet</th>
+                                    <th>Profile</th>
+                                  </tr>
+                                </thead>
+
+                                <tbody>
+                                  <tr>
+                                    <td>S.No 1</td>
+                                    <td className="admin-table-img">
+                                      <img
+                                        src="/assets/images/admin/table-img.png"
+                                        className="img-fluid"
+                                        alt="icon"
+                                      />
+                                    </td>
+                                    <td className="">User</td>
+                                    <td className="">user@gmail.com</td>
+
+                                    <td className="">
+                                      +91 &nbsp; 8782772877
+                                    </td>
+
+                                    <td>
+                                      <div className="kyc-set">
+                                        KYC
+                                        <img
+                                          style={{ cursor: "pointer" }}
+                                          src="assets/images/admin/attach.png"
+                                          className="img-fluid"
+                                          alt="icon"
+                                        />
+                                      </div>
+                                    </td>
+
+                                    <td className="">$434 USD</td>
+                                    <td>
+                                      <a href="">
+                                        <i className="fa fa-eye"></i>
+                                      </a>
+                                    </td>
+                                  </tr>
+
+                                  {/* <tr>
+                                      <td colSpan={8} className="text-center">
+                                      No Data Found
+                                      </td>
+                                  </tr> */}
+                                </tbody>
+                              </Table>
+                            </div>
+                          </Tab>
+                        </Tabs>
+                      </div>
+                    </div>
+                  </Tab>
+                  <Tab eventKey="tab6" title="Refferal">
+                    <div className="shadow-admin-box mt-3">
+                      <div className="filter-sort-sec">
+                        <Row>
+                          <Col md="12">
+                            <h4 className="filter-icon">
+                              <img src="assets/images/filter.png" alt="" />{" "}
+                              Filter
+                            </h4>
+                            <div className="filter-with-show-data">
+                            <div className="outer-box-filter">
+                                  
+                                  <InputGroup className="outer-input-search ">
+                                    <Form.Control
+                                      placeholder="Search..."
+                                      name="OldPassword"
+                                    />
+                                    <InputGroup.Text className="search-space">
+                                      <i className="fa fa-search" aria-hidden="true"></i>
+                                    </InputGroup.Text>
+                                  </InputGroup>
+                                  <Dropdown className="dropdwon-border-box">
+                                    <Dropdown.Toggle>
+                                      Sort By
+                                    </Dropdown.Toggle>
+
+                                    <Dropdown.Menu>
+                                      <Dropdown.Item href="#">Newest</Dropdown.Item>
+                                      <Dropdown.Item href="#">Oldest</Dropdown.Item>
+                                      <Dropdown.Item href="#">Something else</Dropdown.Item>
+                                    </Dropdown.Menu>
+                                  </Dropdown>
+                                  <button className="common-btn">Clear Filter</button>
+                            </div>
+                            <Dropdown className="dropdwon-border-box">
+                                    <Dropdown.Toggle>
+                                      Show
+                                    </Dropdown.Toggle>
+
+                                    <Dropdown.Menu>
+                                      <Dropdown.Item href="#">1 - 25</Dropdown.Item>
+                                      <Dropdown.Item href="#">25 - 50</Dropdown.Item>
+                                      <Dropdown.Item href="#">50 - 75</Dropdown.Item>
+                                      <Dropdown.Item href="#">75 - 100</Dropdown.Item>
+                                    </Dropdown.Menu>
+                                  </Dropdown>
+                         </div>
+                          </Col>
+                        </Row>
+                      </div>
+                      <hr />
+                      <div className="table-responsive">
+                        <Table className="table-common-new">
+                          <thead>
+                            <tr>
+                              <th>Sr. No</th>
+                              <th>Name</th>
+                              <th>
+                                <span className="d-flex">
+                                  Name{" "}
+                                  <span className="arrow-filter">
+                                    <a href="" className="up">
+                                      <img
+                                        src="assets/images/arrow-up.png"
+                                        alt=""
+                                      />
+                                    </a>
+                                    <a className="down" href="">
+                                      <img
+                                        src="assets/images/arrow-down.png"
+                                        alt=""
+                                      />
+                                    </a>
+                                  </span>
+                                </span>
+                              </th>
+                              <th>
+                                <span className="d-flex">
+                                  {" "}
+                                  Email{" "}
+                                  <span className="arrow-filter">
+                                    <a href="" className="up">
+                                      <img
+                                        src="assets/images/arrow-up.png"
+                                        alt=""
+                                      />
+                                    </a>
+                                    <a className="down" href="">
+                                      <img
+                                        src="assets/images/arrow-down.png"
+                                        alt=""
+                                      />
+                                    </a>
+                                  </span>
+                                </span>
+                              </th>
+                              <th>Phone Number</th>
+                              <th>KYC</th>
+                              <th>Wallet</th>
+                              <th>Profile</th>
+                            </tr>
+                          </thead>
+
+                          <tbody>
+                            <tr>
+                              <td>S.No 1</td>
+                              <td className="admin-table-img">
+                                <img
+                                  src="/assets/images/admin/table-img.png"
+                                  className="img-fluid"
+                                  alt="icon"
+                                />
+                              </td>
+                              <td className="">User</td>
+                              <td className="">user@gmail.com</td>
+
+                              <td className="">+91 &nbsp; 8782772877</td>
+
+                              <td>
+                                <div className="kyc-set">
+                                  KYC
+                                  <img
+                                    style={{ cursor: "pointer" }}
+                                    src="assets/images/admin/attach.png"
+                                    className="img-fluid"
+                                    alt="icon"
+                                  />
+                                </div>
+                              </td>
+
+                              <td className="">$434 USD</td>
+                              <td>
+                                <a href="">
+                                  <i className="fa fa-eye"></i>
+                                </a>
+                              </td>
+                            </tr>
+
+                            {/* <tr>
+                                      <td colSpan={8} className="text-center">
+                                      No Data Found
+                                      </td>
+                                  </tr> */}
+                          </tbody>
+                        </Table>
+                      </div>
+                    </div>
+                  </Tab>
+                  <Tab eventKey="tab7" title="Swap">
+                    <div className="shadow-admin-box mt-3">
+                      <div className="filter-sort-sec">
+                        <Row>
+                          <Col md="12">
+                            <h4 className="filter-icon">
+                              <img src="assets/images/filter.png" alt="" />{" "}
+                              Filter
+                            </h4>
+                            <div className="filter-with-show-data">
+                            <div className="outer-box-filter">
+                                  
+                                  <InputGroup className="outer-input-search ">
+                                    <Form.Control
+                                      placeholder="Search..."
+                                      name="OldPassword"
+                                    />
+                                    <InputGroup.Text className="search-space">
+                                      <i className="fa fa-search" aria-hidden="true"></i>
+                                    </InputGroup.Text>
+                                  </InputGroup>
+                                  <Dropdown className="dropdwon-border-box">
+                                    <Dropdown.Toggle>
+                                      Sort By
+                                    </Dropdown.Toggle>
+
+                                    <Dropdown.Menu>
+                                      <Dropdown.Item href="#">Newest</Dropdown.Item>
+                                      <Dropdown.Item href="#">Oldest</Dropdown.Item>
+                                      <Dropdown.Item href="#">Something else</Dropdown.Item>
+                                    </Dropdown.Menu>
+                                  </Dropdown>
+                                  <button className="common-btn">Clear Filter</button>
+                            </div>
+                            <Dropdown className="dropdwon-border-box">
+                                    <Dropdown.Toggle>
+                                      Show
+                                    </Dropdown.Toggle>
+
+                                    <Dropdown.Menu>
+                                      <Dropdown.Item href="#">1 - 25</Dropdown.Item>
+                                      <Dropdown.Item href="#">25 - 50</Dropdown.Item>
+                                      <Dropdown.Item href="#">50 - 75</Dropdown.Item>
+                                      <Dropdown.Item href="#">75 - 100</Dropdown.Item>
+                                    </Dropdown.Menu>
+                                  </Dropdown>
+                         </div>
+                          </Col>
+                        </Row>
+                      </div>
+                      <hr />
+                      <div className="table-responsive">
+                        <Table className="table-common-new">
+                          <thead>
+                            <tr>
+                              <th>Sr. No</th>
+                              <th>Name</th>
+                              <th>
+                                <span className="d-flex">
+                                  Name{" "}
+                                  <span className="arrow-filter">
+                                    <a href="" className="up">
+                                      <img
+                                        src="assets/images/arrow-up.png"
+                                        alt=""
+                                      />
+                                    </a>
+                                    <a className="down" href="">
+                                      <img
+                                        src="assets/images/arrow-down.png"
+                                        alt=""
+                                      />
+                                    </a>
+                                  </span>
+                                </span>
+                              </th>
+                              <th>
+                                <span className="d-flex">
+                                  {" "}
+                                  Email{" "}
+                                  <span className="arrow-filter">
+                                    <a href="" className="up">
+                                      <img
+                                        src="assets/images/arrow-up.png"
+                                        alt=""
+                                      />
+                                    </a>
+                                    <a className="down" href="">
+                                      <img
+                                        src="assets/images/arrow-down.png"
+                                        alt=""
+                                      />
+                                    </a>
+                                  </span>
+                                </span>
+                              </th>
+                              <th>Phone Number</th>
+                              <th>KYC</th>
+                              <th>Wallet</th>
+                              <th>Profile</th>
+                            </tr>
+                          </thead>
+
+                          <tbody>
+                            <tr>
+                              <td>S.No 1</td>
+                              <td className="admin-table-img">
+                                <img
+                                  src="/assets/images/admin/table-img.png"
+                                  className="img-fluid"
+                                  alt="icon"
+                                />
+                              </td>
+                              <td className="">User</td>
+                              <td className="">user@gmail.com</td>
+
+                              <td className="">+91 &nbsp; 8782772877</td>
+
+                              <td>
+                                <div className="kyc-set">
+                                  KYC
+                                  <img
+                                    style={{ cursor: "pointer" }}
+                                    src="assets/images/admin/attach.png"
+                                    className="img-fluid"
+                                    alt="icon"
+                                  />
+                                </div>
+                              </td>
+
+                              <td className="">$434 USD</td>
+                              <td>
+                                <a href="">
+                                  <i className="fa fa-eye"></i>
+                                </a>
+                              </td>
+                            </tr>
+
+                            {/* <tr>
+                                      <td colSpan={8} className="text-center">
+                                      No Data Found
+                                      </td>
+                                  </tr> */}
+                          </tbody>
+                        </Table>
+                      </div>
+                    </div>
+                  </Tab>
+                  <Tab eventKey="tab8" title="P2P">
+                    <div className="shadow-admin-box mt-3">
+                      <div className="filter-sort-sec">
+                        <Row>
+                          <Col md="12">
+                            <h4 className="filter-icon">
+                              <img src="assets/images/filter.png" alt="" />{" "}
+                              Filter
+                            </h4>
+                            <div className="filter-with-show-data">
+                            <div className="outer-box-filter">
+                                  
+                                  <InputGroup className="outer-input-search ">
+                                    <Form.Control
+                                      placeholder="Search..."
+                                      name="OldPassword"
+                                    />
+                                    <InputGroup.Text className="search-space">
+                                      <i className="fa fa-search" aria-hidden="true"></i>
+                                    </InputGroup.Text>
+                                  </InputGroup>
+                                  <Dropdown className="dropdwon-border-box">
+                                    <Dropdown.Toggle>
+                                      Sort By
+                                    </Dropdown.Toggle>
+
+                                    <Dropdown.Menu>
+                                      <Dropdown.Item href="#">Newest</Dropdown.Item>
+                                      <Dropdown.Item href="#">Oldest</Dropdown.Item>
+                                      <Dropdown.Item href="#">Something else</Dropdown.Item>
+                                    </Dropdown.Menu>
+                                  </Dropdown>
+                                  <button className="common-btn">Clear Filter</button>
+                            </div>
+                            <Dropdown className="dropdwon-border-box">
+                                    <Dropdown.Toggle>
+                                      Show
+                                    </Dropdown.Toggle>
+
+                                    <Dropdown.Menu>
+                                      <Dropdown.Item href="#">1 - 25</Dropdown.Item>
+                                      <Dropdown.Item href="#">25 - 50</Dropdown.Item>
+                                      <Dropdown.Item href="#">50 - 75</Dropdown.Item>
+                                      <Dropdown.Item href="#">75 - 100</Dropdown.Item>
+                                    </Dropdown.Menu>
+                                  </Dropdown>
+                         </div>
+                          </Col>
+                        </Row>
+                      </div>
+                      <hr />
+                      <div className="table-responsive">
+                        <Table className="table-common-new">
+                          <thead>
+                            <tr>
+                              <th>Sr. No</th>
+                              
+                              <th>
+                                <span className="d-flex">
+                                  Transfer Date{" "}
+                                  <span className="arrow-filter">
+                                    <a href="" className="up">
+                                      <img
+                                        src="assets/images/arrow-up.png"
+                                        alt=""
+                                      />
+                                    </a>
+                                    <a className="down" href="">
+                                      <img
+                                        src="assets/images/arrow-down.png"
+                                        alt=""
+                                      />
+                                    </a>
+                                  </span>
+                                </span>
+                              </th>
+                              <th>Beneficiary Name</th>
+                              
+                              <th>Currency</th>
+                              <th>
+                              <span className="d-flex">
+                                  Amount{" "}
+                                  <span className="arrow-filter">
+                                    <a href="" className="up">
+                                      <img
+                                        src="assets/images/arrow-up.png"
+                                        alt=""
+                                      />
+                                    </a>
+                                    <a className="down" href="">
+                                      <img
+                                        src="assets/images/arrow-down.png"
+                                        alt=""
+                                      />
+                                    </a>
+                                  </span>
+                                </span>
+                              </th>
+                              <th>Status</th>
+                            </tr>
+                          </thead>
+
+                          <tbody>
+                            <tr>
+                              <td>1</td>
+                              <td>Feb 28, 2025 2:11 PM</td>
+                              <td>Krishna Dobariya</td>
+                              <td>USDT</td>
+                              <td>1.000000</td>
+                              <td className="text-green">Successs</td>
+                            </tr>
+
+                            {/* <tr>
+                                      <td colSpan={8} className="text-center">
+                                      No Data Found
+                                      </td>
+                                  </tr> */}
+                          </tbody>
+                        </Table>
+                      </div>
+                    </div>
+                  </Tab>
+                </Tabs>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+    </AdminLayout>
+  </>
   );
 };
 

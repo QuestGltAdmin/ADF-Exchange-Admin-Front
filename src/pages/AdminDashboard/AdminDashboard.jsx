@@ -10,7 +10,7 @@ const AdminDashboard = () => {
       <AdminLayout>
         <div>
           <AdminGraph />
-          <Row>
+          {/* <Row>
             <Col md="6" sm="6">
               <div className="shadow-admin-box mt-3">
                 <div className="head-same-all">
@@ -95,13 +95,7 @@ const AdminDashboard = () => {
                             <label className="head-mobile">Date</label>
                             12:32 <br />
                             6th April 2023
-                            {/* <span style={{ color: "red" }}>
-                                      {item?.priceChangePercent}%
-                                    </span>
-                                  
-                                    <span style={{ color: "#03E787" }}>
-                                      {item?.priceChangePercent}%
-                                    </span> */}
+                           
                           </td>
                         </tr>
 
@@ -111,8 +105,8 @@ const AdminDashboard = () => {
                 </div>
               </div>
             </Col>
-          </Row>
-          <Row className="">
+          </Row> */}
+          {/* <Row className="">
             <Col md="8" sm="6">
               <div className="shadow-admin-box mt-3">
                 <Tabs
@@ -252,7 +246,7 @@ const AdminDashboard = () => {
                 </div>
               </div>
             </Col>
-          </Row>
+          </Row> */}
         </div>
       </AdminLayout>
     </div>
