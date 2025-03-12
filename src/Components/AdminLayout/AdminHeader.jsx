@@ -30,7 +30,7 @@ export default function AdminHeader() {
                   <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                       <Nav.Link
-                        href="/"
+                        href="/admin-dashboard"
                       >
                         <div className="img-nav">
                           <img

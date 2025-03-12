@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import AdminDashboard from "./pages/AdminDashboard/AdminDashboard";
 import AdminUser from "./pages/AdminDashboard/AdminUser";
@@ -12,6 +12,7 @@ import Login from "./pages/AdminDashboard/Login";
 import { Toaster } from "react-hot-toast";
 import { AdminUserDetails } from "./pages/AdminDashboard/AdminUserDetails";
 import { AddAdminStake } from "./pages/AdminDashboard/AddAdminStake";
+import { VerifyOtp } from "./pages/AdminDashboard/VerifyOtp";
 
 function App() {
   return (
@@ -20,8 +21,9 @@ function App() {
         <BrowserRouter>
           <Toaster position="top-right" />
           <Routes>
-            <Route path="/" element={<AdminDashboard />} />
-            <Route path="/admin-login" element={<Login />} />
+            <Route path="/admin-dashboard" element={<AdminDashboard />} />
+            <Route path="/" element={<Login />} />
+            <Route path="/verify-otp" element={<VerifyOtp />} />
             <Route path="/admin-user" element={<AdminUser />} />
             <Route path="/admin-transaction" element={<AdminTransaction />} />
             <Route path="/admin-stakes" element={<AdminStakes />} />
@@ -31,6 +33,7 @@ function App() {
             <Route path="/admin-profile" element={<AdminProfile />} />
             <Route path="/admin-user-details" element={<AdminUserDetails />} />
             <Route path="/admin-add-stake" element={<AddAdminStake />} />
+            <Route path="/*" element={<Navigate to={"/"} />} />
           </Routes>
         </BrowserRouter>
       </div>

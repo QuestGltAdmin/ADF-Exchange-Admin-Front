@@ -19,9 +19,12 @@ function* setItemToLocalStorage(key, value) {
 
 export function* userLoginSaga(action) {
   yield put(userLoginStart());
-  const { payload, navigate, setDisable } = action.payload;
+  const { RowData, navigate, setDisable } = action.payload;
+  
   try {
-    const response = yield axiosMain.post(`/broker`, payload);
+    const response = yield axiosMain.post(`/admin/verify/login`,  {
+      data : RowData
+    });
     if (response?.data.status) {
       sessionStorage.setItem("jwt", "enable");
       yield call(setItemToLocalStorage, "isAuthenticated", true);
@@ -33,17 +36,12 @@ export function* userLoginSaga(action) {
       yield put(userloginSuccess(response.data.data));
       if (response.data.status === true) {
         sessionStorage.setItem("jwt", "enable");
-        if (response.data.data.user_role === "admin") {
-          toast.success("Admin Login successful");
+    
+          toast.success("Admin login successful");
           setTimeout(() => {
             navigate("/admin-dashboard");
           }, 3000);
-        } else {
-          toast.success("Broker login successful");
-          setTimeout(() => {
-            navigate("/dashboard");
-          }, 3000);
-        }
+        
       }
     } else {
       setDisable(false);
