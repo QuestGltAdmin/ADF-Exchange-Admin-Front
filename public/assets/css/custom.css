@@ -367,7 +367,9 @@ input[data-autocompleted] {
     line-height: 1.5rem;
     color: #fff !important;
 }
-
+a{
+    text-decoration: none !important;
+}
 .section-login-main .outer-input-group {
     border: 1px solid #ffa800 !important;
     box-shadow: none !important;
@@ -390,4 +392,7 @@ input[data-autocompleted] {
     color: #ffa800;
     background-color: transparent;
     border: none;
+}
+.outer-input-search.date-search{
+    max-width: 12rem;
 }

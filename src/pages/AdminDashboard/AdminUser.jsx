@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AdminLayout from "../../Components/AdminLayout/AdminLayout";
 import { Col, Container, InputGroup, Row, Table, Form, Dropdown } from "react-bootstrap";
-import AdminGraph from "./AdminGraph";
+
 
 const AdminUser = () => {
 
@@ -72,7 +72,7 @@ const AdminUser = () => {
                               <th ><span className="d-flex">Name  <span className="arrow-filter"><a href="" className="up"><img src="assets/images/arrow-up.png" alt="" /></a><a className="down" href=""><img src="assets/images/arrow-down.png" alt="" /></a></span></span></th>
                               <th ><span className="d-flex"> Email  <span className="arrow-filter"><a href="" className="up"><img src="assets/images/arrow-up.png" alt="" /></a><a className="down" href=""><img src="assets/images/arrow-down.png" alt="" /></a></span></span></th>
                               <th>Phone Number</th>
-                              <th>KYC</th>
+                              <th>Status (Email)</th>
                               <th>Wallet</th>
                               <th>Profile</th>
                             </tr>
@@ -102,17 +102,8 @@ const AdminUser = () => {
                                 8782772877
                               </td>
 
-                              <td>
-                                <div className="kyc-set">
-                                    KYC
-                                    <img
-                                      style={{ cursor: "pointer" }}
-
-                                      src="assets/images/admin/attach.png"
-                                      className="img-fluid"
-                                      alt="icon"
-                                    />
-                                </div>
+                              <td >
+                                <span className="text-green"> Active</span>
                               </td>
 
                               <td className="">
@@ -121,7 +112,7 @@ const AdminUser = () => {
                                 USD
                               </td>
                               <td>
-                                <a href=""><i className="fa fa-eye"></i></a>
+                                  <a href=""><small>View More</small></a>
                               </td>
                             </tr>
 

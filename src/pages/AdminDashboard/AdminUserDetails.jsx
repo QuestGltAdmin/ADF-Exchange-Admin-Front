@@ -157,7 +157,7 @@ export const AdminUserDetails = () => {
                             <thead>
                               <tr>
                                 <th>Sr. No</th>
-                                <th>Name</th>
+                                <th>Coin</th>
                                 <th>
                                   <span className="d-flex">
                                     Name{" "}
@@ -180,7 +180,7 @@ export const AdminUserDetails = () => {
                                 <th>
                                   <span className="d-flex">
                                     {" "}
-                                    Email{" "}
+                                    Available Balance{" "}
                                     <span className="arrow-filter">
                                       <a href="" className="up">
                                         <img
@@ -197,10 +197,7 @@ export const AdminUserDetails = () => {
                                     </span>
                                   </span>
                                 </th>
-                                <th>Phone Number</th>
-                                <th>KYC</th>
-                                <th>Wallet</th>
-                                <th>Profile</th>
+                                <th>Total Balance</th>
                               </tr>
                             </thead>
 
@@ -211,36 +208,19 @@ export const AdminUserDetails = () => {
                                   <img
                                     src="/assets/images/admin/table-img.png"
                                     className="img-fluid"
-                                    alt="icon"
+                                    alt="coin icon"
                                   />
                                 </td>
-                                <td className="">User</td>
-                                <td className="">user@gmail.com</td>
+                                <td className="">ETH</td>
+                                <td className="">$1200</td>
 
-                                <td className="">+91 &nbsp; 8782772877</td>
+                                <td className="">$1200</td>
 
-                                <td>
-                                  <div className="kyc-set">
-                                    KYC
-                                    <img
-                                      style={{ cursor: "pointer" }}
-                                      src="assets/images/admin/attach.png"
-                                      className="img-fluid"
-                                      alt="icon"
-                                    />
-                                  </div>
-                                </td>
-
-                                <td className="">$434 USD</td>
-                                <td>
-                                  <a href="">
-                                    <i className="fa fa-eye"></i>
-                                  </a>
-                                </td>
+                               
                               </tr>
 
                               {/* <tr>
-                                        <td colSpan={8} className="text-center">
+                                        <td colSpan={5} className="text-center">
                                         No Data Found
                                         </td>
                                     </tr> */}
@@ -305,10 +285,10 @@ export const AdminUserDetails = () => {
                             <thead>
                               <tr>
                                 <th>Sr. No</th>
-                                <th>Name</th>
+                                <th>Tittle</th>
                                 <th>
                                   <span className="d-flex">
-                                    Name{" "}
+                                    Amount Invested{" "}
                                     <span className="arrow-filter">
                                       <a href="" className="up">
                                         <img
@@ -328,7 +308,7 @@ export const AdminUserDetails = () => {
                                 <th>
                                   <span className="d-flex">
                                     {" "}
-                                    Email{" "}
+                                    Payout Amount{" "}
                                     <span className="arrow-filter">
                                       <a href="" className="up">
                                         <img
@@ -345,50 +325,32 @@ export const AdminUserDetails = () => {
                                     </span>
                                   </span>
                                 </th>
-                                <th>Phone Number</th>
-                                <th>KYC</th>
-                                <th>Wallet</th>
-                                <th>Profile</th>
+                                <th>Duration</th>
+                                <th>Interest Rate</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Status</th>
                               </tr>
                             </thead>
 
                             <tbody>
                               <tr>
-                                <td>S.No 1</td>
-                                <td className="admin-table-img">
-                                  <img
-                                    src="/assets/images/admin/table-img.png"
-                                    className="img-fluid"
-                                    alt="icon"
-                                  />
-                                </td>
-                                <td className="">User</td>
-                                <td className="">user@gmail.com</td>
+                                <td>1</td>
+                                <td>BTC</td>
+                                <td className="">1.00 BTC</td>
+                                <td className="">2.00 BTC</td>
 
-                                <td className="">+91 &nbsp; 8782772877</td>
+                                <td className="">140 Days</td>
 
-                                <td>
-                                  <div className="kyc-set">
-                                    KYC
-                                    <img
-                                      style={{ cursor: "pointer" }}
-                                      src="assets/images/admin/attach.png"
-                                      className="img-fluid"
-                                      alt="icon"
-                                    />
-                                  </div>
-                                </td>
+                                <td>12%</td>
 
-                                <td className="">$434 USD</td>
-                                <td>
-                                  <a href="">
-                                    <i className="fa fa-eye"></i>
-                                  </a>
-                                </td>
+                                <td>12 March 2025</td>
+                                <td>12 March 2025</td>
+                                <td><span className="text-green">Active</span></td>
                               </tr>
 
                               {/* <tr>
-                                        <td colSpan={8} className="text-center">
+                                        <td colSpan={9} className="text-center">
                                         No Data Found
                                         </td>
                                     </tr> */}
