@@ -11,6 +11,7 @@ import AdminProfile from "./pages/AdminDashboard/AdminProfile";
 import Login from "./pages/AdminDashboard/Login";
 import { Toaster } from "react-hot-toast";
 import { AdminUserDetails } from "./pages/AdminDashboard/AdminUserDetails";
+import { AddAdminStake } from "./pages/AdminDashboard/AddAdminStake";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             <Route path="/admin-support" element={<Adminsupport />} />
             <Route path="/admin-profile" element={<AdminProfile />} />
             <Route path="/admin-user-details" element={<AdminUserDetails />} />
+            <Route path="/admin-add-stake" element={<AddAdminStake />} />
           </Routes>
         </BrowserRouter>
       </div>

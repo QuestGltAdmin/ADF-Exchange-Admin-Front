@@ -46,6 +46,8 @@
     background-color: #ffa800;
     border-color: #ffa800;
     color: #ffffff !important;
+    display: inline-block;
+    text-align: center;
 }
 .outer-box-filter {
     display: flex;
@@ -395,4 +397,74 @@ a{
 }
 .outer-input-search.date-search{
     max-width: 12rem;
+}
+.stake-box-outer {
+    position: relative;
+    padding-top: 3.5rem;
+    margin-top: 3rem !important;
+    background-color: #000 !important;
+}
+.stake-box-outer .stake-img {
+    object-fit: contain;
+    background-color: rgb(26, 26, 26);
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: -2.5rem;
+    width: 5rem !important;
+    height: 5rem !important;
+    border-radius: 50%;
+    margin: 0px auto;
+    border-width: 0.4rem;
+    border-style: solid;
+    border-color: #0B0B15;
+    border-image: initial;
+}
+.stake-box-outer h5 {
+    color: rgb(255, 255, 255);
+    font-size: 1.2rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-align: center;
+    padding-bottom: 0.6rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid rgb(221, 221, 221);
+}
+.stake-days-outer {
+    display: flex;
+    align-items: center;
+    max-width: 100%;
+    justify-content: space-between;
+    margin: 0rem 0px 1rem;
+}
+.stake-days-outer span {
+    margin-right: 0.6rem;
+    color: rgb(255, 255, 255);
+    font-size: 0.8rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.4rem;
+    padding: 0.6rem;
+}
+.stake-days-outer span big {
+    display: block;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+.form-inner-admin{
+
+}
+.form-inner-admin .form-label {
+    font-weight: 300;
+    color: #fff;
+}
+.form-inner-admin .form-control {
+    background-color: #000;
+    border: 1px solid #292931;
+    padding: 0.4rem 1rem;
+    box-shadow: none !important;
+    outline: none !important;
+    color: #fff;
+    border-radius: 0.5rem;
 }
