@@ -12,12 +12,9 @@ import Login from "./pages/AdminDashboard/Login";
 import { Toaster } from "react-hot-toast";
 import { AdminUserDetails } from "./pages/AdminDashboard/AdminUserDetails";
 import { AddAdminStake } from "./pages/AdminDashboard/AddAdminStake";
-<<<<<<< HEAD
 import { AdminCurrency } from "./pages/AdminDashboard/AdminCurrency";
 import { AdminCurrencymore } from "./pages/AdminDashboard/AdminCurrencymore";
-=======
 import { VerifyOtp } from "./pages/AdminDashboard/VerifyOtp";
->>>>>>> 193e66814498ab26634f94a936f7749310de8d61
 
 function App() {
   return (
@@ -38,12 +35,9 @@ function App() {
             <Route path="/admin-profile" element={<AdminProfile />} />
             <Route path="/admin-user-details" element={<AdminUserDetails />} />
             <Route path="/admin-add-stake" element={<AddAdminStake />} />
-<<<<<<< HEAD
             <Route path="/admin-currency-management" element={<AdminCurrency />} />
             <Route path="/admin-currency-moreinfo" element={<AdminCurrencymore />} />
-=======
             <Route path="/*" element={<Navigate to={"/"} />} />
->>>>>>> 193e66814498ab26634f94a936f7749310de8d61
           </Routes>
         </BrowserRouter>
       </div>
