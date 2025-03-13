@@ -37,7 +37,7 @@ const AdminStakes = () => {
                       </InputGroup>
                     </Col>
                     <Col lg={2}>
-                      <a className="common-btn  " href="">
+                      <a className="common-btn  " href="/admin-add-stake">
                         Add Stake Plan
                       </a>
                     </Col>

@@ -452,9 +452,7 @@ a{
     font-weight: 600;
     font-size: 1.2rem;
 }
-.form-inner-admin{
 
-}
 .form-inner-admin .form-label {
     font-weight: 300;
     color: #fff;
@@ -467,4 +465,52 @@ a{
     outline: none !important;
     color: #fff;
     border-radius: 0.5rem;
+}
+.upload-photo-box {
+    position: relative;
+    max-width: max-content;
+}
+.upload-photo-box .border-btn {
+    display: inline-block;
+    color: #FFF !important;
+    text-align: center;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding: 0.5rem   1rem;
+    border-radius: 0.5rem;
+    border: 1px solid #ffa800 !important;
+    text-decoration: none;
+    background-color: transparent !important;
+    min-width: 9rem;
+}
+.upload-photo-box .form-control {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+.outer-img-box-upload {
+    position: relative;
+    max-width: 6rem;
+    max-height: 6rem;
+    text-align: center;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(255, 255, 255);
+    border-image: initial;
+    border-radius: 50%;
+    padding: 0.3rem;
+    overflow: hidden;
+}
+.outer-img-box-upload img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
 }
