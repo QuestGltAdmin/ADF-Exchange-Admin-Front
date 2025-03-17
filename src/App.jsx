@@ -15,6 +15,7 @@ import { AddAdminStake } from "./pages/AdminDashboard/AddAdminStake";
 import { AdminCurrency } from "./pages/AdminDashboard/AdminCurrency";
 import { AdminCurrencymore } from "./pages/AdminDashboard/AdminCurrencymore";
 import { VerifyOtp } from "./pages/AdminDashboard/VerifyOtp";
+import { AdminSupportdetails } from "./pages/AdminDashboard/AdminSupportdetails";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
             <Route path="/admin-add-stake" element={<AddAdminStake />} />
             <Route path="/admin-currency-management" element={<AdminCurrency />} />
             <Route path="/admin-currency-moreinfo" element={<AdminCurrencymore />} />
+            <Route path="/admin-support-details" element={<AdminSupportdetails />} />
             <Route path="/*" element={<Navigate to={"/"} />} />
           </Routes>
         </BrowserRouter>

@@ -1,7 +1,16 @@
 import React, { useEffect, useState } from "react";
 import AdminLayout from "../../Components/AdminLayout/AdminLayout";
-import { Col, Container, InputGroup, Row, Table, Form, Dropdown } from "react-bootstrap";
-import AdminGraph from "./AdminGraph";
+import {
+  Col,
+  Container,
+  InputGroup,
+  Row,
+  Table,
+  Form,
+  Dropdown,
+  Tabs,
+  Tab,
+} from "react-bootstrap";
 
 export const Adminsupport = () => {
 
@@ -9,398 +18,200 @@ export const Adminsupport = () => {
     <>
       <AdminLayout>
         <div>
-          <Container fluid>
-            <AdminGraph />
+          <Container>
             <Row className="">
-              <Col xxl="8" xl="7" md="7">
+              <Col md="12">
+                <h3 className="common-page-heading">Support Management</h3>
+                <Row>
+                  <Col lg="8">
+                    <div className="outer-box-flex">
+                      <div className="box-total-user limit-balance-box mb-2">
+                        <h5>Total Support Tickets</h5>
+                        <h3>
+                          <span className="text-orange">24</span>
+                        </h3>
+                      </div>
+                      <div className="box-total-user limit-balance-box mb-2">
+                        <h5>Total Open Tickets</h5>
+                        <h3>
+                          <span className="text-orange">12</span>
+                        </h3>
+                      </div>
+                      <div className="box-total-user limit-balance-box mb-2">
+                        <h5>Total Closed Tickets</h5>
+                        <h3>
+                          <span className="text-orange">12</span>
+                        </h3>
+                      </div>
+                    </div>
+                  </Col>
+                </Row>
                 <div className="shadow-admin-box mt-3">
-                  <div className="head-same-all">
-                    <h3>Support request</h3>
-                    <h5>
-                      47 Requests{" "}
-                      <img
-                        src="assets/images/admin/requests.png"
-                        className="img-fluid"
-                        alt="icon"
-                      />
-                    </h5>
-                  </div>
                   <div className="filter-sort-sec">
                     <Row>
-                      <Col md="8">
-                        <InputGroup className="">
-                          <Form.Control
-                            placeholder="Search name,email or phone number"
-                            name="OldPassword"
-                          />
-                          <InputGroup.Text className="search-space">
-                            {/* <img
-                              src="assets/images/admin/search.png"
-                              className="img-fluid"
-                              alt="icon"
-                            /> */}
-                            <i className="fa fa-search" aria-hidden="true"></i>
-                          </InputGroup.Text>
-                        </InputGroup>
+                      <Col md="12">
+                        <h4 className="filter-icon">
+                          <img src="assets/images/filter.png" alt="" /> Filter
+                          <button className="common-btn ms-3">
+                            Clear Filter
+                          </button>
+                        </h4>
+                        <div className="filter-with-show-data">
+                          <div className="outer-box-filter">
+                            <InputGroup className="outer-input-search ">
+                              <Form.Control
+                                placeholder="Search..."
+                                name="OldPassword"
+                              />
+                              <InputGroup.Text className="search-space">
+                                <i
+                                  className="fa fa-search"
+                                  aria-hidden="true"
+                                ></i>
+                              </InputGroup.Text>
+                            </InputGroup>
+                            <Dropdown className="dropdwon-border-box">
+                              <Dropdown.Toggle>Sort By</Dropdown.Toggle>
+
+                              <Dropdown.Menu>
+                                <Dropdown.Item href="#">Newest</Dropdown.Item>
+                                <Dropdown.Item href="#">Oldest</Dropdown.Item>
+                                <Dropdown.Item href="#">
+                                  Something else
+                                </Dropdown.Item>
+                              </Dropdown.Menu>
+                            </Dropdown>
+                            <Dropdown className="dropdwon-border-box">
+                              <Dropdown.Toggle>Sort By User</Dropdown.Toggle>
+
+                              <Dropdown.Menu>
+                                <Dropdown.Item href="#">Newest</Dropdown.Item>
+                                <Dropdown.Item href="#">Oldest</Dropdown.Item>
+                                <Dropdown.Item href="#">
+                                  Something else
+                                </Dropdown.Item>
+                              </Dropdown.Menu>
+                            </Dropdown>
+                            <InputGroup className="outer-input-search date-search">
+                              <Form.Control
+                                placeholder="DD/MM/YYYY"
+                                name="OldPassword"
+                              />
+                              <InputGroup.Text className="search-space ml-3">
+                                From
+                              </InputGroup.Text>
+                            </InputGroup>
+                            <InputGroup className="outer-input-search date-search ">
+                              <Form.Control
+                                placeholder="DD/MM/YYYY"
+                                name="OldPassword"
+                              />
+                              <InputGroup.Text className="search-space ml-3">
+                                To
+                              </InputGroup.Text>
+                            </InputGroup>
+                          </div>
+                          <Dropdown className="dropdwon-border-box">
+                            <Dropdown.Toggle>Show</Dropdown.Toggle>
+
+                            <Dropdown.Menu>
+                              <Dropdown.Item href="#">1 - 25</Dropdown.Item>
+                              <Dropdown.Item href="#">25 - 50</Dropdown.Item>
+                              <Dropdown.Item href="#">50 - 75</Dropdown.Item>
+                              <Dropdown.Item href="#">75 - 100</Dropdown.Item>
+                            </Dropdown.Menu>
+                          </Dropdown>
+                        </div>
                       </Col>
                     </Row>
                   </div>
-                  <div>
-                    <div className="set-height-table">
-                      <div className="table-responsive">
-                        <Table className="table-admin-all max-width-tab  table-mobile-view">
-                          <thead>
-                            <tr>
-                              {/* <th>Sr. No</th> */}
-                              <th>User</th>
-                              <th>Subject</th>
-                              <th>Date</th>
-                              <th>Status</th>
-                            </tr>
-                          </thead>
-                          <br></br>
-                          <tbody>
-
-                            <tr>
-                              {/* <td> <label className="head-mobile">S.No</label>1</td> */}
-                              <td className="admin-table-img d-flex align-items-center">
-                                <label className="head-mobile">User</label>
-                                <div className="d-flex align-items-center gap-1">
+                  <hr />
+                  <div className="table-responsive">
+                    <Table className="table-common-new">
+                      <thead>
+                        <tr>
+                          <th>Sr. No</th>
+                          <th>Name</th>
+                          <th>
+                            <span className="d-flex">
+                              Name{" "}
+                              <span className="arrow-filter">
+                                <a href="" className="up">
                                   <img
-                                    src="assets/images/admin/table-img.png"
-                                    className="img-fluid"
-                                    alt="icon"
+                                    src="assets/images/arrow-up.png"
+                                    alt=""
                                   />
-
-                                  <div className="set-14   ">
-                                    <div className=" set-700">
-                                      rohit
-                                    </div>
-                                    <div className="set-10 grey text-left">
-                                      rohit12@gamil.com
-                                      <br></br>
-                                      India +91 91234-65412
-                                    </div>
-                                  </div>
-                                </div>
-                              </td>
-                              <td className="set-14 set-600">
-                                <label className="head-mobile">Subject</label>Swap is not working</td>
-                              <td className="set-10 set-600 grey text-left">
-                                <label className="head-mobile">Date</label>
-                                14:21 02th April 2023<br></br> 03:45 PM
-                              </td>
-                              <td
-                                className="set-12 blue set-600"
-
-                              >
-                                <label className="head-mobile">Status</label>
-                                Action Needed
-                              </td>
-                            </tr>
-                            <tr>
-                              {/* <td> <label className="head-mobile">S.No</label>1</td> */}
-                              <td className="admin-table-img d-flex align-items-center">
-                                <label className="head-mobile">User</label>
-                                <div className="d-flex align-items-center gap-1">
+                                </a>
+                                <a className="down" href="">
                                   <img
-                                    src="assets/images/admin/table-img.png"
-                                    className="img-fluid"
-                                    alt="icon"
+                                    src="assets/images/arrow-down.png"
+                                    alt=""
                                   />
-
-                                  <div className="set-14   ">
-                                    <div className=" set-700">
-                                      rohit
-                                    </div>
-                                    <div className="set-10 grey text-left">
-                                      rohit12@gamil.com
-                                      <br></br>
-                                      India +91 91234-65412
-                                    </div>
-                                  </div>
-                                </div>
-                              </td>
-                              <td className="set-14 set-600">
-                                <label className="head-mobile">Subject</label>Swap is not working</td>
-                              <td className="set-10 set-600 grey text-left">
-                                <label className="head-mobile">Date</label>
-                                14:21 02th April 2023<br></br> 03:45 PM
-                              </td>
-                              <td
-                                className="set-12 blue set-600"
-
-                              >
-                                <label className="head-mobile">Status</label>
-                                Action Needed
-                              </td>
-                            </tr>
-                            <tr>
-                              {/* <td> <label className="head-mobile">S.No</label>1</td> */}
-                              <td className="admin-table-img d-flex align-items-center">
-                                <label className="head-mobile">User</label>
-                                <div className="d-flex align-items-center gap-1">
+                                </a>
+                              </span>
+                            </span>
+                          </th>
+                          <th>
+                            <span className="d-flex">
+                              {" "}
+                              Email{" "}
+                              <span className="arrow-filter">
+                                <a href="" className="up">
                                   <img
-                                    src="assets/images/admin/table-img.png"
-                                    className="img-fluid"
-                                    alt="icon"
+                                    src="assets/images/arrow-up.png"
+                                    alt=""
                                   />
-
-                                  <div className="set-14   ">
-                                    <div className=" set-700">
-                                      rohit
-                                    </div>
-                                    <div className="set-10 grey text-left">
-                                      rohit12@gamil.com
-                                      <br></br>
-                                      India +91 91234-65412
-                                    </div>
-                                  </div>
-                                </div>
-                              </td>
-                              <td className="set-14 set-600">
-                                <label className="head-mobile">Subject</label>Swap is not working</td>
-                              <td className="set-10 set-600 grey text-left">
-                                <label className="head-mobile">Date</label>
-                                14:21 02th April 2023<br></br> 03:45 PM
-                              </td>
-                              <td
-                                className="set-12 blue set-600"
-
-                              >
-                                <label className="head-mobile">Status</label>
-                                Action Needed
-                              </td>
-                            </tr>
-                            <tr>
-                              {/* <td> <label className="head-mobile">S.No</label>1</td> */}
-                              <td className="admin-table-img d-flex align-items-center">
-                                <label className="head-mobile">User</label>
-                                <div className="d-flex align-items-center gap-1">
+                                </a>
+                                <a className="down" href="">
                                   <img
-                                    src="assets/images/admin/table-img.png"
-                                    className="img-fluid"
-                                    alt="icon"
+                                    src="assets/images/arrow-down.png"
+                                    alt=""
                                   />
+                                </a>
+                              </span>
+                            </span>
+                          </th>
+                          <th>Phone Number</th>
+                          <th>Subject</th>
+                          <th>Status</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
 
-                                  <div className="set-14   ">
-                                    <div className=" set-700">
-                                      rohit
-                                    </div>
-                                    <div className="set-10 grey text-left">
-                                      rohit12@gamil.com
-                                      <br></br>
-                                      India +91 91234-65412
-                                    </div>
-                                  </div>
-                                </div>
-                              </td>
-                              <td className="set-14 set-600">
-                                <label className="head-mobile">Subject</label>Swap is not working</td>
-                              <td className="set-10 set-600 grey text-left">
-                                <label className="head-mobile">Date</label>
-                                14:21 02th April 2023<br></br> 03:45 PM
-                              </td>
-                              <td
-                                className="set-12 blue set-600"
+                      <tbody>
+                        <tr>
+                          <td>S.No 1</td>
+                          <td className="admin-table-img">
+                            <img
+                              src="/assets/images/admin/table-img.png"
+                              className="img-fluid"
+                              alt="icon"
+                            />
+                          </td>
+                          <td className="">User</td>
+                          <td className="">user@gmail.com</td>
 
-                              >
-                                <label className="head-mobile">Status</label>
-                                Action Needed
-                              </td>
-                            </tr>
-                            <tr>
-                              {/* <td> <label className="head-mobile">S.No</label>1</td> */}
-                              <td className="admin-table-img d-flex align-items-center">
-                                <label className="head-mobile">User</label>
-                                <div className="d-flex align-items-center gap-1">
-                                  <img
-                                    src="assets/images/admin/table-img.png"
-                                    className="img-fluid"
-                                    alt="icon"
-                                  />
+                          <td className="">+91 &nbsp; 8782772877</td>
 
-                                  <div className="set-14   ">
-                                    <div className=" set-700">
-                                      rohit
-                                    </div>
-                                    <div className="set-10 grey text-left">
-                                      rohit12@gamil.com
-                                      <br></br>
-                                      India +91 91234-65412
-                                    </div>
-                                  </div>
-                                </div>
-                              </td>
-                              <td className="set-14 set-600">
-                                <label className="head-mobile">Subject</label>Swap is not working</td>
-                              <td className="set-10 set-600 grey text-left">
-                                <label className="head-mobile">Date</label>
-                                14:21 02th April 2023<br></br> 03:45 PM
-                              </td>
-                              <td
-                                className="set-12 blue set-600"
+                          
 
-                              >
-                                <label className="head-mobile">Status</label>
-                                Action Needed
-                              </td>
-                            </tr>
-                            <tr>
-                              {/* <td> <label className="head-mobile">S.No</label>1</td> */}
-                              <td className="admin-table-img d-flex align-items-center">
-                                <label className="head-mobile">User</label>
-                                <div className="d-flex align-items-center gap-1">
-                                  <img
-                                    src="assets/images/admin/table-img.png"
-                                    className="img-fluid"
-                                    alt="icon"
-                                  />
+                          <td className="">LOrem Ipsum</td>
+                          <td><span className="text-green">Open</span> </td>
+                          <td>
+                            <a href="" className="me-2"> View More</a>
+                            <button className="common-btn table-btn red-btn">
+                              Mark As Closed
+                            </button>
+                          </td>
+                        </tr>
 
-                                  <div className="set-14   ">
-                                    <div className=" set-700">
-                                      rohit
-                                    </div>
-                                    <div className="set-10 grey text-left">
-                                      rohit12@gamil.com
-                                      <br></br>
-                                      India +91 91234-65412
-                                    </div>
-                                  </div>
-                                </div>
-                              </td>
-                              <td className="set-14 set-600">
-                                <label className="head-mobile">Subject</label>Swap is not working</td>
-                              <td className="set-10 set-600 grey text-left">
-                                <label className="head-mobile">Date</label>
-                                14:21 02th April 2023<br></br> 03:45 PM
-                              </td>
-                              <td
-                                className="set-12 blue set-600"
-
-                              >
-                                <label className="head-mobile">Status</label>
-                                Action Needed
-                              </td>
-                            </tr> 
-
-                          </tbody>
-                        </Table>
-                      </div>
-                      <div className="custom-pagination">
-                        {/* <ReactPaginate
-                          previousLabel={"<"}
-                          nextLabel={">"}
-                          pageCount={pageCountuser}
-                          onPageChange={changeuserPage}
-                          containerClassName={"paginationBttns"}
-                          previousLinkClassName={"previousBttn"}
-                          nextLinkClassName={"nextBttn"}
-                          disabledClassName={"paginationDisabled"}
-                          activeClassName={"paginationActive"}
-                        /> */}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Col>
-              <Col xxl="4" xl="5" md="5">
-                <div className="shadow-admin-box mt-3">
-                  <div class="head-same-all">
-                    <h3>Support Chat</h3>
-                  </div>
-                  <div className="outer-dropdown-support">
-                    <div className="user-details">
-                      <img
-                        src="assets/images/admin/table-img.png"
-                        className="img-fluid"
-                        alt="icon"
-                      />
-                      <div className="set-14   ">
-                        <div className=" set-700">Rohit Sharma</div>
-                        <div className="set-10 grey text-start">
-                          rohit12@gamil.com<br></br>
-                          India +91 91234-65412
-                        </div>
-                      </div>
-                    </div>
-                    <Dropdown>
-                      <Dropdown.Toggle variant="success" id="dropdown-basic">
-                        Action Needed
-                      </Dropdown.Toggle>
-                      <Dropdown.Menu>
-                        <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                        <Dropdown.Item href="#/action-2">
-                          Another action
-                        </Dropdown.Item>
-                        <Dropdown.Item href="#/action-3">
-                          Something else
-                        </Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  </div>
-                  <div>
-                    <ul className="chat-list-main">
-                      <li className="inner-chat-box">
-                        <img src="assets/images/admin/table-img.png" alt="" />
-                        <div>
-                          <div className="chat-text">
-                            <p>The Swap function is not working.</p>
-                            <p>
-                              <small>12:45</small>
-                            </p>
-                          </div>
-                          <div className="chat-text">
-                            <p>
-                              Since this morning I am not able use the Swap
-                              function. I have tried restarting the app several
-                              times but it’s still the same. Please help me
-                              resolve this problem so I can yse this app.
-                            </p>
-                            <p>
-                              <small>12:45</small>
-                            </p>
-                          </div>
-                        </div>
-                      </li>
-                      <li className="inner-chat-box right-chat-list">
-                        <div>
-                          <div className="chat-text">
-                            <p>
-                              Hello, Rohit! <br /> I am very sorry for the
-                              problem you are facing, me and May team will
-                              resolve this issue as quick as we can.
-                            </p>
-                            <p>
-                              <small>13:12</small>
-                            </p>
-                          </div>
-                          <div className="chat-text">
-                            <p>
-                              Since this morning I am not able use the Swap
-                              function. I have tried
-                            </p>
-                            <p>
-                              <small>13:12</small>
-                            </p>
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
-                    <div className="type-box-main">
-                      <Form.Control type="text" placeholder="Type message..." />
-                      <div className="d-flex align-items-center">
-                        <a href="">
-                          <img src="assets/images/admin/smile.png" alt="" />{" "}
-                        </a>
-                        <a href="">
-                          <img src="assets/images/admin/upload.png" alt="" />{" "}
-                        </a>
-                        <button>
-                          Send <img src="assets/images/admin/send.png" alt="" />
-                        </button>
-                      </div>
-                    </div>
+                        {/* <tr>
+                                      <td colSpan={8} className="text-center">
+                                      No Data Found
+                                      </td>
+                                  </tr> */}
+                      </tbody>
+                    </Table>
                   </div>
                 </div>
               </Col>

@@ -1,252 +1,93 @@
 import React, { useEffect, useState } from "react";
 import AdminLayout from "../../Components/AdminLayout/AdminLayout";
 import { Col, Row, Table, Tabs, Tab } from "react-bootstrap";
-import AdminGraph from "./AdminGraph";
+import { Chart } from "react-google-charts";
+
+
+
 
 const AdminDashboard = () => {
 
+
+  const data = [
+    ["Year", "Sales", "Expenses"],
+    ["2004", 1000, 400],
+    ["2005", 1170, 460],
+    ["2006", 660, 1120],
+    ["2007", 1030, 540],
+  ];
+  
+  const options = {
+    title: "",
+    curveType: "function",
+    legend: { position: "bottom" },
+  };
   return (
     <div>
       <AdminLayout>
         <div>
-          <AdminGraph />
-          {/* <Row>
-            <Col md="6" sm="6">
-              <div className="shadow-admin-box mt-3">
-                <div className="head-same-all">
-                  <h4>Latest Transactions</h4>
-                  <a href="/admin-transaction">View all</a>
-                </div>
-                <div className="">
-                  <div className="table-responsive">
-                    <Table className="table-admin-all min-width-tab table-mobile-view">
-                      <thead>
-                        <tr>
-                          <th>User Name</th>
-                          <th>Transaction type</th>
-                          <th>Amount</th>
-                          <th>Date</th>
-                          <th>Status</th>
-                          <th></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-
-                        <tr>
-                          <td className="set-12">
-                            <label className="head-mobile">User Name</label>
-                            rohit
-                          </td>
-                          <td className="set-12 light-black">
-                            <label className="head-mobile">Transaction Type</label>
-                            swap
-                          </td>
-
-                          <td className="set-12 light-black">
-                            <label className="head-mobile">Amount</label>
-                            23INA
-                          </td>
-                          <td className="set-10">
-                            <label className="head-mobile">Date</label>
-                            12:32<br />
-                            6th April 2023
-                          </td>
-                          <td className="set-12 green">
-                            <label className="head-mobile">Status</label>
-                            Complete</td>
-                        </tr> 
-
-                      </tbody>
-                    </Table>
-                  </div>
-                </div>
-              </div>
-            </Col>
-            <Col md="6" sm="6">
-              <div className="shadow-admin-box mt-3">
-                <div className="head-same-all">
-                  <h4>Top Cryptocurrencies</h4>
-                </div>
-                <div className="">
-                  <div className="table-responsive">
-                    <Table className="table-admin-all min-width-tab  table-mobile-view">
-                      <tbody>
-
-                        <tr>
-                          <td className="set-12 img-crypto">
-                            <label className="head-mobile">Type</label>
-                            <div>
-                              <img
-                                src="/assets/images/admin/binance.png"
-                                className="img-fluid me-1"
-                                alt="icon"
-                              />
-                              Binance
-                            </div>
-                          </td>
-                          <td className="set-12">
-                            <label className="head-mobile">User Name</label>
-                            @rohit121</td>
-                          <td className="set-12 grey">
-                            <label className="head-mobile">Amount</label>
-                            2,24,00INA
-                          </td>
-                          <td className="set-10">
-                            <label className="head-mobile">Date</label>
-                            12:32 <br />
-                            6th April 2023
-                           
-                          </td>
-                        </tr>
-
-                      </tbody>
-                    </Table>
-                  </div>
-                </div>
-              </div>
-            </Col>
-          </Row> */}
-          {/* <Row className="">
-            <Col md="8" sm="6">
-              <div className="shadow-admin-box mt-3">
-                <Tabs
-                  defaultActiveKey="transaction"
-                  id="uncontrolled-tab-example"
-                  className="mb-3"
-                >
-                  <Tab eventKey="transaction" title="Pending Transaction">
-                    <div className="">
-                      <div className="table-responsive">
-                        <Table className="table-admin-all min-width-tab  table-mobile-view">
-                          <thead>
-                            <tr>
-                              <th>User Name</th>
-                              <th>Transaction type</th>
-                              <th>Amount</th>
-                              <th>Date</th>
-                              <th>Status</th>
-                              <th></th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td className="set-14">
-                                <label className="head-mobile">User Name</label>
-                                User id
-                              </td>
-                              <td className="set-14">
-                                <label className="head-mobile">Transaction type</label>
-                                Transaction type
-                              </td>
-                              <td className="set-14">
-                                <label className="head-mobile">Amount</label>
-                                $65
-                              </td>
-                              <td className="set-14">
-                                <label className="head-mobile">Date</label>
-                                23 November 2024
-                              </td>
-                              <td
-                                className="set-14"
-                              >
-                                <label className="head-mobile">Status</label>
-                                Time & Date
-                              </td>
-                            </tr>
-                          </tbody>
-                        </Table>
+            <Row>
+               <Col lg={5}>
+                  <div className="shadow-admin-box mt-3">
+                      <Row>
+                          <Col lg={4}>
+                             <div className="dash-box-user">
+                                <h3 className="text-orange mb-0">1500 <i className="fa fa-user text-white"></i></h3>
+                                <h5 className="mb-0">Active User</h5>
+                                <p className="mb-0">visitor per day</p>
+                             </div>
+                          </Col>
+                          <Col lg={4}>
+                             <div className="dash-box-user">
+                                <h3 className="text-orange mb-0">500 <i className="fa fa-line-chart text-white"></i></h3>
+                                <h5 className="mb-0">Trading Volume</h5>
+                                <p className="mb-0">volume per day</p>
+                             </div>
+                          </Col>
+                          <Col lg={4}>
+                             <div className="dash-box-user">
+                                <h3 className="text-orange mb-0">3500 <i className="fa fa-usd text-white"></i></h3>
+                                <h5 className="mb-0">Total Revenue</h5>
+                                <p className="mb-0">Revenue per day</p>
+                             </div>
+                          </Col>
+                      </Row>
+                      <hr/>
+                      <div className="pending-kyc-dash">
+                          <div className="d-flex align-items-center gap-3">
+                              <i class="fa fa-id-card text-white" aria-hidden="true"></i>
+                              <div>
+                                 <h4 className="mb-0 text-orange">100</h4>
+                                 <h6>Pending KYC Verifications</h6>
+                              </div>
+                          </div>
+                          <button className="common-btn">View</button>
                       </div>
-                    </div>
-                  </Tab>
-                  <Tab eventKey="request" title="Pending Kyc Requests">
-                    <div className="">
-                      <div className="table-responsive">
-                        <Table className="table-admin-all min-width-tab  table-mobile-view">
-                          <thead>
-                            <tr>
-                              <th>User Name</th>
-                              <th>Mobile Number</th>
-                              <th>Date</th>
-                              <th>Status</th>
-                              <th></th>
-                            </tr>
-                          </thead>
-                          <tbody>
-
-                            <tr>
-                              <td className="set-14">
-                              <label className="head-mobile">User Name</label>
-                                User id
-                              </td>
-                              <td className="set-14">
-                              <label className="head-mobile">Mobile No.</label>
-                                Transaction type
-                              </td>
-                              <td className="set-14">
-                              <label className="head-mobile">Date</label>
-                                23 November, 2023
-                              </td>
-                              <td className="set-14">
-                              <label className="head-mobile">Status</label>
-                                Active
-                              </td>
-                              <td
-                                className="set-14"
-                              >
-                                 <label className="head-mobile">Time</label>
-                                03:22 PM
-                              </td>
-                            </tr>
-
-                          </tbody>
-                        </Table>
+                      <hr/>
+                      <div className="pending-kyc-dash">
+                          <div className="d-flex align-items-center gap-3">
+                              <i class="fa fa-ticket text-white" aria-hidden="true"></i>
+                              <div>
+                                 <h4 className="mb-0 text-orange">25</h4>
+                                 <h6>Open Support Tickets</h6>
+                              </div>
+                          </div>
+                          <button className="common-btn">View</button>
                       </div>
-                    </div>
-                  </Tab>
-                </Tabs>
-              </div>
-            </Col>
-            <Col md="4" sm="6" className="d-flex">
-              <div className="shadow-admin-box w-100 mt-3">
-                <div className="head-same-all">
-                  <h4>Support List</h4>
-                </div>
-                <div className="">
-                  <div className="table-responsive">
-                    <Table className="table-admin-all min-width-tab  table-mobile-view">
-                      <thead>
-                        <tr>
-                          <th>User Name</th>
-                          <th>Date</th>
-                          <th>Status</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-
-                        <tr>
-                          <td className="set-14">
-                          <label className="head-mobile">User Name</label>
-                          User id</td>
-                          <td className="set-14">
-                          <label className="head-mobile">Date</label>
-                            23 Nov, 2023
-                          </td>
-                          <td
-                            className="set-14"
-
-                          >
-                             <label className="head-mobile">Status</label>
-                            Active
-                          </td>
-                        </tr>
-
-                      </tbody>
-                    </Table>
                   </div>
-                </div>
-              </div>
-            </Col>
-          </Row> */}
+               </Col>
+               <Col lg={7}>
+                   <div className="shadow-admin-box mt-3">
+                   <Chart
+      chartType="LineChart"
+      width="100%"
+      height="400px"
+      data={data}
+      options={options}
+    />
+                   </div>
+               </Col>
+            </Row>
         </div>
       </AdminLayout>
     </div>
