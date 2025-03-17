@@ -94,14 +94,7 @@ const AdminTransaction = () => {
                 <h3 className="common-page-heading">All Transactions</h3>
 
                 <div className="user-all-tabs">
-                  <Tabs
-                    activeKey={type}
-                    className="mb-3"
-                    onSelect={(k) => setType(k)}
-                  >
-                    <Tab eventKey="all-trx" title="All Transaction">
-                      <div className="shadow-admin-box mt-3">
-                        <div className="filter-sort-sec">
+                <div className="filter-sort-sec">
                           <Row>
                             <Col md="12">
                               <h4 className="filter-icon">
@@ -202,7 +195,16 @@ const AdminTransaction = () => {
                             </Col>
                           </Row>
                         </div>
-                        <hr />
+                          <hr />
+                  <Tabs
+                    activeKey={type}
+                    className="mb-3"
+                    onSelect={(k) => setType(k)}
+                  >
+                    <Tab eventKey="all-trx" title="All Transaction">
+                      <div className="shadow-admin-box mt-3">
+                       
+                      
                         <div className="table-responsive">
                           <Table className="table-common-new">
                             <thead>
@@ -366,104 +368,7 @@ const AdminTransaction = () => {
 
                     <Tab eventKey="ADD_FUND" title="Buy">
                       <div className="shadow-admin-box mt-3">
-                        <div className="filter-sort-sec">
-                          <Row>
-                            <Col md="12">
-                              <h4 className="filter-icon">
-                                <img src="assets/images/filter.png" alt="" />{" "}
-                                Filter
-                                <button className="common-btn ms-3">
-                                  Clear Filter
-                                </button>
-                              </h4>
-                              <div className="filter-with-show-data">
-                                <div className="outer-box-filter">
-                                  <InputGroup className="outer-input-search ">
-                                    <Form.Control
-                                      placeholder="Search..."
-                                      name="OldPassword"
-                                    />
-                                    <InputGroup.Text className="search-space">
-                                      <i
-                                        className="fa fa-search"
-                                        aria-hidden="true"
-                                      ></i>
-                                    </InputGroup.Text>
-                                  </InputGroup>
-                                  <Dropdown className="dropdwon-border-box">
-                                    <Dropdown.Toggle>Sort By</Dropdown.Toggle>
-
-                                    <Dropdown.Menu>
-                                      <Dropdown.Item href="#">
-                                        Newest
-                                      </Dropdown.Item>
-                                      <Dropdown.Item href="#">
-                                        Oldest
-                                      </Dropdown.Item>
-                                      <Dropdown.Item href="#">
-                                        Something else
-                                      </Dropdown.Item>
-                                    </Dropdown.Menu>
-                                  </Dropdown>
-                                  <Dropdown className="dropdwon-border-box">
-                                    <Dropdown.Toggle>
-                                      Sort By User
-                                    </Dropdown.Toggle>
-
-                                    <Dropdown.Menu>
-                                      <Dropdown.Item href="#">
-                                        Newest
-                                      </Dropdown.Item>
-                                      <Dropdown.Item href="#">
-                                        Oldest
-                                      </Dropdown.Item>
-                                      <Dropdown.Item href="#">
-                                        Something else
-                                      </Dropdown.Item>
-                                    </Dropdown.Menu>
-                                  </Dropdown>
-                                  <InputGroup className="outer-input-search date-search">
-                                    <Form.Control
-                                      placeholder="DD/MM/YYYY"
-                                      name="OldPassword"
-                                    />
-                                    <InputGroup.Text className="search-space ml-3">
-                                      From
-                                    </InputGroup.Text>
-                                  </InputGroup>
-                                  <InputGroup className="outer-input-search date-search ">
-                                    <Form.Control
-                                      placeholder="DD/MM/YYYY"
-                                      name="OldPassword"
-                                    />
-                                    <InputGroup.Text className="search-space ml-3">
-                                      To
-                                    </InputGroup.Text>
-                                  </InputGroup>
-                                </div>
-                                <Dropdown className="dropdwon-border-box">
-                                  <Dropdown.Toggle>Show</Dropdown.Toggle>
-
-                                  <Dropdown.Menu>
-                                    <Dropdown.Item href="#">
-                                      1 - 25
-                                    </Dropdown.Item>
-                                    <Dropdown.Item href="#">
-                                      25 - 50
-                                    </Dropdown.Item>
-                                    <Dropdown.Item href="#">
-                                      50 - 75
-                                    </Dropdown.Item>
-                                    <Dropdown.Item href="#">
-                                      75 - 100
-                                    </Dropdown.Item>
-                                  </Dropdown.Menu>
-                                </Dropdown>
-                              </div>
-                            </Col>
-                          </Row>
-                        </div>
-                        <hr />
+                       
                         <div className="table-responsive">
                           <Table className="table-common-new">
                             <thead>
@@ -564,69 +469,7 @@ const AdminTransaction = () => {
 
                     <Tab eventKey="SWAP" title="Swap">
                       <div className="shadow-admin-box mt-3">
-                        <div className="filter-sort-sec">
-                          <Row>
-                            <Col md="12">
-                              <h4 className="filter-icon">
-                                <img src="assets/images/filter.png" alt="" />{" "}
-                                Filter
-                              </h4>
-                              <div className="filter-with-show-data">
-                                <div className="outer-box-filter">
-                                  <InputGroup className="outer-input-search ">
-                                    <Form.Control
-                                      placeholder="Search..."
-                                      name="OldPassword"
-                                    />
-                                    <InputGroup.Text className="search-space">
-                                      <i
-                                        className="fa fa-search"
-                                        aria-hidden="true"
-                                      ></i>
-                                    </InputGroup.Text>
-                                  </InputGroup>
-                                  <Dropdown className="dropdwon-border-box">
-                                    <Dropdown.Toggle>Sort By</Dropdown.Toggle>
-
-                                    <Dropdown.Menu>
-                                      <Dropdown.Item href="#">
-                                        Newest
-                                      </Dropdown.Item>
-                                      <Dropdown.Item href="#">
-                                        Oldest
-                                      </Dropdown.Item>
-                                      <Dropdown.Item href="#">
-                                        Something else
-                                      </Dropdown.Item>
-                                    </Dropdown.Menu>
-                                  </Dropdown>
-                                  <button className="common-btn">
-                                    Clear Filter
-                                  </button>
-                                </div>
-                                <Dropdown className="dropdwon-border-box">
-                                  <Dropdown.Toggle>Show</Dropdown.Toggle>
-
-                                  <Dropdown.Menu>
-                                    <Dropdown.Item href="#">
-                                      1 - 25
-                                    </Dropdown.Item>
-                                    <Dropdown.Item href="#">
-                                      25 - 50
-                                    </Dropdown.Item>
-                                    <Dropdown.Item href="#">
-                                      50 - 75
-                                    </Dropdown.Item>
-                                    <Dropdown.Item href="#">
-                                      75 - 100
-                                    </Dropdown.Item>
-                                  </Dropdown.Menu>
-                                </Dropdown>
-                              </div>
-                            </Col>
-                          </Row>
-                        </div>
-                        <hr />
+                        
                         <div className="table-responsive">
                           <Table className="table-common-new">
                             <thead>
@@ -727,69 +570,7 @@ const AdminTransaction = () => {
 
                     <Tab eventKey="DEPOSIT" title="Deposit">
                       <div className="shadow-admin-box mt-3">
-                        <div className="filter-sort-sec">
-                          <Row>
-                            <Col md="12">
-                              <h4 className="filter-icon">
-                                <img src="assets/images/filter.png" alt="" />{" "}
-                                Filter
-                              </h4>
-                              <div className="filter-with-show-data">
-                                <div className="outer-box-filter">
-                                  <InputGroup className="outer-input-search ">
-                                    <Form.Control
-                                      placeholder="Search..."
-                                      name="OldPassword"
-                                    />
-                                    <InputGroup.Text className="search-space">
-                                      <i
-                                        className="fa fa-search"
-                                        aria-hidden="true"
-                                      ></i>
-                                    </InputGroup.Text>
-                                  </InputGroup>
-                                  <Dropdown className="dropdwon-border-box">
-                                    <Dropdown.Toggle>Sort By</Dropdown.Toggle>
-
-                                    <Dropdown.Menu>
-                                      <Dropdown.Item href="#">
-                                        Newest
-                                      </Dropdown.Item>
-                                      <Dropdown.Item href="#">
-                                        Oldest
-                                      </Dropdown.Item>
-                                      <Dropdown.Item href="#">
-                                        Something else
-                                      </Dropdown.Item>
-                                    </Dropdown.Menu>
-                                  </Dropdown>
-                                  <button className="common-btn">
-                                    Clear Filter
-                                  </button>
-                                </div>
-                                <Dropdown className="dropdwon-border-box">
-                                  <Dropdown.Toggle>Show</Dropdown.Toggle>
-
-                                  <Dropdown.Menu>
-                                    <Dropdown.Item href="#">
-                                      1 - 25
-                                    </Dropdown.Item>
-                                    <Dropdown.Item href="#">
-                                      25 - 50
-                                    </Dropdown.Item>
-                                    <Dropdown.Item href="#">
-                                      50 - 75
-                                    </Dropdown.Item>
-                                    <Dropdown.Item href="#">
-                                      75 - 100
-                                    </Dropdown.Item>
-                                  </Dropdown.Menu>
-                                </Dropdown>
-                              </div>
-                            </Col>
-                          </Row>
-                        </div>
-                        <hr />
+                      
                         <div className="table-responsive">
                           <Table className="table-common-new">
                             <thead>
@@ -890,69 +671,7 @@ const AdminTransaction = () => {
 
                     <Tab eventKey="WITHDRAW" title="Withdraw">
                       <div className="shadow-admin-box mt-3">
-                        <div className="filter-sort-sec">
-                          <Row>
-                            <Col md="12">
-                              <h4 className="filter-icon">
-                                <img src="assets/images/filter.png" alt="" />{" "}
-                                Filter
-                              </h4>
-                              <div className="filter-with-show-data">
-                                <div className="outer-box-filter">
-                                  <InputGroup className="outer-input-search ">
-                                    <Form.Control
-                                      placeholder="Search..."
-                                      name="OldPassword"
-                                    />
-                                    <InputGroup.Text className="search-space">
-                                      <i
-                                        className="fa fa-search"
-                                        aria-hidden="true"
-                                      ></i>
-                                    </InputGroup.Text>
-                                  </InputGroup>
-                                  <Dropdown className="dropdwon-border-box">
-                                    <Dropdown.Toggle>Sort By</Dropdown.Toggle>
-
-                                    <Dropdown.Menu>
-                                      <Dropdown.Item href="#">
-                                        Newest
-                                      </Dropdown.Item>
-                                      <Dropdown.Item href="#">
-                                        Oldest
-                                      </Dropdown.Item>
-                                      <Dropdown.Item href="#">
-                                        Something else
-                                      </Dropdown.Item>
-                                    </Dropdown.Menu>
-                                  </Dropdown>
-                                  <button className="common-btn">
-                                    Clear Filter
-                                  </button>
-                                </div>
-                                <Dropdown className="dropdwon-border-box">
-                                  <Dropdown.Toggle>Show</Dropdown.Toggle>
-
-                                  <Dropdown.Menu>
-                                    <Dropdown.Item href="#">
-                                      1 - 25
-                                    </Dropdown.Item>
-                                    <Dropdown.Item href="#">
-                                      25 - 50
-                                    </Dropdown.Item>
-                                    <Dropdown.Item href="#">
-                                      50 - 75
-                                    </Dropdown.Item>
-                                    <Dropdown.Item href="#">
-                                      75 - 100
-                                    </Dropdown.Item>
-                                  </Dropdown.Menu>
-                                </Dropdown>
-                              </div>
-                            </Col>
-                          </Row>
-                        </div>
-                        <hr />
+                      
                         <div className="table-responsive">
                           <Table className="table-common-new">
                             <thead>
@@ -1059,54 +778,7 @@ const AdminTransaction = () => {
                             className="mb-3 mt-0"
                           >
                             <Tab eventKey="ordertab1" title="Open Order">
-                              <div className="filter-sort-sec">
-                                <Row>
-                                  <Col md="12">
-                                    <h4 className="filter-icon">
-                                      <img
-                                        src="assets/images/filter.png"
-                                        alt=""
-                                      />{" "}
-                                      Filter
-                                    </h4>
-                                    <div className="outer-box-filter">
-                                      <InputGroup className="outer-input-search ">
-                                        <Form.Control
-                                          placeholder="Search..."
-                                          name="OldPassword"
-                                        />
-                                        <InputGroup.Text className="search-space">
-                                          <i
-                                            className="fa fa-search"
-                                            aria-hidden="true"
-                                          ></i>
-                                        </InputGroup.Text>
-                                      </InputGroup>
-                                      <Dropdown className="dropdwon-border-box">
-                                        <Dropdown.Toggle>
-                                          Sort By
-                                        </Dropdown.Toggle>
-
-                                        <Dropdown.Menu>
-                                          <Dropdown.Item href="#">
-                                            Newest
-                                          </Dropdown.Item>
-                                          <Dropdown.Item href="#">
-                                            Oldest
-                                          </Dropdown.Item>
-                                          <Dropdown.Item href="#">
-                                            Something else
-                                          </Dropdown.Item>
-                                        </Dropdown.Menu>
-                                      </Dropdown>
-                                      <button className="common-btn">
-                                        Clear Filter
-                                      </button>
-                                    </div>
-                                  </Col>
-                                </Row>
-                              </div>
-                              <hr />
+                             
                               <div className="table-responsive">
                                 <Table className="table-common-new">
                                   <thead>
@@ -1206,54 +878,7 @@ const AdminTransaction = () => {
                               </div>
                             </Tab>
                             <Tab eventKey="ordertab2" title="Order History">
-                              <div className="filter-sort-sec">
-                                <Row>
-                                  <Col md="12">
-                                    <h4 className="filter-icon">
-                                      <img
-                                        src="assets/images/filter.png"
-                                        alt=""
-                                      />{" "}
-                                      Filter
-                                    </h4>
-                                    <div className="outer-box-filter">
-                                      <InputGroup className="outer-input-search ">
-                                        <Form.Control
-                                          placeholder="Search..."
-                                          name="OldPassword"
-                                        />
-                                        <InputGroup.Text className="search-space">
-                                          <i
-                                            className="fa fa-search"
-                                            aria-hidden="true"
-                                          ></i>
-                                        </InputGroup.Text>
-                                      </InputGroup>
-                                      <Dropdown className="dropdwon-border-box">
-                                        <Dropdown.Toggle>
-                                          Sort By
-                                        </Dropdown.Toggle>
-
-                                        <Dropdown.Menu>
-                                          <Dropdown.Item href="#">
-                                            Newest
-                                          </Dropdown.Item>
-                                          <Dropdown.Item href="#">
-                                            Oldest
-                                          </Dropdown.Item>
-                                          <Dropdown.Item href="#">
-                                            Something else
-                                          </Dropdown.Item>
-                                        </Dropdown.Menu>
-                                      </Dropdown>
-                                      <button className="common-btn">
-                                        Clear Filter
-                                      </button>
-                                    </div>
-                                  </Col>
-                                </Row>
-                              </div>
-                              <hr />
+                            
                               <div className="table-responsive">
                                 <Table className="table-common-new">
                                   <thead>
@@ -1353,54 +978,7 @@ const AdminTransaction = () => {
                               </div>
                             </Tab>
                             <Tab eventKey="ordertab3" title="Trade History">
-                              <div className="filter-sort-sec">
-                                <Row>
-                                  <Col md="12">
-                                    <h4 className="filter-icon">
-                                      <img
-                                        src="assets/images/filter.png"
-                                        alt=""
-                                      />{" "}
-                                      Filter
-                                    </h4>
-                                    <div className="outer-box-filter">
-                                      <InputGroup className="outer-input-search ">
-                                        <Form.Control
-                                          placeholder="Search..."
-                                          name="OldPassword"
-                                        />
-                                        <InputGroup.Text className="search-space">
-                                          <i
-                                            className="fa fa-search"
-                                            aria-hidden="true"
-                                          ></i>
-                                        </InputGroup.Text>
-                                      </InputGroup>
-                                      <Dropdown className="dropdwon-border-box">
-                                        <Dropdown.Toggle>
-                                          Sort By
-                                        </Dropdown.Toggle>
-
-                                        <Dropdown.Menu>
-                                          <Dropdown.Item href="#">
-                                            Newest
-                                          </Dropdown.Item>
-                                          <Dropdown.Item href="#">
-                                            Oldest
-                                          </Dropdown.Item>
-                                          <Dropdown.Item href="#">
-                                            Something else
-                                          </Dropdown.Item>
-                                        </Dropdown.Menu>
-                                      </Dropdown>
-                                      <button className="common-btn">
-                                        Clear Filter
-                                      </button>
-                                    </div>
-                                  </Col>
-                                </Row>
-                              </div>
-                              <hr />
+                             
                               <div className="table-responsive">
                                 <Table className="table-common-new">
                                   <thead>
@@ -1506,69 +1084,7 @@ const AdminTransaction = () => {
 
                     <Tab eventKey="tab7" title="Refferal">
                       <div className="shadow-admin-box mt-3">
-                        <div className="filter-sort-sec">
-                          <Row>
-                            <Col md="12">
-                              <h4 className="filter-icon">
-                                <img src="assets/images/filter.png" alt="" />{" "}
-                                Filter
-                              </h4>
-                              <div className="filter-with-show-data">
-                                <div className="outer-box-filter">
-                                  <InputGroup className="outer-input-search ">
-                                    <Form.Control
-                                      placeholder="Search..."
-                                      name="OldPassword"
-                                    />
-                                    <InputGroup.Text className="search-space">
-                                      <i
-                                        className="fa fa-search"
-                                        aria-hidden="true"
-                                      ></i>
-                                    </InputGroup.Text>
-                                  </InputGroup>
-                                  <Dropdown className="dropdwon-border-box">
-                                    <Dropdown.Toggle>Sort By</Dropdown.Toggle>
-
-                                    <Dropdown.Menu>
-                                      <Dropdown.Item href="#">
-                                        Newest
-                                      </Dropdown.Item>
-                                      <Dropdown.Item href="#">
-                                        Oldest
-                                      </Dropdown.Item>
-                                      <Dropdown.Item href="#">
-                                        Something else
-                                      </Dropdown.Item>
-                                    </Dropdown.Menu>
-                                  </Dropdown>
-                                  <button className="common-btn">
-                                    Clear Filter
-                                  </button>
-                                </div>
-                                <Dropdown className="dropdwon-border-box">
-                                  <Dropdown.Toggle>Show</Dropdown.Toggle>
-
-                                  <Dropdown.Menu>
-                                    <Dropdown.Item href="#">
-                                      1 - 25
-                                    </Dropdown.Item>
-                                    <Dropdown.Item href="#">
-                                      25 - 50
-                                    </Dropdown.Item>
-                                    <Dropdown.Item href="#">
-                                      50 - 75
-                                    </Dropdown.Item>
-                                    <Dropdown.Item href="#">
-                                      75 - 100
-                                    </Dropdown.Item>
-                                  </Dropdown.Menu>
-                                </Dropdown>
-                              </div>
-                            </Col>
-                          </Row>
-                        </div>
-                        <hr />
+                        
                         <div className="table-responsive">
                           <Table className="table-common-new">
                             <thead>
@@ -1669,69 +1185,7 @@ const AdminTransaction = () => {
 
                     <Tab eventKey="TRANSFER" title="P2P">
                       <div className="shadow-admin-box mt-3">
-                        <div className="filter-sort-sec">
-                          <Row>
-                            <Col md="12">
-                              <h4 className="filter-icon">
-                                <img src="assets/images/filter.png" alt="" />{" "}
-                                Filter
-                              </h4>
-                              <div className="filter-with-show-data">
-                                <div className="outer-box-filter">
-                                  <InputGroup className="outer-input-search ">
-                                    <Form.Control
-                                      placeholder="Search..."
-                                      name="OldPassword"
-                                    />
-                                    <InputGroup.Text className="search-space">
-                                      <i
-                                        className="fa fa-search"
-                                        aria-hidden="true"
-                                      ></i>
-                                    </InputGroup.Text>
-                                  </InputGroup>
-                                  <Dropdown className="dropdwon-border-box">
-                                    <Dropdown.Toggle>Sort By</Dropdown.Toggle>
-
-                                    <Dropdown.Menu>
-                                      <Dropdown.Item href="#">
-                                        Newest
-                                      </Dropdown.Item>
-                                      <Dropdown.Item href="#">
-                                        Oldest
-                                      </Dropdown.Item>
-                                      <Dropdown.Item href="#">
-                                        Something else
-                                      </Dropdown.Item>
-                                    </Dropdown.Menu>
-                                  </Dropdown>
-                                  <button className="common-btn">
-                                    Clear Filter
-                                  </button>
-                                </div>
-                                <Dropdown className="dropdwon-border-box">
-                                  <Dropdown.Toggle>Show</Dropdown.Toggle>
-
-                                  <Dropdown.Menu>
-                                    <Dropdown.Item href="#">
-                                      1 - 25
-                                    </Dropdown.Item>
-                                    <Dropdown.Item href="#">
-                                      25 - 50
-                                    </Dropdown.Item>
-                                    <Dropdown.Item href="#">
-                                      50 - 75
-                                    </Dropdown.Item>
-                                    <Dropdown.Item href="#">
-                                      75 - 100
-                                    </Dropdown.Item>
-                                  </Dropdown.Menu>
-                                </Dropdown>
-                              </div>
-                            </Col>
-                          </Row>
-                        </div>
-                        <hr />
+                       
                         <div className="table-responsive">
                           <Table className="table-common-new">
                             <thead>
@@ -1806,69 +1260,7 @@ const AdminTransaction = () => {
 
                     <Tab eventKey="tab9" title="Stakes">
                       <div className="shadow-admin-box mt-3">
-                        <div className="filter-sort-sec">
-                          <Row>
-                            <Col md="12">
-                              <h4 className="filter-icon">
-                                <img src="assets/images/filter.png" alt="" />{" "}
-                                Filter
-                              </h4>
-                              <div className="filter-with-show-data">
-                                <div className="outer-box-filter">
-                                  <InputGroup className="outer-input-search ">
-                                    <Form.Control
-                                      placeholder="Search..."
-                                      name="OldPassword"
-                                    />
-                                    <InputGroup.Text className="search-space">
-                                      <i
-                                        className="fa fa-search"
-                                        aria-hidden="true"
-                                      ></i>
-                                    </InputGroup.Text>
-                                  </InputGroup>
-                                  <Dropdown className="dropdwon-border-box">
-                                    <Dropdown.Toggle>Sort By</Dropdown.Toggle>
-
-                                    <Dropdown.Menu>
-                                      <Dropdown.Item href="#">
-                                        Newest
-                                      </Dropdown.Item>
-                                      <Dropdown.Item href="#">
-                                        Oldest
-                                      </Dropdown.Item>
-                                      <Dropdown.Item href="#">
-                                        Something else
-                                      </Dropdown.Item>
-                                    </Dropdown.Menu>
-                                  </Dropdown>
-                                  <button className="common-btn">
-                                    Clear Filter
-                                  </button>
-                                </div>
-                                <Dropdown className="dropdwon-border-box">
-                                  <Dropdown.Toggle>Show</Dropdown.Toggle>
-
-                                  <Dropdown.Menu>
-                                    <Dropdown.Item href="#">
-                                      1 - 25
-                                    </Dropdown.Item>
-                                    <Dropdown.Item href="#">
-                                      25 - 50
-                                    </Dropdown.Item>
-                                    <Dropdown.Item href="#">
-                                      50 - 75
-                                    </Dropdown.Item>
-                                    <Dropdown.Item href="#">
-                                      75 - 100
-                                    </Dropdown.Item>
-                                  </Dropdown.Menu>
-                                </Dropdown>
-                              </div>
-                            </Col>
-                          </Row>
-                        </div>
-                        <hr />
+                        
                         <div className="table-responsive">
                           <Table className="table-common-new">
                             <thead>
