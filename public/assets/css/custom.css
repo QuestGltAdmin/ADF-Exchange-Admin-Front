@@ -514,3 +514,37 @@ a{
     object-fit: cover;
     border-radius: 50%;
 }
+.otp-field .otp_box {
+    gap: 1%;
+}
+.otp-field .otp_box input {
+    border: 1px solid #ffa800 !important;
+    box-shadow: none !important;
+    outline: none !important;
+    background-color: transparent !important;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    line-height: 1.5rem;
+    color: #fff !important;
+    width: 16% !important;
+    height: auto !important;
+    margin: 0 !important;
+}
+.box-total-user.limit-balance-box {
+    width: calc(50% - 1rem);
+    text-align: left;
+    min-height: auto !important;
+}
+@media (max-width:768px){
+    .outer-box-filter {
+        min-width: 100%;
+        flex-wrap: wrap;
+        margin-bottom: 1rem;
+    }
+    .filter-with-show-data {
+        display: block;
+    }
+    .table-common-new {
+        min-width: 900px;
+    }
+}

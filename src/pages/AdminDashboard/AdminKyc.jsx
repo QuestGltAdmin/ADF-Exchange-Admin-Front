@@ -7,171 +7,215 @@ import {
   Row,
   Table,
   Form,
-  Modal,
-  Button,
+  Dropdown,
+  Tabs,
+  Tab,
 } from "react-bootstrap";
-import AdminGraph from "./AdminGraph";
 
 const AdminKyc = () => {
-
   return (
     <>
       <AdminLayout>
         <div>
-          <Container fluid>
-            <AdminGraph />
+          <Container>
             <Row className="">
               <Col md="12">
+                <h3 className="common-page-heading">KYC Management</h3>
+                <Row>
+                  <Col lg="6">
+                    <div className="outer-box-flex">
+                      <div className="box-total-user limit-balance-box mb-2">
+                        <h5>Total KYC Approved</h5>
+                        <h3>
+                          <span className="text-orange">24</span>
+                        </h3>
+                      </div>
+                      <div className="box-total-user limit-balance-box mb-2">
+                        <h5>Total KYC Rejected</h5>
+                        <h3>
+                          <span className="text-orange">12</span>
+                        </h3>
+                      </div>
+                    </div>
+                  </Col>
+                </Row>
                 <div className="shadow-admin-box mt-3">
-                  <div className="head-same-all">
-                    <h3>KYC Requests</h3>
-                    <h5>
-                      47 Requests{" "}
-                      <img
-                        src="assets/images/admin/requests.png"
-                        className="img-fluid"
-                        alt="icon"
-                      />
-                    </h5>
-                  </div>
                   <div className="filter-sort-sec">
                     <Row>
-                      <Col md="8">
-                        <InputGroup className="">
-                          <Form.Control
-                            placeholder="Search name,email or phone number"
-                            name="OldPassword"
-                            // onKeyUp={(e) => handleSearch(e)}
-                          />
-                          <InputGroup.Text className="search-space">
-                            {/* <img
-                              src="assets/images/admin/search.png"
-                              className="img-fluid"
-                              alt="icon"
-                            /> */}
-                            <i className="fa fa-search" aria-hidden="true"></i>
-                          </InputGroup.Text>
-                        </InputGroup>
+                      <Col md="12">
+                        <h4 className="filter-icon">
+                          <img src="assets/images/filter.png" alt="" /> Filter
+                          <button className="common-btn ms-3">
+                            Clear Filter
+                          </button>
+                        </h4>
+                        <div className="filter-with-show-data">
+                          <div className="outer-box-filter">
+                            <InputGroup className="outer-input-search ">
+                              <Form.Control
+                                placeholder="Search..."
+                                name="OldPassword"
+                              />
+                              <InputGroup.Text className="search-space">
+                                <i
+                                  className="fa fa-search"
+                                  aria-hidden="true"
+                                ></i>
+                              </InputGroup.Text>
+                            </InputGroup>
+                            <Dropdown className="dropdwon-border-box">
+                              <Dropdown.Toggle>Sort By</Dropdown.Toggle>
+
+                              <Dropdown.Menu>
+                                <Dropdown.Item href="#">Newest</Dropdown.Item>
+                                <Dropdown.Item href="#">Oldest</Dropdown.Item>
+                                <Dropdown.Item href="#">
+                                  Something else
+                                </Dropdown.Item>
+                              </Dropdown.Menu>
+                            </Dropdown>
+                            <Dropdown className="dropdwon-border-box">
+                              <Dropdown.Toggle>Sort By User</Dropdown.Toggle>
+
+                              <Dropdown.Menu>
+                                <Dropdown.Item href="#">Newest</Dropdown.Item>
+                                <Dropdown.Item href="#">Oldest</Dropdown.Item>
+                                <Dropdown.Item href="#">
+                                  Something else
+                                </Dropdown.Item>
+                              </Dropdown.Menu>
+                            </Dropdown>
+                            <InputGroup className="outer-input-search date-search">
+                              <Form.Control
+                                placeholder="DD/MM/YYYY"
+                                name="OldPassword"
+                              />
+                              <InputGroup.Text className="search-space ml-3">
+                                From
+                              </InputGroup.Text>
+                            </InputGroup>
+                            <InputGroup className="outer-input-search date-search ">
+                              <Form.Control
+                                placeholder="DD/MM/YYYY"
+                                name="OldPassword"
+                              />
+                              <InputGroup.Text className="search-space ml-3">
+                                To
+                              </InputGroup.Text>
+                            </InputGroup>
+                          </div>
+                          <Dropdown className="dropdwon-border-box">
+                            <Dropdown.Toggle>Show</Dropdown.Toggle>
+
+                            <Dropdown.Menu>
+                              <Dropdown.Item href="#">1 - 25</Dropdown.Item>
+                              <Dropdown.Item href="#">25 - 50</Dropdown.Item>
+                              <Dropdown.Item href="#">50 - 75</Dropdown.Item>
+                              <Dropdown.Item href="#">75 - 100</Dropdown.Item>
+                            </Dropdown.Menu>
+                          </Dropdown>
+                        </div>
                       </Col>
                     </Row>
                   </div>
-                  <div>
-                    <div className="set-height-table">
-                      <div className="table-responsive">
-                        <Table className="table-admin-all max-width-tab  table-mobile-view">
-                          <thead>
-                            <tr>
-                              <th>Sr. No</th>
-                              <th>User</th>
-                              <th>Date</th>
-                              <th>Status</th>
-                              <th>Approve</th>
-                              <th>Reject</th>
-                              <th></th>
-                            </tr>
-                          </thead>
-                          <br></br>
-                          <tbody>
-                           
-                                    <tr>
-                                      <td>
-                                      <label className="head-mobile">S.No</label>1</td>
-                                      <td className="admin-table-img d-flex align-items-center">
-                                      <label className="head-mobile">User</label>
-                                      <div className="d-flex align-items-center gap-1">
+                  <hr />
+                  <div className="table-responsive">
+                    <Table className="table-common-new">
+                      <thead>
+                        <tr>
+                          <th>Sr. No</th>
+                          <th>Name</th>
+                          <th>
+                            <span className="d-flex">
+                              Name{" "}
+                              <span className="arrow-filter">
+                                <a href="" className="up">
+                                  <img
+                                    src="assets/images/arrow-up.png"
+                                    alt=""
+                                  />
+                                </a>
+                                <a className="down" href="">
+                                  <img
+                                    src="assets/images/arrow-down.png"
+                                    alt=""
+                                  />
+                                </a>
+                              </span>
+                            </span>
+                          </th>
+                          <th>
+                            <span className="d-flex">
+                              {" "}
+                              Email{" "}
+                              <span className="arrow-filter">
+                                <a href="" className="up">
+                                  <img
+                                    src="assets/images/arrow-up.png"
+                                    alt=""
+                                  />
+                                </a>
+                                <a className="down" href="">
+                                  <img
+                                    src="assets/images/arrow-down.png"
+                                    alt=""
+                                  />
+                                </a>
+                              </span>
+                            </span>
+                          </th>
+                          <th>Phone Number</th>
+                          <th>KYC</th>
+                          <th>Wallet</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
 
-                                          <img
-                                            src="assets/images/admin/table-img.png"
-                                            className="img-fluid"
-                                            alt="icon"
-                                            />
-                                     
-                                        <div className="set-14   ">
-                                          <div className=" set-700">
-                                           Rohit Sharma
-                                          </div>
-                                          <div className="set-10 grey text-left">
-                                          rohit12@gmail.com
-                                            <br></br>
-                                            India +91&nbsp;{" "}
-                                            91234-65412
-                                          </div>
-                                        </div>
-                                            </div>
-                                      </td>
+                      <tbody>
+                        <tr>
+                          <td>S.No 1</td>
+                          <td className="admin-table-img">
+                            <img
+                              src="/assets/images/admin/table-img.png"
+                              className="img-fluid"
+                              alt="icon"
+                            />
+                          </td>
+                          <td className="">User</td>
+                          <td className="">user@gmail.com</td>
 
-                                      <td className="set-10 set-600 grey text-left">
-                                      <label className="head-mobile">Date</label>
-                                      <div>
+                          <td className="">+91 &nbsp; 8782772877</td>
 
-                                      02 April 2023<br></br> 03:45 PM 
-                                      </div>
+                          <td>
+                            <div className="kyc-set">
+                              KYC
+                              <img
+                                style={{ cursor: "pointer" }}
+                                src="assets/images/admin/attach.png"
+                                className="img-fluid"
+                                alt="icon"
+                              />
+                            </div>
+                          </td>
+
+                          <td className="">$434 USD</td>
+                          <td>
+                            <button className="common-btn table-btn green-btn me-2">
+                              Approve
+                            </button>
+                            <button className="common-btn table-btn red-btn">
+                              Reject
+                            </button>
+                          </td>
+                        </tr>
+
+                        {/* <tr>
+                                      <td colSpan={8} className="text-center">
+                                      No Data Found
                                       </td>
-                                      <td
-                                        className="set-12 green set-600"
-                                       
-                                      >
-                                         <label className="head-mobile">Status</label>
-                                     Approved
-                                      </td>
-                                      <td className="set-12 set-600 text-left">
-                                      <label className="head-mobile">Approve</label>
-                                          <button
-                                            className="table-btn green-btn"
-                                          >
-                                            Approve
-                                          </button>
-                                       
-                                          {/* <button className="table-btn gray-btn">
-                                            Approve
-                                          </button> */}
-                                      
-                                      </td>
-                                      <td className="set-12 set-600 text-left">
-                                      <label className="head-mobile">Reject</label>
-                                          <button
-                                            className="table-btn red-btn"
-                                            onClick={() => handleReject(item)}
-                                          >
-                                            Reject
-                                          </button>
-                                          {/* <button className="table-btn gray-btn">
-                                            Reject
-                                          </button> */}
-                                      </td>
-                                      <td
-                                        className="set-12 blue set-600"
-                                        style={{ cursor: "pointer" }}                                       
-                                      >
-                                         <label className="head-mobile">Action</label>
-                                        View
-                                      </td>
-                                    </tr>
-                                
-                              {/* <tr>
-                                <td colSpan={6} className="text-center">
-                                  No Data Found
-                                </td>
-                              </tr> */}
-                           
-                          </tbody>
-                        </Table>
-                       
-                      </div>
-                      {/* <div className="custom-pagination">
-                        <ReactPaginate
-                          previousLabel={"<"}
-                          nextLabel={">"}
-                          pageCount={pageCountuser}
-                          onPageChange={changeuserPage}
-                          containerClassName={"paginationBttns"}
-                          previousLinkClassName={"previousBttn"}
-                          nextLinkClassName={"nextBttn"}
-                          disabledClassName={"paginationDisabled"}
-                          activeClassName={"paginationActive"}
-                        />
-                      </div> */}
-                    </div>
+                                  </tr> */}
+                      </tbody>
+                    </Table>
                   </div>
                 </div>
               </Col>

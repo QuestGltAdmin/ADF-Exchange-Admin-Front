@@ -93,7 +93,7 @@ export const VerifyOtp = () => {
                   </Form.Group>
 
                   <Row>
-                    <Col lg={4}>
+                    <Col lg={12} className="text-end">
                       <button
                         className="common-btn "
                         onClick={() => {
