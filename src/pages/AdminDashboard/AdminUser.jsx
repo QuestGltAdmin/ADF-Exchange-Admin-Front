@@ -26,13 +26,17 @@ const AdminUser = () => {
   const [totalOrderCount, setTotalOrderCount] = useState(1);
   const [search, setSearch] = useState("");
   const [checkForCount, setCheckForCount] = useState(0);
+  const [filter, setFilter] = useState({
+    coloumName: "createdAt",
+    orderBy: "asc",
+  });
   //===============================End Of Code===============================//
 
   //===============================Get Data===============================//
-  const getProperty = async (pageNumber, search) => {
+  const getProperty = async (pageNumber, search, filter) => {
     setCheckForCount(0);
     try {
-      const URL = `/admin/user-list?page=${pageNumber}&limit=10&search=${search}`;
+      const URL = `/admin/user-list?page=${pageNumber}&limit=10&search=${search}&columnName=${filter?.coloumName}&orderBy=${filter?.orderBy}`;
       const getApiData = await axiosMain.get(URL, {
         headers: {
           "Content-Type": "application/json",
@@ -70,8 +74,8 @@ const AdminUser = () => {
 
   const filterData = useCallback(debounce(getProperty, 500), []);
   useEffect(() => {
-    filterData(pageNumber, search);
-  }, [pageNumber, search]);
+    filterData(pageNumber, search, filter);
+  }, [pageNumber, search, filter]);
   //===============================End Of Code===============================//
   return (
     <>
@@ -94,6 +98,8 @@ const AdminUser = () => {
                               <Form.Control
                                 placeholder="Search..."
                                 name="OldPassword"
+                                onChange={(e)=>{setSearch(e?.target?.value)}}
+                                value={search}
                               />
                               <InputGroup.Text className="search-space">
                                 <i
@@ -102,14 +108,32 @@ const AdminUser = () => {
                                 ></i>
                               </InputGroup.Text>
                             </InputGroup>
-                            <Dropdown className="dropdwon-border-box">
-                              <Dropdown.Toggle>Sort By</Dropdown.Toggle>
+                            <Dropdown
+                              className="dropdwon-border-box"
+                              onSelect={(e) => {
+                                setFilter({
+                                  ...filter,
+                                  coloumName: "createdAt",
+                                  orderBy: e,
+                                });
+                              }}
+                            >
+                              <Dropdown.Toggle>
+                                {filter?.coloumName == "createdAt" &&
+                                filter?.orderBy == "asc"
+                                  ? "Newest"
+                                  : filter?.coloumName == "createdAt" &&
+                                    filter?.orderBy == "desc"
+                                  ? "Oldest"
+                                  : "Sort By"}
+                              </Dropdown.Toggle>
 
                               <Dropdown.Menu>
-                                <Dropdown.Item href="#">Newest</Dropdown.Item>
-                                <Dropdown.Item href="#">Oldest</Dropdown.Item>
-                                <Dropdown.Item href="#">
-                                  Something else
+                                <Dropdown.Item eventKey="asc">
+                                  Newest
+                                </Dropdown.Item>
+                                <Dropdown.Item eventKey="desc">
+                                  Oldest
                                 </Dropdown.Item>
                               </Dropdown.Menu>
                             </Dropdown>
@@ -139,14 +163,25 @@ const AdminUser = () => {
                           <th>
                             <span className="d-flex">
                               Name{" "}
-                              <span className="arrow-filter">
-                                <a href="" className="up">
+                              <span
+                                className="arrow-filter"
+                                style={{ cursor: "pointer" }}
+                                onClick={() => {
+                                  setFilter({
+                                    ...filter,
+                                    coloumName: "full_name",
+                                    orderBy:
+                                      filter?.orderBy == "asc" ? "desc" : "asc",
+                                  });
+                                }}
+                              >
+                                <a className="up">
                                   <img
                                     src="assets/images/arrow-up.png"
                                     alt=""
                                   />
                                 </a>
-                                <a className="down" href="">
+                                <a className="down">
                                   <img
                                     src="assets/images/arrow-down.png"
                                     alt=""
@@ -159,14 +194,25 @@ const AdminUser = () => {
                             <span className="d-flex">
                               {" "}
                               Email{" "}
-                              <span className="arrow-filter">
-                                <a href="" className="up">
+                              <span
+                                className="arrow-filter"
+                                style={{ cursor: "pointer" }}
+                                onClick={() => {
+                                  setFilter({
+                                    ...filter,
+                                    coloumName: "email",
+                                    orderBy:
+                                      filter?.orderBy == "asc" ? "desc" : "asc",
+                                  });
+                                }}
+                              >
+                                <a className="up">
                                   <img
                                     src="assets/images/arrow-up.png"
                                     alt=""
                                   />
                                 </a>
-                                <a className="down" href="">
+                                <a className="down">
                                   <img
                                     src="assets/images/arrow-down.png"
                                     alt=""
@@ -185,9 +231,11 @@ const AdminUser = () => {
                       <tbody>
                         {checkForCount == 1 &&
                           showData?.map((items, index) => {
+                            const adjustedIndex =
+                              index + 1 + (pageNumber - 1) * 10;
                             return (
                               <tr>
-                                <td>S.No 1</td>
+                                <td>{adjustedIndex}</td>
                                 <td className="admin-table-img">
                                   <img
                                     src={
@@ -229,7 +277,9 @@ const AdminUser = () => {
                                   </span>
                                 </td>
 
-                                <td className="">{items?.wallet}</td>
+                                <td className="">
+                                  {(items?.wallet * 1)?.toFixed(6)} USDT
+                                </td>
                                 <td>
                                   <a href="">
                                     <small>View More</small>
@@ -242,7 +292,7 @@ const AdminUser = () => {
                           <tr>
                             <td colSpan={8} className="text-center">
                               <img
-                                width={100}
+                                width={50}
                                 src="/assets/images/admin/orange-loader.gif"
                               />
                             </td>
