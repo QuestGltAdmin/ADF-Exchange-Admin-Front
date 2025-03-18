@@ -134,7 +134,7 @@ export default function AdminHeader() {
                         Support
                       </Nav.Link>
 
-                      <Nav.Link  as={Link} to="/admin-support">
+                      <Nav.Link  as={Link} to="/admin-announcment">
                         <div className="img-nav">
                           <img
                             src="assets/images/admin/support-white.png"

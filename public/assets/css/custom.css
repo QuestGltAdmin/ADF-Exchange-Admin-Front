@@ -628,6 +628,9 @@ a{
     font-size: 0.7rem;
     color: #b5b5c3;
 }
+.announcment-img img{
+    height: 20rem;
+}
 
 @media (max-width:768px){
     .outer-box-filter {

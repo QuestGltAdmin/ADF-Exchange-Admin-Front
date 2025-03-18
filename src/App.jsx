@@ -19,6 +19,7 @@ import { AdminAnnouncement } from "./pages/AdminDashboard/AdminAnnouncement";
 import { AddNewmarquee } from "./pages/AdminDashboard/AddNewmarquee";
 import { Adminkycdetails } from "./pages/AdminDashboard/Adminkycdetails";
 import { AdminAnnouncementdetails } from "./pages/AdminDashboard/AdminAnnouncementdetails";
+import { AddNewAnnouncment } from "./pages/AdminDashboard/AddNewAnnouncment";
 
 function App() {
   return (
@@ -37,7 +38,7 @@ function App() {
             <Route path="/admin-support" element={<Adminsupport />} />
             <Route path="/admin-profile" element={<AdminProfile />} />
             <Route path="/admin-user-details" element={<AdminUserDetails />} />
-            <Route path="/ " element={<AddAdminStake />} />
+            <Route path="/admin-add-stake" element={<AddAdminStake />} />
             <Route path="/admin-currency-management" element={<AdminCurrency />} />
             <Route path="/admin-currency-moreinfo" element={<AdminCurrencymore />} />
             <Route path="/admin-support-details" element={<AdminSupportdetails />} />
@@ -45,6 +46,7 @@ function App() {
             <Route path="/admin-add-marquee" element={<AddNewmarquee />} />
             <Route path="/admin-kyc-details" element={<Adminkycdetails />} />
             <Route path="/admin-announcement-details" element={<AdminAnnouncementdetails />} />
+            <Route path="/admin-add-announcement" element={<AddNewAnnouncment />} />
             <Route path="/*" element={<Navigate to={"/"} />} />
           </Routes>
         </BrowserRouter>
