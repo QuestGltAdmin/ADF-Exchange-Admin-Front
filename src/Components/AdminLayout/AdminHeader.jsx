@@ -137,12 +137,12 @@ export default function AdminHeader() {
                       <Nav.Link  as={Link} to="/admin-announcment">
                         <div className="img-nav">
                           <img
-                            src="assets/images/admin/support-white.png"
+                            src="assets/images/admin/announcement-white.png"
                             className="img-fluid white"
                             alt="img"
                           />
                           <img
-                            src="assets/images/admin/support-black.png"
+                            src="assets/images/admin/announcement.png"
                             className="img-fluid green"
                             alt="img"
                           />

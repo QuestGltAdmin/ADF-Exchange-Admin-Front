@@ -24,10 +24,10 @@ export const AdminAnnouncementdetails = () => {
              
 
               <div className="shadow-admin-box query-details-box mt-3">
-                <h4>
+                <h5>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
                   Porro soluta maxime esse
-                </h4>
+                </h5>
                 <hr />
                 <p>
                   Lorem ipsum dolor sit, amet consectetur adipisicing elit.
