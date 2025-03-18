@@ -103,7 +103,7 @@ export default function AdminHeader() {
                         </div>
                         Currencies Management
                       </Nav.Link>
-                      <Nav.Link href="/admin-kyc">
+                      <Nav.Link  as={Link} to="/admin-kyc">
                         <div className="img-nav">
                           <img
                             src="assets/images/admin/kyc-white.png"
@@ -118,7 +118,7 @@ export default function AdminHeader() {
                         </div>{" "}
                         KYC Management
                       </Nav.Link>
-                      <Nav.Link href="/admin-support">
+                      <Nav.Link  as={Link} to="/admin-support">
                         <div className="img-nav">
                           <img
                             src="assets/images/admin/support-white.png"
@@ -134,7 +134,7 @@ export default function AdminHeader() {
                         Support
                       </Nav.Link>
 
-                      <Nav.Link href="/admin-support">
+                      <Nav.Link  as={Link} to="/admin-support">
                         <div className="img-nav">
                           <img
                             src="assets/images/admin/support-white.png"

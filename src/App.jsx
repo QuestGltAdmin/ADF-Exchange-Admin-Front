@@ -36,7 +36,7 @@ function App() {
             <Route path="/admin-support" element={<Adminsupport />} />
             <Route path="/admin-profile" element={<AdminProfile />} />
             <Route path="/admin-user-details" element={<AdminUserDetails />} />
-            <Route path="/admin-add-stake" element={<AddAdminStake />} />
+            <Route path="/ " element={<AddAdminStake />} />
             <Route path="/admin-currency-management" element={<AdminCurrency />} />
             <Route path="/admin-currency-moreinfo" element={<AdminCurrencymore />} />
             <Route path="/admin-support-details" element={<AdminSupportdetails />} />
