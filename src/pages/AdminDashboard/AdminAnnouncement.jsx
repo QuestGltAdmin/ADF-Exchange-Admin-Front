@@ -171,104 +171,42 @@ export const AdminAnnouncement = () => {
 
                     <Tab eventKey="tab2" title="Announcement">
                       <div className="shadow-admin-box mt-3">
-                        <div className="table-responsive">
-                          <Table className="table-common-new">
-                            <thead>
-                              <tr>
-                                <th>Sr. No</th>
-                                <th>Name</th>
-                                <th>
-                                  <span className="d-flex">
-                                    Name{" "}
-                                    <span className="arrow-filter">
-                                      <a href="" className="up">
-                                        <img
-                                          src="assets/images/arrow-up.png"
-                                          alt=""
-                                        />
-                                      </a>
-                                      <a className="down" href="">
-                                        <img
-                                          src="assets/images/arrow-down.png"
-                                          alt=""
-                                        />
-                                      </a>
-                                    </span>
-                                  </span>
-                                </th>
-                                <th>
-                                  <span className="d-flex">
-                                    {" "}
-                                    Email{" "}
-                                    <span className="arrow-filter">
-                                      <a href="" className="up">
-                                        <img
-                                          src="assets/images/arrow-up.png"
-                                          alt=""
-                                        />
-                                      </a>
-                                      <a className="down" href="">
-                                        <img
-                                          src="assets/images/arrow-down.png"
-                                          alt=""
-                                        />
-                                      </a>
-                                    </span>
-                                  </span>
-                                </th>
-                                <th>Phone Number</th>
-                                <th>KYC</th>
-                                <th>Wallet</th>
-                                <th>Action</th>
-                              </tr>
-                            </thead>
-
-                            <tbody>
-                              <tr>
-                                <td>S.No 1</td>
-                                <td className="admin-table-img">
-                                  <img
-                                    src="/assets/images/admin/table-img.png"
-                                    className="img-fluid"
-                                    alt="icon"
-                                  />
-                                </td>
-                                <td className="">User</td>
-                                <td className="">user@gmail.com</td>
-
-                                <td className="">+91 &nbsp; 8782772877</td>
-
-                                <td>
-                                  <div className="kyc-set">
-                                    KYC
-                                    <img
-                                      style={{ cursor: "pointer" }}
-                                      src="assets/images/admin/attach.png"
-                                      className="img-fluid"
-                                      alt="icon"
-                                    />
-                                  </div>
-                                </td>
-
-                                <td className="">$434 USD</td>
-                                <td>
-                                  <button className="common-btn table-btn green-btn me-2">
-                                    Approve
-                                  </button>
-                                  <button className="common-btn table-btn red-btn">
-                                    Reject
-                                  </button>
-                                </td>
-                              </tr>
-
-                              {/* <tr>
-                                                        <td colSpan={8} className="text-center">
-                                                        No Data Found
-                                                        </td>
-                                                    </tr> */}
-                            </tbody>
-                          </Table>
-                        </div>
+                          <a href="">
+                            <div className="outer-box-announcement">
+                              <i class="fa fa-bullhorn text-orange" aria-hidden="true"></i>
+                              <div>
+                              <h5>SHIBAcoin (SHIBACOIN) Staking Event - 100,000,000 SHIBACOIN in Rewards</h5>
+                              <p className="mb-0">February 17, 2025 at 15:30 (UTC+05:30)</p>
+                              </div>
+                            </div>
+                          </a>
+                          <a href="">
+                          <div className="outer-box-announcement">
+                             <i class="fa fa-bullhorn text-orange" aria-hidden="true"></i>
+                             <div>
+                             <h5>Easy Trading: ProBit Global’s New feature “Convert” with Zero Fees</h5>
+                             <p className="mb-0">February 17, 2025 at 15:30 (UTC+05:30)</p>
+                             </div>
+                          </div>
+                          </a>
+                          <a href="">
+                          <div className="outer-box-announcement">
+                             <i class="fa fa-bullhorn text-orange" aria-hidden="true"></i>
+                             <div>
+                             <h5>Cryptohopper Trading Bots Now Available on ProBit Global</h5>
+                             <p className="mb-0">February 17, 2025 at 15:30 (UTC+05:30)</p>
+                             </div>
+                          </div>
+                          </a>
+                         <a href="">
+                         <div className="outer-box-announcement">
+                             <i class="fa fa-bullhorn text-orange" aria-hidden="true"></i>
+                             <div>
+                             <h5>Vista Finance (VISTA) Trading Competition</h5>
+                             <p className="mb-0">February 17, 2025 at 15:30 (UTC+05:30)</p>
+                             </div>
+                          </div>
+                         </a>
                       </div>
                     </Tab>
                   </Tabs>

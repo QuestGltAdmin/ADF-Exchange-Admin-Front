@@ -18,6 +18,7 @@ import { AdminSupportdetails } from "./pages/AdminDashboard/AdminSupportdetails"
 import { AdminAnnouncement } from "./pages/AdminDashboard/AdminAnnouncement";
 import { AddNewmarquee } from "./pages/AdminDashboard/AddNewmarquee";
 import { Adminkycdetails } from "./pages/AdminDashboard/Adminkycdetails";
+import { AdminAnnouncementdetails } from "./pages/AdminDashboard/AdminAnnouncementdetails";
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
             <Route path="/admin-announcment" element={<AdminAnnouncement />} />
             <Route path="/admin-add-marquee" element={<AddNewmarquee />} />
             <Route path="/admin-kyc-details" element={<Adminkycdetails />} />
+            <Route path="/admin-announcement-details" element={<AdminAnnouncementdetails />} />
             <Route path="/*" element={<Navigate to={"/"} />} />
           </Routes>
         </BrowserRouter>

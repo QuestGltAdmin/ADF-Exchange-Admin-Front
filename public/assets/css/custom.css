@@ -182,14 +182,15 @@ margin-right: 0.5rem;
     border-bottom: 1px solid #292931;
 }
 .table-common-new tbody tr td.admin-table-img img {
-   height: 2rem;
-   width: 2rem;
-   border-radius: 50%;
-   object-fit: cover;
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #2e2e2e;
 }
 .table-common-new tbody tr td a {
     color: #ffa800 !important;
-    font-size: 1.2rem;
+    font-size: 1rem;
     cursor: pointer;
 }
 .arrow-filter {
@@ -602,6 +603,30 @@ a{
 }
 .query-details-box img {
     max-height: 20rem;
+}
+.outer-box-announcement {
+    background-color: #000;
+    padding: 1rem;
+    border-radius: 1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    border: 1px solid #212121;
+    margin-bottom: 1rem;
+}
+.outer-box-announcement i {
+    font-size: 1.4rem;
+}
+.outer-box-announcement h5 {
+    color: #fff;
+    font-weight: 400;
+    font-size: 1rem;
+    margin-bottom: 0.2rem;
+}
+.outer-box-announcement p {
+    font-weight: 300;
+    font-size: 0.7rem;
+    color: #b5b5c3;
 }
 
 @media (max-width:768px){
