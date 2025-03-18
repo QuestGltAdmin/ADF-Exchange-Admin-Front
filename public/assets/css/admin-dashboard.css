@@ -214,11 +214,13 @@ html{
     color: #FFFFFF;
     border: transparent !important;
 }
-.table-btn.green-btn{
+.common-btn.green-btn{
     background: #04CF00 !important;
+    border-color: #04CF00 !important;
 }
-.table-btn.red-btn{
+.common-btn.red-btn{
     background: #FF0000 !important;
+    border-color: #FF0000 !important;
 }
 .table-btn.green-border-btn{
     background: #fff !important;

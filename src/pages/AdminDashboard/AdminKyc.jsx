@@ -362,12 +362,7 @@ const AdminKyc = () => {
 
                               
                                 <td>
-                                  <button className="common-btn table-btn green-btn me-2">
-                                    Approve
-                                  </button>
-                                  <button className="common-btn table-btn red-btn">
-                                    Reject
-                                  </button>
+                                    <a onClick={() => {navigate("/admin-kyc-details",{state:{id:items._id}})}}>View More</a>
                                 </td>
                               </tr>
                             );

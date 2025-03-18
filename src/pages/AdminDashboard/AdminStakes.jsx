@@ -97,9 +97,9 @@ const AdminStakes = () => {
                   {/* <Tabs defaultActiveKey="tab1" className="mb-3">
                     <Tab eventKey="tab1" title="All"> */}
                   <Row>
-                    <Col lg={12} className="d-flex gap-2">
+                    <Col lg={12} className="d-flex gap-2 mt-3 mb-5">
                       <button
-                        className="common-btn"
+                        className="border-btn common-btn"
                         onClick={() => {
                           setType("");
                         }}
@@ -107,7 +107,7 @@ const AdminStakes = () => {
                         All
                       </button>
                       <button
-                        className="common-btn"
+                        className="border-btn"
                         onClick={() => {
                           setType("upcoming");
                         }}
@@ -115,7 +115,7 @@ const AdminStakes = () => {
                         Upcoming
                       </button>
                       <button
-                        className="common-btn"
+                        className="border-btn"
                         onClick={() => {
                           setType("running");
                         }}
@@ -123,7 +123,7 @@ const AdminStakes = () => {
                         Running
                       </button>
                       <button
-                        className="common-btn"
+                        className="border-btn"
                         onClick={() => {
                           setType("expired");
                         }}

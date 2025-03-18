@@ -33,23 +33,39 @@
     color: #fff;
     font-weight: 400;
 }
-
+.border-btn {
+    display: inline-block;
+    color: #FFF !important;
+    text-align: center;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding: 0.3rem 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid #ffa800 !important;
+    text-decoration: none;
+    background-color: transparent !important;
+}
 .common-btn {
     border-radius: 0.5rem;
     -webkit-box-shadow: none;
     box-shadow: none;
-    border: 1px solid transparent;
+    border: 1px solid transparent !important;
     cursor: pointer;
     line-height: 1.5rem;
     padding: 0.3rem 1rem;
     font-size: 1rem;
-    background-color: #ffa800;
-    border-color: #ffa800;
+    background-color: #ffa800 !important;
+    border-color: #ffa800 !important;
     color: #ffffff !important;
     display: inline-block;
     text-align: center;
     font-weight: 400;
 }
+
+
+
 .outer-box-filter {
     display: flex;
     align-items: center;
@@ -171,9 +187,10 @@ margin-right: 0.5rem;
    border-radius: 50%;
    object-fit: cover;
 }
-.table-common-new tbody tr td a{
+.table-common-new tbody tr td a {
     color: #ffa800 !important;
     font-size: 1.2rem;
+    cursor: pointer;
 }
 .arrow-filter {
     position: relative;
@@ -489,6 +506,7 @@ a{
     background-color: transparent !important;
     min-width: 9rem;
 }
+
 .upload-photo-box .form-control {
     position: absolute;
     left: 0;

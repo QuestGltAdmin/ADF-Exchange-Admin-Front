@@ -6,7 +6,6 @@ import AdminTransaction from "./pages/AdminDashboard/AdminTransaction";
 import AdminStakes from "./pages/AdminDashboard/AdminStakes";
 import AdminKyc from "./pages/AdminDashboard/AdminKyc";
 import { Adminsupport } from "./pages/AdminDashboard/Adminsupport";
-import { Adminkycedit } from "./pages/AdminDashboard/Adminkycedit";
 import AdminProfile from "./pages/AdminDashboard/AdminProfile";
 import Login from "./pages/AdminDashboard/Login";
 import { Toaster } from "react-hot-toast";
@@ -16,6 +15,9 @@ import { AdminCurrency } from "./pages/AdminDashboard/AdminCurrency";
 import { AdminCurrencymore } from "./pages/AdminDashboard/AdminCurrencymore";
 import { VerifyOtp } from "./pages/AdminDashboard/VerifyOtp";
 import { AdminSupportdetails } from "./pages/AdminDashboard/AdminSupportdetails";
+import { AdminAnnouncement } from "./pages/AdminDashboard/AdminAnnouncement";
+import { AddNewmarquee } from "./pages/AdminDashboard/AddNewmarquee";
+import { Adminkycdetails } from "./pages/AdminDashboard/Adminkycdetails";
 
 function App() {
   return (
@@ -31,7 +33,6 @@ function App() {
             <Route path="/admin-transaction" element={<AdminTransaction />} />
             <Route path="/admin-stakes" element={<AdminStakes />} />
             <Route path="/admin-kyc" element={<AdminKyc />} />
-            <Route path="/admin-kyc-edit" element={<Adminkycedit />} />
             <Route path="/admin-support" element={<Adminsupport />} />
             <Route path="/admin-profile" element={<AdminProfile />} />
             <Route path="/admin-user-details" element={<AdminUserDetails />} />
@@ -39,6 +40,9 @@ function App() {
             <Route path="/admin-currency-management" element={<AdminCurrency />} />
             <Route path="/admin-currency-moreinfo" element={<AdminCurrencymore />} />
             <Route path="/admin-support-details" element={<AdminSupportdetails />} />
+            <Route path="/admin-announcment" element={<AdminAnnouncement />} />
+            <Route path="/admin-add-marquee" element={<AddNewmarquee />} />
+            <Route path="/admin-kyc-details" element={<Adminkycdetails />} />
             <Route path="/*" element={<Navigate to={"/"} />} />
           </Routes>
         </BrowserRouter>
