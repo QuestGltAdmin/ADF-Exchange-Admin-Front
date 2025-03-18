@@ -28,7 +28,7 @@ const AdminStakes = () => {
   const [totalOrderCount, setTotalOrderCount] = useState(1);
   const [search, setSearch] = useState("");
   const [checkForCount, setCheckForCount] = useState(0);
-  const [type, setType] = useState();
+  const [type, setType] = useState("");
   //===============================End Of Code===============================//
 
   //===============================Get Data===============================//
@@ -89,7 +89,12 @@ const AdminStakes = () => {
                       </InputGroup>
                     </Col>
                     <Col lg={2}>
-                      <a className="common-btn" href="/admin-add-stake">
+                      <a
+                        className="common-btn"
+                        onClick={() => {
+                          navigate("/admin-add-stake");
+                        }}
+                      >
                         Add Stake Plan
                       </a>
                     </Col>
@@ -99,7 +104,9 @@ const AdminStakes = () => {
                   <Row>
                     <Col lg={12} className="d-flex gap-2 mt-3 mb-5">
                       <button
-                        className="border-btn common-btn"
+                        className={
+                          type == "" ? "border-btn common-btn" : "border-btn"
+                        }
                         onClick={() => {
                           setType("");
                         }}
@@ -107,7 +114,11 @@ const AdminStakes = () => {
                         All
                       </button>
                       <button
-                        className="border-btn"
+                        className={
+                          type == "upcoming"
+                            ? "border-btn common-btn"
+                            : "border-btn"
+                        }
                         onClick={() => {
                           setType("upcoming");
                         }}
@@ -115,7 +126,11 @@ const AdminStakes = () => {
                         Upcoming
                       </button>
                       <button
-                        className="border-btn"
+                        className={
+                          type == "running"
+                            ? "border-btn common-btn"
+                            : "border-btn"
+                        }
                         onClick={() => {
                           setType("running");
                         }}
@@ -123,7 +138,11 @@ const AdminStakes = () => {
                         Running
                       </button>
                       <button
-                        className="border-btn"
+                        className={
+                          type == "expired"
+                            ? "border-btn common-btn"
+                            : "border-btn"
+                        }
                         onClick={() => {
                           setType("expired");
                         }}

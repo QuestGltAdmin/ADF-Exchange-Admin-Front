@@ -29,6 +29,10 @@ const AdminKyc = () => {
   const [totalOrderCount, setTotalOrderCount] = useState(1);
   const [search, setSearch] = useState("");
   const [checkForCount, setCheckForCount] = useState(0);
+  const [count, setCount] = useState({
+    approve: 0,
+    reject: 0,
+  });
   const [date, setDate] = useState({
     from: "",
     to: "",
@@ -54,6 +58,11 @@ const AdminKyc = () => {
 
       if (getApiData?.data?.status) {
         if (getApiData?.data?.data?.content?.length > 0) {
+          setCount({
+            ...count,
+            approve: getApiData?.data?.approvedKyc,
+            reject: getApiData?.data?.rejectedKyc,
+          });
           setCheckForCount(1);
 
           setShowData(getApiData?.data?.data?.content);
@@ -98,13 +107,13 @@ const AdminKyc = () => {
                       <div className="box-total-user limit-balance-box mb-2">
                         <h5>Total KYC Approved</h5>
                         <h3>
-                          <span className="text-orange">24</span>
+                          <span className="text-orange">{count?.approve}</span>
                         </h3>
                       </div>
                       <div className="box-total-user limit-balance-box mb-2">
                         <h5>Total KYC Rejected</h5>
                         <h3>
-                          <span className="text-orange">12</span>
+                          <span className="text-orange">{count?.reject}</span>
                         </h3>
                       </div>
                     </div>
@@ -360,9 +369,16 @@ const AdminKyc = () => {
                                   </span>
                                 </td>
 
-                              
                                 <td>
-                                    <a onClick={() => {navigate("/admin-kyc-details",{state:{id:items._id}})}}>View More</a>
+                                  <a
+                                    onClick={() => {
+                                      navigate("/admin-kyc-details", {
+                                        state: { id: items._id },
+                                      });
+                                    }}
+                                  >
+                                    View More
+                                  </a>
                                 </td>
                               </tr>
                             );
