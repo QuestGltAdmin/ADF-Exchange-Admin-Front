@@ -11,7 +11,6 @@ import {
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 export default function AdminHeader() {
- 
   return (
     <>
       <header className="main-header login-header-home">
@@ -29,9 +28,7 @@ export default function AdminHeader() {
                   </Navbar.Brand>
                   <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                      <Nav.Link
-                        href="/admin-dashboard"
-                      >
+                      <Nav.Link as={Link} to="/admin-dashboard">
                         <div className="img-nav">
                           <img
                             src="assets/images/admin/dashboard-white.png"
@@ -46,7 +43,7 @@ export default function AdminHeader() {
                         </div>
                         Dashboard
                       </Nav.Link>
-                      <Nav.Link href="/admin-user">
+                      <Nav.Link as={Link} to="/admin-user">
                         <div className="img-nav">
                           <img
                             src="assets/images/admin/user-white.png"
@@ -61,9 +58,7 @@ export default function AdminHeader() {
                         </div>{" "}
                         Users
                       </Nav.Link>
-                      <Nav.Link
-                        href="/admin-transaction"
-                      >
+                      <Nav.Link as={Link} to="/admin-transaction">
                         <div className="img-nav">
                           <img
                             src="assets/images/admin/transaction-white.png"
@@ -78,7 +73,7 @@ export default function AdminHeader() {
                         </div>{" "}
                         Transactions
                       </Nav.Link>
-                      <Nav.Link href="/admin-stakes">
+                      <Nav.Link as={Link} to="/admin-stakes">
                         <div className="img-nav">
                           <img
                             src="assets/images/admin/stake-white.png"
@@ -93,7 +88,7 @@ export default function AdminHeader() {
                         </div>{" "}
                         Stakes
                       </Nav.Link>
-                      <Nav.Link  href="#">
+                      <Nav.Link href="#">
                         <div className="img-nav">
                           <img
                             src="assets/images/admin/conversion-white.png"
@@ -108,7 +103,7 @@ export default function AdminHeader() {
                         </div>
                         Currencies Management
                       </Nav.Link>
-                      <Nav.Link  href="/admin-kyc">
+                      <Nav.Link href="/admin-kyc">
                         <div className="img-nav">
                           <img
                             src="assets/images/admin/kyc-white.png"
@@ -123,7 +118,7 @@ export default function AdminHeader() {
                         </div>{" "}
                         KYC Management
                       </Nav.Link>
-                      <Nav.Link  href="/admin-support">
+                      <Nav.Link href="/admin-support">
                         <div className="img-nav">
                           <img
                             src="assets/images/admin/support-white.png"
@@ -139,7 +134,7 @@ export default function AdminHeader() {
                         Support
                       </Nav.Link>
 
-                      <Nav.Link  href="/admin-support">
+                      <Nav.Link href="/admin-support">
                         <div className="img-nav">
                           <img
                             src="assets/images/admin/support-white.png"
@@ -168,7 +163,7 @@ export default function AdminHeader() {
 
                   <Link to="/" className="ms-auto profile-dropdown fix-bottom ">
                     <div className="img-nav">
-                    <img src="assets/images/admin/profile.png" />{" "}
+                      <img src="assets/images/admin/profile.png" />{" "}
                     </div>
                   </Link>
                   <Navbar.Toggle aria-controls="basic-navbar-nav" />

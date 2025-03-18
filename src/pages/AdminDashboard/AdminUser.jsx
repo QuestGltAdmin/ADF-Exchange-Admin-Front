@@ -12,12 +12,12 @@ import {
 import useAuth from "../../hooks/useAuth";
 import { debounce } from "lodash";
 import axiosMain from "../../http/axios/axios_main";
+import { useNavigate } from "react-router-dom";
 
 const AdminUser = () => {
   //===============================Global State===============================//
   const { user } = useAuth();
-  console.log("userData", user);
-
+  const navigate = useNavigate();
   //===============================End Of Code===============================//
 
   //===============================Local State===============================//
@@ -98,7 +98,9 @@ const AdminUser = () => {
                               <Form.Control
                                 placeholder="Search..."
                                 name="OldPassword"
-                                onChange={(e)=>{setSearch(e?.target?.value)}}
+                                onChange={(e) => {
+                                  setSearch(e?.target?.value);
+                                }}
                                 value={search}
                               />
                               <InputGroup.Text className="search-space">
@@ -281,7 +283,13 @@ const AdminUser = () => {
                                   {(items?.wallet * 1)?.toFixed(6)} USDT
                                 </td>
                                 <td>
-                                  <a href="">
+                                  <a
+                                    onClick={() => {
+                                      navigate("/admin-user-details", {
+                                        state: { id: items?._id },
+                                      });
+                                    }}
+                                  >
                                     <small>View More</small>
                                   </a>
                                 </td>

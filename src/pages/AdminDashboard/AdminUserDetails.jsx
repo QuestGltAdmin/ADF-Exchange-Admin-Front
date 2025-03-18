@@ -11,8 +11,57 @@ import {
   Tabs,
   Tab,
 } from "react-bootstrap";
+import { useLocation } from "react-router-dom";
+import axiosMain from "../../http/axios/axios_main";
+import useAuth from "../../hooks/useAuth";
 
 export const AdminUserDetails = () => {
+  const { state } = useLocation();
+  const { id } = state || "";
+  const { user } = useAuth();
+  const [userDetails , setUserDetails] = useState([])
+  const [userKYC , setUserKYC] = useState([])
+  useEffect(() => {
+    if (id) {
+      getUserData();
+      getKYCData();
+    }
+  }, [id]);
+  const getUserData = async () => {
+    try {
+      const getData = await axiosMain.get(
+        `/admin/get-user-details?user_id=${id}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `bearer ${user?.token}`,
+          },
+        }
+      );
+      if (getData?.data?.status) {
+        setUserDetails(getData?.data?.userDetail)
+        console.log("getData", getData);
+      }
+    } catch (err) {}
+  };
+
+  const getKYCData = async () => {
+    try {
+      const getData = await axiosMain.get(
+        `/admin/get-user-kyc-detail?user_id=${id}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `bearer ${user?.token}`,
+          },
+        }
+      );
+      if (getData?.data?.status) {
+        setUserKYC(getData?.data?.data)
+        console.log("getData", getData);
+      }
+    } catch (err) {}
+  };
   return (
     <>
       <AdminLayout>
@@ -26,17 +75,17 @@ export const AdminUserDetails = () => {
                     <Col lg="6">
                       <div className="user-profile-box">
                         <img
-                          src="/assets/images/admin/user-img.png"
+                          src={userDetails?.profile ? userDetails?.profile : "/assets/images/admin/user-img.png"}
                           className="img-fluid user-img"
                           alt="icon"
                         />
                         <div>
-                          <h4 className="text-orange">Arpit Patidar</h4>
-                          <p>arpitpatidar@gmail.com</p>
-                          <p>+91 2345678900</p>
-                          <p className="referal-break">
+                          <h4 className="text-orange">{userDetails?.full_name}</h4>
+                          <p>{userDetails?.email}</p>
+                          <p>+{userDetails?.country_code} {userDetails?.mobile_no}</p>
+                          {/* <p className="referal-break">
                             bnenbtebntebteb,5b35b3jbj36bj3bbjyebjy4bj64bj64bj
-                          </p>
+                          </p> */}
                           <div className="switch-to-lock">
                             <Form.Check
                               type="switch"
@@ -77,28 +126,28 @@ export const AdminUserDetails = () => {
                   <Tabs defaultActiveKey="tab1" className="mb-3">
                     <Tab eventKey="tab1" title="KYC">
                       <div className="shadow-admin-box mt-3">
-                      <div className="user-profile-box kyc-profile-box">
-                        <h4>
-                          <span className="mb-3 d-block text-orange">Driving License</span>
-                         
+                        <div className="user-profile-box kyc-profile-box">
+                          <h4>
+                            <span className="mb-3 d-block text-orange">
+                              {userKYC?.document_type}
+                            </span>
+
                             <img
-                              src="https://adf-star-s3-bucket.s3.ap-south-1.amazonaws.com/exchange_kyc_document/1740035554584-CB23-CARDjpg.webp"
+                              src={userKYC?.front_side ? userKYC?.front_side : "https://adf-star-s3-bucket.s3.ap-south-1.amazonaws.com/exchange_kyc_document/1740035554584-CB23-CARDjpg.webp"}
                               className="img-fluid user-img"
                               alt="icon"
                             />
-                        </h4>
-                        <div>
-                          <h4 className="text-orange">Arpit Patidar</h4>
-                          <p className="mb-3">Date of Birth : 12/10/2002</p>
-                          <p className="mb-3">Mobile No. : +91 2345678900</p>
-                          <p className="mb-3">Landmark : -</p>
-                          <p className="mb-3">City : Surat</p>
-                          <p className="mb-3">State : gujarat</p>
-                          <p className="mb-3">Country : India</p>
-                          
-                          
+                          </h4>
+                          <div>
+                            <h4 className="text-orange">{userKYC?.full_name}</h4>
+                            <p className="mb-3">Date of Birth : {userKYC?.date_of_birth}</p>
+                            <p className="mb-3">Mobile No. : +{userKYC?.country_code} {userKYC?.mobile}</p>
+                            <p className="mb-3">Landmark : {userKYC?.landmark}</p>
+                            <p className="mb-3">City : {userKYC?.city}</p>
+                            <p className="mb-3">State : {userKYC?.state}</p>
+                            <p className="mb-3">Country : {userKYC?.country}</p>
+                          </div>
                         </div>
-                      </div>
                       </div>
                     </Tab>
                     <Tab eventKey="tab2" title="Wallet Balance">
@@ -111,43 +160,57 @@ export const AdminUserDetails = () => {
                                 Filter
                               </h4>
                               <div className="filter-with-show-data">
-                              <div className="outer-box-filter">
-                                    
-                                    <InputGroup className="outer-input-search ">
-                                      <Form.Control
-                                        placeholder="Search..."
-                                        name="OldPassword"
-                                      />
-                                      <InputGroup.Text className="search-space">
-                                        <i className="fa fa-search" aria-hidden="true"></i>
-                                      </InputGroup.Text>
-                                    </InputGroup>
-                                    <Dropdown className="dropdwon-border-box">
-                                      <Dropdown.Toggle>
-                                        Sort By
-                                      </Dropdown.Toggle>
+                                <div className="outer-box-filter">
+                                  <InputGroup className="outer-input-search ">
+                                    <Form.Control
+                                      placeholder="Search..."
+                                      name="OldPassword"
+                                    />
+                                    <InputGroup.Text className="search-space">
+                                      <i
+                                        className="fa fa-search"
+                                        aria-hidden="true"
+                                      ></i>
+                                    </InputGroup.Text>
+                                  </InputGroup>
+                                  <Dropdown className="dropdwon-border-box">
+                                    <Dropdown.Toggle>Sort By</Dropdown.Toggle>
 
-                                      <Dropdown.Menu>
-                                        <Dropdown.Item href="#">Newest</Dropdown.Item>
-                                        <Dropdown.Item href="#">Oldest</Dropdown.Item>
-                                        <Dropdown.Item href="#">Something else</Dropdown.Item>
-                                      </Dropdown.Menu>
-                                    </Dropdown>
-                                    <button className="common-btn">Clear Filter</button>
+                                    <Dropdown.Menu>
+                                      <Dropdown.Item href="#">
+                                        Newest
+                                      </Dropdown.Item>
+                                      <Dropdown.Item href="#">
+                                        Oldest
+                                      </Dropdown.Item>
+                                      <Dropdown.Item href="#">
+                                        Something else
+                                      </Dropdown.Item>
+                                    </Dropdown.Menu>
+                                  </Dropdown>
+                                  <button className="common-btn">
+                                    Clear Filter
+                                  </button>
+                                </div>
+                                <Dropdown className="dropdwon-border-box">
+                                  <Dropdown.Toggle>Show</Dropdown.Toggle>
+
+                                  <Dropdown.Menu>
+                                    <Dropdown.Item href="#">
+                                      1 - 25
+                                    </Dropdown.Item>
+                                    <Dropdown.Item href="#">
+                                      25 - 50
+                                    </Dropdown.Item>
+                                    <Dropdown.Item href="#">
+                                      50 - 75
+                                    </Dropdown.Item>
+                                    <Dropdown.Item href="#">
+                                      75 - 100
+                                    </Dropdown.Item>
+                                  </Dropdown.Menu>
+                                </Dropdown>
                               </div>
-                              <Dropdown className="dropdwon-border-box">
-                                      <Dropdown.Toggle>
-                                        Show
-                                      </Dropdown.Toggle>
-
-                                      <Dropdown.Menu>
-                                        <Dropdown.Item href="#">1 - 25</Dropdown.Item>
-                                        <Dropdown.Item href="#">25 - 50</Dropdown.Item>
-                                        <Dropdown.Item href="#">50 - 75</Dropdown.Item>
-                                        <Dropdown.Item href="#">75 - 100</Dropdown.Item>
-                                      </Dropdown.Menu>
-                                    </Dropdown>
-                           </div>
                             </Col>
                           </Row>
                         </div>
@@ -215,8 +278,6 @@ export const AdminUserDetails = () => {
                                 <td className="">$1200</td>
 
                                 <td className="">$1200</td>
-
-                               
                               </tr>
 
                               {/* <tr>
@@ -239,43 +300,57 @@ export const AdminUserDetails = () => {
                                 Filter
                               </h4>
                               <div className="filter-with-show-data">
-                              <div className="outer-box-filter">
-                                    
-                                    <InputGroup className="outer-input-search ">
-                                      <Form.Control
-                                        placeholder="Search..."
-                                        name="OldPassword"
-                                      />
-                                      <InputGroup.Text className="search-space">
-                                        <i className="fa fa-search" aria-hidden="true"></i>
-                                      </InputGroup.Text>
-                                    </InputGroup>
-                                    <Dropdown className="dropdwon-border-box">
-                                      <Dropdown.Toggle>
-                                        Sort By
-                                      </Dropdown.Toggle>
+                                <div className="outer-box-filter">
+                                  <InputGroup className="outer-input-search ">
+                                    <Form.Control
+                                      placeholder="Search..."
+                                      name="OldPassword"
+                                    />
+                                    <InputGroup.Text className="search-space">
+                                      <i
+                                        className="fa fa-search"
+                                        aria-hidden="true"
+                                      ></i>
+                                    </InputGroup.Text>
+                                  </InputGroup>
+                                  <Dropdown className="dropdwon-border-box">
+                                    <Dropdown.Toggle>Sort By</Dropdown.Toggle>
 
-                                      <Dropdown.Menu>
-                                        <Dropdown.Item href="#">Newest</Dropdown.Item>
-                                        <Dropdown.Item href="#">Oldest</Dropdown.Item>
-                                        <Dropdown.Item href="#">Something else</Dropdown.Item>
-                                      </Dropdown.Menu>
-                                    </Dropdown>
-                                    <button className="common-btn">Clear Filter</button>
+                                    <Dropdown.Menu>
+                                      <Dropdown.Item href="#">
+                                        Newest
+                                      </Dropdown.Item>
+                                      <Dropdown.Item href="#">
+                                        Oldest
+                                      </Dropdown.Item>
+                                      <Dropdown.Item href="#">
+                                        Something else
+                                      </Dropdown.Item>
+                                    </Dropdown.Menu>
+                                  </Dropdown>
+                                  <button className="common-btn">
+                                    Clear Filter
+                                  </button>
+                                </div>
+                                <Dropdown className="dropdwon-border-box">
+                                  <Dropdown.Toggle>Show</Dropdown.Toggle>
+
+                                  <Dropdown.Menu>
+                                    <Dropdown.Item href="#">
+                                      1 - 25
+                                    </Dropdown.Item>
+                                    <Dropdown.Item href="#">
+                                      25 - 50
+                                    </Dropdown.Item>
+                                    <Dropdown.Item href="#">
+                                      50 - 75
+                                    </Dropdown.Item>
+                                    <Dropdown.Item href="#">
+                                      75 - 100
+                                    </Dropdown.Item>
+                                  </Dropdown.Menu>
+                                </Dropdown>
                               </div>
-                              <Dropdown className="dropdwon-border-box">
-                                      <Dropdown.Toggle>
-                                        Show
-                                      </Dropdown.Toggle>
-
-                                      <Dropdown.Menu>
-                                        <Dropdown.Item href="#">1 - 25</Dropdown.Item>
-                                        <Dropdown.Item href="#">25 - 50</Dropdown.Item>
-                                        <Dropdown.Item href="#">50 - 75</Dropdown.Item>
-                                        <Dropdown.Item href="#">75 - 100</Dropdown.Item>
-                                      </Dropdown.Menu>
-                                    </Dropdown>
-                           </div>
                             </Col>
                           </Row>
                         </div>
@@ -346,7 +421,9 @@ export const AdminUserDetails = () => {
 
                                 <td>12 March 2025</td>
                                 <td>12 March 2025</td>
-                                <td><span className="text-green">Active</span></td>
+                                <td>
+                                  <span className="text-green">Active</span>
+                                </td>
                               </tr>
 
                               {/* <tr>
@@ -369,43 +446,57 @@ export const AdminUserDetails = () => {
                                 Filter
                               </h4>
                               <div className="filter-with-show-data">
-                              <div className="outer-box-filter">
-                                    
-                                    <InputGroup className="outer-input-search ">
-                                      <Form.Control
-                                        placeholder="Search..."
-                                        name="OldPassword"
-                                      />
-                                      <InputGroup.Text className="search-space">
-                                        <i className="fa fa-search" aria-hidden="true"></i>
-                                      </InputGroup.Text>
-                                    </InputGroup>
-                                    <Dropdown className="dropdwon-border-box">
-                                      <Dropdown.Toggle>
-                                        Sort By
-                                      </Dropdown.Toggle>
+                                <div className="outer-box-filter">
+                                  <InputGroup className="outer-input-search ">
+                                    <Form.Control
+                                      placeholder="Search..."
+                                      name="OldPassword"
+                                    />
+                                    <InputGroup.Text className="search-space">
+                                      <i
+                                        className="fa fa-search"
+                                        aria-hidden="true"
+                                      ></i>
+                                    </InputGroup.Text>
+                                  </InputGroup>
+                                  <Dropdown className="dropdwon-border-box">
+                                    <Dropdown.Toggle>Sort By</Dropdown.Toggle>
 
-                                      <Dropdown.Menu>
-                                        <Dropdown.Item href="#">Newest</Dropdown.Item>
-                                        <Dropdown.Item href="#">Oldest</Dropdown.Item>
-                                        <Dropdown.Item href="#">Something else</Dropdown.Item>
-                                      </Dropdown.Menu>
-                                    </Dropdown>
-                                    <button className="common-btn">Clear Filter</button>
+                                    <Dropdown.Menu>
+                                      <Dropdown.Item href="#">
+                                        Newest
+                                      </Dropdown.Item>
+                                      <Dropdown.Item href="#">
+                                        Oldest
+                                      </Dropdown.Item>
+                                      <Dropdown.Item href="#">
+                                        Something else
+                                      </Dropdown.Item>
+                                    </Dropdown.Menu>
+                                  </Dropdown>
+                                  <button className="common-btn">
+                                    Clear Filter
+                                  </button>
+                                </div>
+                                <Dropdown className="dropdwon-border-box">
+                                  <Dropdown.Toggle>Show</Dropdown.Toggle>
+
+                                  <Dropdown.Menu>
+                                    <Dropdown.Item href="#">
+                                      1 - 25
+                                    </Dropdown.Item>
+                                    <Dropdown.Item href="#">
+                                      25 - 50
+                                    </Dropdown.Item>
+                                    <Dropdown.Item href="#">
+                                      50 - 75
+                                    </Dropdown.Item>
+                                    <Dropdown.Item href="#">
+                                      75 - 100
+                                    </Dropdown.Item>
+                                  </Dropdown.Menu>
+                                </Dropdown>
                               </div>
-                              <Dropdown className="dropdwon-border-box">
-                                      <Dropdown.Toggle>
-                                        Show
-                                      </Dropdown.Toggle>
-
-                                      <Dropdown.Menu>
-                                        <Dropdown.Item href="#">1 - 25</Dropdown.Item>
-                                        <Dropdown.Item href="#">25 - 50</Dropdown.Item>
-                                        <Dropdown.Item href="#">50 - 75</Dropdown.Item>
-                                        <Dropdown.Item href="#">75 - 100</Dropdown.Item>
-                                      </Dropdown.Menu>
-                                    </Dropdown>
-                           </div>
                             </Col>
                           </Row>
                         </div>
@@ -969,43 +1060,57 @@ export const AdminUserDetails = () => {
                                 Filter
                               </h4>
                               <div className="filter-with-show-data">
-                              <div className="outer-box-filter">
-                                    
-                                    <InputGroup className="outer-input-search ">
-                                      <Form.Control
-                                        placeholder="Search..."
-                                        name="OldPassword"
-                                      />
-                                      <InputGroup.Text className="search-space">
-                                        <i className="fa fa-search" aria-hidden="true"></i>
-                                      </InputGroup.Text>
-                                    </InputGroup>
-                                    <Dropdown className="dropdwon-border-box">
-                                      <Dropdown.Toggle>
-                                        Sort By
-                                      </Dropdown.Toggle>
+                                <div className="outer-box-filter">
+                                  <InputGroup className="outer-input-search ">
+                                    <Form.Control
+                                      placeholder="Search..."
+                                      name="OldPassword"
+                                    />
+                                    <InputGroup.Text className="search-space">
+                                      <i
+                                        className="fa fa-search"
+                                        aria-hidden="true"
+                                      ></i>
+                                    </InputGroup.Text>
+                                  </InputGroup>
+                                  <Dropdown className="dropdwon-border-box">
+                                    <Dropdown.Toggle>Sort By</Dropdown.Toggle>
 
-                                      <Dropdown.Menu>
-                                        <Dropdown.Item href="#">Newest</Dropdown.Item>
-                                        <Dropdown.Item href="#">Oldest</Dropdown.Item>
-                                        <Dropdown.Item href="#">Something else</Dropdown.Item>
-                                      </Dropdown.Menu>
-                                    </Dropdown>
-                                    <button className="common-btn">Clear Filter</button>
+                                    <Dropdown.Menu>
+                                      <Dropdown.Item href="#">
+                                        Newest
+                                      </Dropdown.Item>
+                                      <Dropdown.Item href="#">
+                                        Oldest
+                                      </Dropdown.Item>
+                                      <Dropdown.Item href="#">
+                                        Something else
+                                      </Dropdown.Item>
+                                    </Dropdown.Menu>
+                                  </Dropdown>
+                                  <button className="common-btn">
+                                    Clear Filter
+                                  </button>
+                                </div>
+                                <Dropdown className="dropdwon-border-box">
+                                  <Dropdown.Toggle>Show</Dropdown.Toggle>
+
+                                  <Dropdown.Menu>
+                                    <Dropdown.Item href="#">
+                                      1 - 25
+                                    </Dropdown.Item>
+                                    <Dropdown.Item href="#">
+                                      25 - 50
+                                    </Dropdown.Item>
+                                    <Dropdown.Item href="#">
+                                      50 - 75
+                                    </Dropdown.Item>
+                                    <Dropdown.Item href="#">
+                                      75 - 100
+                                    </Dropdown.Item>
+                                  </Dropdown.Menu>
+                                </Dropdown>
                               </div>
-                              <Dropdown className="dropdwon-border-box">
-                                      <Dropdown.Toggle>
-                                        Show
-                                      </Dropdown.Toggle>
-
-                                      <Dropdown.Menu>
-                                        <Dropdown.Item href="#">1 - 25</Dropdown.Item>
-                                        <Dropdown.Item href="#">25 - 50</Dropdown.Item>
-                                        <Dropdown.Item href="#">50 - 75</Dropdown.Item>
-                                        <Dropdown.Item href="#">75 - 100</Dropdown.Item>
-                                      </Dropdown.Menu>
-                                    </Dropdown>
-                           </div>
                             </Col>
                           </Row>
                         </div>
@@ -1117,43 +1222,57 @@ export const AdminUserDetails = () => {
                                 Filter
                               </h4>
                               <div className="filter-with-show-data">
-                              <div className="outer-box-filter">
-                                    
-                                    <InputGroup className="outer-input-search ">
-                                      <Form.Control
-                                        placeholder="Search..."
-                                        name="OldPassword"
-                                      />
-                                      <InputGroup.Text className="search-space">
-                                        <i className="fa fa-search" aria-hidden="true"></i>
-                                      </InputGroup.Text>
-                                    </InputGroup>
-                                    <Dropdown className="dropdwon-border-box">
-                                      <Dropdown.Toggle>
-                                        Sort By
-                                      </Dropdown.Toggle>
+                                <div className="outer-box-filter">
+                                  <InputGroup className="outer-input-search ">
+                                    <Form.Control
+                                      placeholder="Search..."
+                                      name="OldPassword"
+                                    />
+                                    <InputGroup.Text className="search-space">
+                                      <i
+                                        className="fa fa-search"
+                                        aria-hidden="true"
+                                      ></i>
+                                    </InputGroup.Text>
+                                  </InputGroup>
+                                  <Dropdown className="dropdwon-border-box">
+                                    <Dropdown.Toggle>Sort By</Dropdown.Toggle>
 
-                                      <Dropdown.Menu>
-                                        <Dropdown.Item href="#">Newest</Dropdown.Item>
-                                        <Dropdown.Item href="#">Oldest</Dropdown.Item>
-                                        <Dropdown.Item href="#">Something else</Dropdown.Item>
-                                      </Dropdown.Menu>
-                                    </Dropdown>
-                                    <button className="common-btn">Clear Filter</button>
+                                    <Dropdown.Menu>
+                                      <Dropdown.Item href="#">
+                                        Newest
+                                      </Dropdown.Item>
+                                      <Dropdown.Item href="#">
+                                        Oldest
+                                      </Dropdown.Item>
+                                      <Dropdown.Item href="#">
+                                        Something else
+                                      </Dropdown.Item>
+                                    </Dropdown.Menu>
+                                  </Dropdown>
+                                  <button className="common-btn">
+                                    Clear Filter
+                                  </button>
+                                </div>
+                                <Dropdown className="dropdwon-border-box">
+                                  <Dropdown.Toggle>Show</Dropdown.Toggle>
+
+                                  <Dropdown.Menu>
+                                    <Dropdown.Item href="#">
+                                      1 - 25
+                                    </Dropdown.Item>
+                                    <Dropdown.Item href="#">
+                                      25 - 50
+                                    </Dropdown.Item>
+                                    <Dropdown.Item href="#">
+                                      50 - 75
+                                    </Dropdown.Item>
+                                    <Dropdown.Item href="#">
+                                      75 - 100
+                                    </Dropdown.Item>
+                                  </Dropdown.Menu>
+                                </Dropdown>
                               </div>
-                              <Dropdown className="dropdwon-border-box">
-                                      <Dropdown.Toggle>
-                                        Show
-                                      </Dropdown.Toggle>
-
-                                      <Dropdown.Menu>
-                                        <Dropdown.Item href="#">1 - 25</Dropdown.Item>
-                                        <Dropdown.Item href="#">25 - 50</Dropdown.Item>
-                                        <Dropdown.Item href="#">50 - 75</Dropdown.Item>
-                                        <Dropdown.Item href="#">75 - 100</Dropdown.Item>
-                                      </Dropdown.Menu>
-                                    </Dropdown>
-                           </div>
                             </Col>
                           </Row>
                         </div>
@@ -1265,43 +1384,57 @@ export const AdminUserDetails = () => {
                                 Filter
                               </h4>
                               <div className="filter-with-show-data">
-                              <div className="outer-box-filter">
-                                    
-                                    <InputGroup className="outer-input-search ">
-                                      <Form.Control
-                                        placeholder="Search..."
-                                        name="OldPassword"
-                                      />
-                                      <InputGroup.Text className="search-space">
-                                        <i className="fa fa-search" aria-hidden="true"></i>
-                                      </InputGroup.Text>
-                                    </InputGroup>
-                                    <Dropdown className="dropdwon-border-box">
-                                      <Dropdown.Toggle>
-                                        Sort By
-                                      </Dropdown.Toggle>
+                                <div className="outer-box-filter">
+                                  <InputGroup className="outer-input-search ">
+                                    <Form.Control
+                                      placeholder="Search..."
+                                      name="OldPassword"
+                                    />
+                                    <InputGroup.Text className="search-space">
+                                      <i
+                                        className="fa fa-search"
+                                        aria-hidden="true"
+                                      ></i>
+                                    </InputGroup.Text>
+                                  </InputGroup>
+                                  <Dropdown className="dropdwon-border-box">
+                                    <Dropdown.Toggle>Sort By</Dropdown.Toggle>
 
-                                      <Dropdown.Menu>
-                                        <Dropdown.Item href="#">Newest</Dropdown.Item>
-                                        <Dropdown.Item href="#">Oldest</Dropdown.Item>
-                                        <Dropdown.Item href="#">Something else</Dropdown.Item>
-                                      </Dropdown.Menu>
-                                    </Dropdown>
-                                    <button className="common-btn">Clear Filter</button>
+                                    <Dropdown.Menu>
+                                      <Dropdown.Item href="#">
+                                        Newest
+                                      </Dropdown.Item>
+                                      <Dropdown.Item href="#">
+                                        Oldest
+                                      </Dropdown.Item>
+                                      <Dropdown.Item href="#">
+                                        Something else
+                                      </Dropdown.Item>
+                                    </Dropdown.Menu>
+                                  </Dropdown>
+                                  <button className="common-btn">
+                                    Clear Filter
+                                  </button>
+                                </div>
+                                <Dropdown className="dropdwon-border-box">
+                                  <Dropdown.Toggle>Show</Dropdown.Toggle>
+
+                                  <Dropdown.Menu>
+                                    <Dropdown.Item href="#">
+                                      1 - 25
+                                    </Dropdown.Item>
+                                    <Dropdown.Item href="#">
+                                      25 - 50
+                                    </Dropdown.Item>
+                                    <Dropdown.Item href="#">
+                                      50 - 75
+                                    </Dropdown.Item>
+                                    <Dropdown.Item href="#">
+                                      75 - 100
+                                    </Dropdown.Item>
+                                  </Dropdown.Menu>
+                                </Dropdown>
                               </div>
-                              <Dropdown className="dropdwon-border-box">
-                                      <Dropdown.Toggle>
-                                        Show
-                                      </Dropdown.Toggle>
-
-                                      <Dropdown.Menu>
-                                        <Dropdown.Item href="#">1 - 25</Dropdown.Item>
-                                        <Dropdown.Item href="#">25 - 50</Dropdown.Item>
-                                        <Dropdown.Item href="#">50 - 75</Dropdown.Item>
-                                        <Dropdown.Item href="#">75 - 100</Dropdown.Item>
-                                      </Dropdown.Menu>
-                                    </Dropdown>
-                           </div>
                             </Col>
                           </Row>
                         </div>
@@ -1311,7 +1444,7 @@ export const AdminUserDetails = () => {
                             <thead>
                               <tr>
                                 <th>Sr. No</th>
-                                
+
                                 <th>
                                   <span className="d-flex">
                                     Transfer Date{" "}
@@ -1332,10 +1465,10 @@ export const AdminUserDetails = () => {
                                   </span>
                                 </th>
                                 <th>Beneficiary Name</th>
-                                
+
                                 <th>Currency</th>
                                 <th>
-                                <span className="d-flex">
+                                  <span className="d-flex">
                                     Amount{" "}
                                     <span className="arrow-filter">
                                       <a href="" className="up">
