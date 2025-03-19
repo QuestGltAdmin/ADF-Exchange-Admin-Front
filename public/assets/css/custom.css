@@ -230,12 +230,12 @@ margin-right: 0.5rem;
     border-radius: 1rem;
 }
 .user-profile-box {
-    
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
     gap: 2rem;
     color: #fff;
+    flex-wrap: wrap;
 }
 .user-profile-box img.user-img {
     max-width: 10rem;
@@ -630,6 +630,10 @@ a{
 }
 .announcment-img img{
     height: 20rem;
+}
+.chat-support-outer{
+    position: sticky;
+    top: 6rem;
 }
 
 @media (max-width:768px){

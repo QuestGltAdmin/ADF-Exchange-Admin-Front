@@ -309,7 +309,7 @@ html{
     padding: 0;
     height: 30.938rem;
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 .inner-chat-box {
     display: flex;
@@ -326,7 +326,7 @@ html{
 }
 .inner-chat-box p {
     font-style: normal;
-    font-weight: 600;
+    font-weight: 300;
     font-size: 0.75rem;
     line-height: 1.125rem;
     letter-spacing: 0.7px;
@@ -344,6 +344,7 @@ html{
     display: block;
     text-align: right;
     margin-top: 5px;
+    margin-bottom: 0.5rem;
 }
 .inner-chat-box .chat-text{
     border: 0.6px solid #ffa800;
@@ -395,13 +396,14 @@ html{
     background-color: transparent !important;
     border: none !important;
     font-style: normal;
-    font-weight: 500;
-    font-size: 0.75rem;
+    font-weight: 300;
+    font-size: 0.8rem;
     line-height: 1rem;
     letter-spacing: 0.004em;
     color: #fff !important;
     padding: 0.625rem 0;
-    max-width: 55%;
+    max-width: 70%;
+    box-shadow: none !important;
 }
 .type-box-main .form-control::placeholder{
     color: #fff !important;

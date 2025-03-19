@@ -19,11 +19,11 @@ export const AdminSupportdetails = () => {
         <div>
           <Container fluid>
             <Row className="">
-              <Col md="12">
+              <Col md="7">
                 <h3 className="common-page-heading">Support Details</h3>
                 <div className="user-details-outer">
                   <Row>
-                    <Col lg="5">
+                    <Col lg="12">
                       <div className="user-profile-box align-items-center">
                         <img
                           src="/assets/images/admin/user-img.png"
@@ -40,31 +40,6 @@ export const AdminSupportdetails = () => {
                           <p>
                             Status : <span className="text-green">Open</span>
                           </p>
-                        </div>
-                      </div>
-                    </Col>
-                    <Col lg="7">
-                      <div className="outer-box-flex">
-                        <div className="box-total-user mb-2">
-                          <img src="assets/images/money-bag.png" alt="" />
-                          <h5>Total Balance</h5>
-                          <h3>
-                            <span className="text-orange">$</span>1200
-                          </h3>
-                        </div>
-                        <div className="box-total-user mb-2">
-                          <img src="assets/images/money-bag.png" alt="" />
-                          <h5>In Use Balance</h5>
-                          <h3>
-                            <span className="text-orange">$</span>200
-                          </h3>
-                        </div>
-                        <div className="box-total-user">
-                          <img src="assets/images/money-bag.png" alt="" />
-                          <h5>Available Balance</h5>
-                          <h3>
-                            <span className="text-orange">$</span>1000
-                          </h3>
                         </div>
                       </div>
                     </Col>
@@ -97,6 +72,111 @@ export const AdminSupportdetails = () => {
                     />
                   </p>
                 </div>
+              </Col>
+              <Col md="5">
+              <div className="chat-support-outer">
+                    <ul className="chat-list-main">
+                      <li className="inner-chat-box">
+                        <img src="assets/images/admin/table-img.png" alt="" />
+                        <div>
+                          <div className="chat-text">
+                            <p>The Swap function is not working.</p>
+                            <p>
+                              <small>12:45</small>
+                            </p>
+                          </div>
+                          <div className="chat-text">
+                            <p>
+                              Since this morning I am not able use the Swap
+                              function. I have tried restarting the app several
+                              times but it’s still the same. Please help me
+                              resolve this problem so I can yse this app.
+                            </p>
+                            <p>
+                              <small>12:45</small>
+                            </p>
+                          </div>
+                        </div>
+                      </li>
+                      <li className="inner-chat-box right-chat-list">
+                        <div>
+                          <div className="chat-text">
+                            <p>
+                              Hello, Rohit! <br /> I am very sorry for the
+                              problem you are facing, me and May team will
+                              resolve this issue as quick as we can.
+                            </p>
+                            <p>
+                              <small>13:12</small>
+                            </p>
+                          </div>
+                          <div className="chat-text">
+                            <p>
+                              Since this morning I am not able use the Swap
+                              function. I have tried
+                            </p>
+                            <p>
+                              <small>13:12</small>
+                            </p>
+                          </div>
+                        </div>
+                      </li>
+                      <li className="inner-chat-box">
+                        <img src="assets/images/admin/table-img.png" alt="" />
+                        <div>
+                          <div className="chat-text">
+                            <p>The Swap function is not working.</p>
+                            <p>
+                              <small>12:45</small>
+                            </p>
+                          </div>
+                          <div className="chat-text">
+                            <p>
+                              Since this morning I am not able use the Swap
+                              function. I have tried restarting the app several
+                              times but it’s still the same. Please help me
+                              resolve this problem so I can yse this app.
+                            </p>
+                            <p>
+                              <small>12:45</small>
+                            </p>
+                          </div>
+                        </div>
+                      </li>
+                      <li className="inner-chat-box right-chat-list">
+                        <div>
+                          <div className="chat-text">
+                            <p>
+                              Hello, Rohit! <br /> I am very sorry for the
+                              problem you are facing, me and May team will
+                              resolve this issue as quick as we can.
+                            </p>
+                            <p>
+                              <small>13:12</small>
+                            </p>
+                          </div>
+                          <div className="chat-text">
+                            <p>
+                              Since this morning I am not able use the Swap
+                              function. I have tried
+                            </p>
+                            <p>
+                              <small>13:12</small>
+                            </p>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                    <div className="type-box-main">
+                      <Form.Control type="text" placeholder="Type message..." />
+                      <div className="d-flex align-items-center">
+                        
+                        <button className="common-btn">
+                          Send <img src="assets/images/admin/send.png" alt="" />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
               </Col>
             </Row>
           </Container>
