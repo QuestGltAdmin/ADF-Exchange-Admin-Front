@@ -11,8 +11,66 @@ import {
   Tabs,
   Tab,
 } from "react-bootstrap";
+import { useLocation } from "react-router-dom";
+import axiosMain from "../../http/axios/axios_main";
+import useAuth from "../../hooks/useAuth";
+import moment from "moment/moment";
+import toast from "react-hot-toast";
+import { encryptRequestData } from "../../utils/encrypt";
 
 export const AdminSupportdetails = () => {
+  const { user } = useAuth();
+  const { state } = useLocation();
+  const { id } = state || "";
+  console.log("id", id);
+
+  const [showData, setShowDate] = useState([]);
+  const [message, setMessage] = useState("");
+  useEffect(() => {
+    if (id) {
+      getData();
+    }
+  }, [id]);
+  const getData = async () => {
+    try {
+      const get_date = await axiosMain.get(`/admin/get-query?query_id=${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `bearer ${user?.token}`,
+        },
+      });
+      console.log(get_date);
+      if (get_date?.data?.status) {
+        setShowDate(get_date?.data?.data);
+      }
+    } catch (err) {}
+  };
+
+  const sendMessage = async () => {
+    try {
+      const payload = {
+        description: message,
+        query_id: id,
+      };
+      const RowData = await encryptRequestData(payload);
+      const sendData = await axiosMain.post(
+        "/admin/admin-response",
+        { data: RowData },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `bearer ${user?.token}`,
+          },
+        }
+      );
+      if (sendData?.data?.status) {
+        getData();
+        setMessage("");
+      }
+    } catch (err) {
+      toast.error(err?.response?.data?.message);
+    }
+  };
   return (
     <>
       <AdminLayout>
@@ -26,19 +84,43 @@ export const AdminSupportdetails = () => {
                     <Col lg="12">
                       <div className="user-profile-box align-items-center">
                         <img
-                          src="/assets/images/admin/user-img.png"
+                          src={
+                            showData?.user_id?.profile
+                              ? showData?.user_id?.profile
+                              : "/assets/images/admin/user-img.png"
+                          }
                           className="img-fluid user-img"
                           alt="icon"
                         />
                         <div>
-                          <h4 className="text-orange">Arpit Patidar</h4>
+                          <h4 className="text-orange">
+                            {showData?.user_id?.full_name}
+                          </h4>
 
-                          <p> arpitpatidar@gmail.com</p>
-                          <p>+91 2345678900</p>
-                          <p>Support ID : 12023</p>
-                          <p>Created Date : 4 Feb 2025</p>
+                          <p>{showData?.user_id?.email}</p>
                           <p>
-                            Status : <span className="text-green">Open</span>
+                            +{showData?.user_id?.country_code}{" "}
+                            {showData?.user_id?.mobile_no}
+                          </p>
+                          <p>
+                            Created Date :
+                            {moment(showData?.createdAt)?.format("lll")}
+                          </p>
+                          <p>
+                            Status :{" "}
+                            <span
+                              className={
+                                showData?.status == "RESOLVED"
+                                  ? "text-green"
+                                  : showData?.status == "REJECTED"
+                                  ? "text-red"
+                                  : showData?.status == "ACTIVE"
+                                  ? "text-yellow"
+                                  : "text-blue"
+                              }
+                            >
+                              {showData?.status}
+                            </span>
                           </p>
                         </div>
                       </div>
@@ -46,7 +128,7 @@ export const AdminSupportdetails = () => {
                   </Row>
                 </div>
 
-                <div className="shadow-admin-box query-details-box mt-3">
+                {/* <div className="shadow-admin-box query-details-box mt-3">
                   <h4>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Porro soluta maxime esse
@@ -71,112 +153,63 @@ export const AdminSupportdetails = () => {
                       alt="query image"
                     />
                   </p>
-                </div>
+                </div> */}
               </Col>
               <Col md="5">
-              <div className="chat-support-outer">
-                    <ul className="chat-list-main">
-                      <li className="inner-chat-box">
-                        <img src="assets/images/admin/table-img.png" alt="" />
-                        <div>
-                          <div className="chat-text">
-                            <p>The Swap function is not working.</p>
-                            <p>
-                              <small>12:45</small>
-                            </p>
+                <div className="chat-support-outer">
+                  <ul className="chat-list-main">
+                    {showData?.query?.map((items, index) => {
+                      return (
+                        <li
+                          className={
+                            items?.sender == "User"
+                              ? "inner-chat-box"
+                              : "inner-chat-box right-chat-list"
+                          }
+                        >
+                          {items?.sender == "User" && (
+                            <img
+                              src="assets/images/admin/table-img.png"
+                              alt=""
+                            />
+                          )}
+                          <div>
+                            <div className="chat-text">
+                              <p>{items?.message}</p>
+                              <p>
+                                <small>
+                                  {moment(items?.date)?.format("lll")}
+                                </small>
+                              </p>
+                            </div>
                           </div>
-                          <div className="chat-text">
-                            <p>
-                              Since this morning I am not able use the Swap
-                              function. I have tried restarting the app several
-                              times but it’s still the same. Please help me
-                              resolve this problem so I can yse this app.
-                            </p>
-                            <p>
-                              <small>12:45</small>
-                            </p>
-                          </div>
-                        </div>
-                      </li>
-                      <li className="inner-chat-box right-chat-list">
-                        <div>
-                          <div className="chat-text">
-                            <p>
-                              Hello, Rohit! <br /> I am very sorry for the
-                              problem you are facing, me and May team will
-                              resolve this issue as quick as we can.
-                            </p>
-                            <p>
-                              <small>13:12</small>
-                            </p>
-                          </div>
-                          <div className="chat-text">
-                            <p>
-                              Since this morning I am not able use the Swap
-                              function. I have tried
-                            </p>
-                            <p>
-                              <small>13:12</small>
-                            </p>
-                          </div>
-                        </div>
-                      </li>
-                      <li className="inner-chat-box">
-                        <img src="assets/images/admin/table-img.png" alt="" />
-                        <div>
-                          <div className="chat-text">
-                            <p>The Swap function is not working.</p>
-                            <p>
-                              <small>12:45</small>
-                            </p>
-                          </div>
-                          <div className="chat-text">
-                            <p>
-                              Since this morning I am not able use the Swap
-                              function. I have tried restarting the app several
-                              times but it’s still the same. Please help me
-                              resolve this problem so I can yse this app.
-                            </p>
-                            <p>
-                              <small>12:45</small>
-                            </p>
-                          </div>
-                        </div>
-                      </li>
-                      <li className="inner-chat-box right-chat-list">
-                        <div>
-                          <div className="chat-text">
-                            <p>
-                              Hello, Rohit! <br /> I am very sorry for the
-                              problem you are facing, me and May team will
-                              resolve this issue as quick as we can.
-                            </p>
-                            <p>
-                              <small>13:12</small>
-                            </p>
-                          </div>
-                          <div className="chat-text">
-                            <p>
-                              Since this morning I am not able use the Swap
-                              function. I have tried
-                            </p>
-                            <p>
-                              <small>13:12</small>
-                            </p>
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
-                    <div className="type-box-main">
-                      <Form.Control type="text" placeholder="Type message..." />
-                      <div className="d-flex align-items-center">
-                        
-                        <button className="common-btn">
-                          Send <img src="assets/images/admin/send.png" alt="" />
-                        </button>
-                      </div>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                  <div className="type-box-main">
+                    <Form.Control
+                      type="text"
+                      placeholder="Type message..."
+                      onChange={(e) => {
+                        setMessage(e?.target?.value);
+                      }}
+                      value={message}
+                    />
+                    <div className="d-flex align-items-center">
+                      <button
+                        className="common-btn"
+                        onClick={() => {
+                          if (message) {
+                            sendMessage();
+                          }
+                        }}
+                      >
+                        Send <img src="assets/images/admin/send.png" alt="" />
+                      </button>
                     </div>
                   </div>
+                </div>
               </Col>
             </Row>
           </Container>

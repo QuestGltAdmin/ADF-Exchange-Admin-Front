@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import AdminLayout from "../../Components/AdminLayout/AdminLayout";
 import {
   Col,
@@ -11,9 +11,82 @@ import {
   Tabs,
   Tab,
 } from "react-bootstrap";
+import useAuth from "../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
+import axiosMain from "../../http/axios/axios_main";
+import { debounce } from "lodash";
 
 export const Adminsupport = () => {
+  //===============================Global State===============================//
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  //===============================End Of Code===============================//
 
+  //===============================Local State===============================//
+  const [showData, setShowData] = useState([]);
+  const [pageNumber, setPageNumber] = useState(1);
+  const [limit, setLimit] = useState(10);
+  const [totalOrderCount, setTotalOrderCount] = useState(1);
+  const [search, setSearch] = useState("");
+  const [checkForCount, setCheckForCount] = useState(0);
+  const [count, setCount] = useState({
+    approve: 0,
+    reject: 0,
+  });
+  const [date, setDate] = useState({
+    from: "",
+    to: "",
+  });
+  const [filter, setFilter] = useState({
+    coloumName: "createdAt",
+    orderBy: "asc",
+  });
+  //===============================End Of Code===============================//
+
+  //===============================Get Data===============================//
+  const getProperty = async (pageNumber, search, filter) => {
+    setCheckForCount(0);
+    try {
+      const URL = `/admin/get-all-query?page=${pageNumber}&limit=${limit}&search=${search}&date_from=${date?.from}&date_to=${date?.to}&columnName=${filter?.coloumName}&orderBy=${filter?.orderBy}`;
+      const getApiData = await axiosMain.get(URL, {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `bearer ${user?.token}`,
+        },
+      });
+      console.log("getApiData", getApiData);
+
+      if (getApiData?.data?.status) {
+        if (getApiData?.data?.data?.content?.length > 0) {
+          setCheckForCount(1);
+          setShowData(getApiData?.data?.data?.content);
+          setTotalOrderCount(getApiData?.data?.data?.total);
+        } else {
+          setCheckForCount(2);
+          setShowData([]);
+        }
+      }
+    } catch (err) {
+      setCheckForCount(2);
+    }
+  };
+
+  const incressFunction = () => {
+    if (pageNumber < Math.ceil(totalOrderCount / 10)) {
+      setPageNumber(pageNumber + 1);
+    }
+  };
+  const decressFunction = () => {
+    if (pageNumber > 1) {
+      setPageNumber(pageNumber - 1);
+    }
+  };
+
+  const filterData = useCallback(debounce(getProperty, 500), []);
+  useEffect(() => {
+    filterData(pageNumber, search, filter);
+  }, [pageNumber, search, filter]);
+  //===============================End Of Code===============================//
   return (
     <>
       <AdminLayout>
@@ -52,7 +125,12 @@ export const Adminsupport = () => {
                       <Col md="12">
                         <h4 className="filter-icon">
                           <img src="assets/images/filter.png" alt="" /> Filter
-                          <button className="common-btn ms-3">
+                          <button
+                            className="common-btn ms-3"
+                            onClick={() => {
+                              clearFilter();
+                            }}
+                          >
                             Clear Filter
                           </button>
                         </h4>
@@ -61,7 +139,11 @@ export const Adminsupport = () => {
                             <InputGroup className="outer-input-search ">
                               <Form.Control
                                 placeholder="Search..."
-                                name="OldPassword"
+                                name="search"
+                                onChange={(e) => {
+                                  setSearch(e.target.value);
+                                }}
+                                value={search}
                               />
                               <InputGroup.Text className="search-space">
                                 <i
@@ -70,14 +152,33 @@ export const Adminsupport = () => {
                                 ></i>
                               </InputGroup.Text>
                             </InputGroup>
-                            <Dropdown className="dropdwon-border-box">
-                              <Dropdown.Toggle>Sort By</Dropdown.Toggle>
+                            <Dropdown
+                              className="dropdwon-border-box"
+                              onSelect={(e) => {
+                                setFilter({
+                                  ...filter,
+                                  coloumName: "createdAt",
+                                  orderBy: e,
+                                });
+                              }}
+                            >
+                              <Dropdown.Toggle>
+                                {" "}
+                                {filter?.coloumName == "createdAt" &&
+                                filter?.orderBy == "asc"
+                                  ? "Newest"
+                                  : filter?.coloumName == "createdAt" &&
+                                    filter?.orderBy == "desc"
+                                  ? "Oldest"
+                                  : "Sort By"}
+                              </Dropdown.Toggle>
 
                               <Dropdown.Menu>
-                                <Dropdown.Item href="#">Newest</Dropdown.Item>
-                                <Dropdown.Item href="#">Oldest</Dropdown.Item>
-                                <Dropdown.Item href="#">
-                                  Something else
+                                <Dropdown.Item eventKey="asc">
+                                  Newest
+                                </Dropdown.Item>
+                                <Dropdown.Item eventKey="desc">
+                                  Oldest
                                 </Dropdown.Item>
                               </Dropdown.Menu>
                             </Dropdown>
@@ -87,15 +188,16 @@ export const Adminsupport = () => {
                               <Dropdown.Menu>
                                 <Dropdown.Item href="#">Newest</Dropdown.Item>
                                 <Dropdown.Item href="#">Oldest</Dropdown.Item>
-                                <Dropdown.Item href="#">
-                                  Something else
-                                </Dropdown.Item>
                               </Dropdown.Menu>
                             </Dropdown>
                             <InputGroup className="outer-input-search date-search">
                               <Form.Control
+                                type="date"
                                 placeholder="DD/MM/YYYY"
-                                name="OldPassword"
+                                onChange={(e) => {
+                                  setDate({ ...date, from: e.target.value });
+                                }}
+                                value={date?.from}
                               />
                               <InputGroup.Text className="search-space ml-3">
                                 From
@@ -103,22 +205,32 @@ export const Adminsupport = () => {
                             </InputGroup>
                             <InputGroup className="outer-input-search date-search ">
                               <Form.Control
+                                type="date"
                                 placeholder="DD/MM/YYYY"
-                                name="OldPassword"
+                                onChange={(e) => {
+                                  setDate({ ...date, to: e.target.value });
+                                }}
+                                value={date?.to}
                               />
                               <InputGroup.Text className="search-space ml-3">
                                 To
                               </InputGroup.Text>
                             </InputGroup>
                           </div>
-                          <Dropdown className="dropdwon-border-box">
-                            <Dropdown.Toggle>Show</Dropdown.Toggle>
+                          <Dropdown
+                            className="dropdwon-border-box"
+                            onSelect={(e) => {
+                              setLimit(e);
+                              setPageNumber(1);
+                            }}
+                          >
+                            <Dropdown.Toggle>{limit}</Dropdown.Toggle>
 
                             <Dropdown.Menu>
-                              <Dropdown.Item href="#">1 - 25</Dropdown.Item>
-                              <Dropdown.Item href="#">25 - 50</Dropdown.Item>
-                              <Dropdown.Item href="#">50 - 75</Dropdown.Item>
-                              <Dropdown.Item href="#">75 - 100</Dropdown.Item>
+                              <Dropdown.Item eventKey={10}>10</Dropdown.Item>
+                              <Dropdown.Item eventKey={25}>25</Dropdown.Item>
+                              <Dropdown.Item eventKey={50}>50</Dropdown.Item>
+                              <Dropdown.Item eventKey={75}>75 </Dropdown.Item>
                             </Dropdown.Menu>
                           </Dropdown>
                         </div>
@@ -131,18 +243,29 @@ export const Adminsupport = () => {
                       <thead>
                         <tr>
                           <th>Sr. No</th>
-                          <th>Name</th>
+                          <th>Profile</th>
                           <th>
                             <span className="d-flex">
                               Name{" "}
-                              <span className="arrow-filter">
-                                <a href="" className="up">
+                              <span
+                                className="arrow-filter"
+                                style={{ cursor: "pointer" }}
+                                onClick={() => {
+                                  setFilter({
+                                    ...filter,
+                                    coloumName: "full_name",
+                                    orderBy:
+                                      filter?.orderBy == "asc" ? "desc" : "asc",
+                                  });
+                                }}
+                              >
+                                <a className="up">
                                   <img
                                     src="assets/images/arrow-up.png"
                                     alt=""
                                   />
                                 </a>
-                                <a className="down" href="">
+                                <a className="down">
                                   <img
                                     src="assets/images/arrow-down.png"
                                     alt=""
@@ -155,14 +278,25 @@ export const Adminsupport = () => {
                             <span className="d-flex">
                               {" "}
                               Email{" "}
-                              <span className="arrow-filter">
-                                <a href="" className="up">
+                              <span
+                                className="arrow-filter"
+                                style={{ cursor: "pointer" }}
+                                onClick={() => {
+                                  setFilter({
+                                    ...filter,
+                                    coloumName: "email",
+                                    orderBy:
+                                      filter?.orderBy == "asc" ? "desc" : "asc",
+                                  });
+                                }}
+                              >
+                                <a className="up">
                                   <img
                                     src="assets/images/arrow-up.png"
                                     alt=""
                                   />
                                 </a>
-                                <a className="down" href="">
+                                <a className="down">
                                   <img
                                     src="assets/images/arrow-down.png"
                                     alt=""
@@ -172,38 +306,77 @@ export const Adminsupport = () => {
                             </span>
                           </th>
                           <th>Phone Number</th>
-                          <th>Subject</th>
+                          {/* <th>Subject</th> */}
                           <th>Status</th>
                           <th>Action</th>
                         </tr>
                       </thead>
 
                       <tbody>
-                        <tr>
-                          <td>S.No 1</td>
-                          <td className="admin-table-img">
+                        {checkForCount == 1 &&
+                          showData?.map((items, index) => {
+                            const adjustedIndex =
+                              index + 1 + (pageNumber - 1) * limit;
+                            return (
+                              <tr>
+                                <td>{adjustedIndex}</td>
+                                <td className="admin-table-img">
+                                  <img
+                                    src={
+                                      items?.user_details?.profile
+                                        ? items?.user_details?.profile
+                                        : "/assets/images/admin/table-img.png"
+                                    }
+                                    className="img-fluid"
+                                    alt="icon"
+                                  />
+                                </td>
+                                <td className="">
+                                  {items?.user_details?.full_name}
+                                </td>
+                                <td className="">
+                                  {items?.user_details?.email}
+                                </td>
+
+                                <td className="">
+                                  +{items?.user_details?.country_code} &nbsp;{" "}
+                                  {items?.user_details?.mobile_no}
+                                </td>
+
+                                {/* <td className="">LOrem Ipsum</td> */}
+                                <td>
+                                  <span className={items?.status == "RESOLVED" ? "text-green" : items?.status == "REJECTED" ? "text-red" : items?.status == "ACTIVE" ? "text-yellow" : "text-blue" }>
+                                    {items?.status}
+                                  </span>{" "}
+                                </td>
+                                <td>
+                                  <a onClick={()=>{
+                                    navigate("/admin-support-details" , {state : {id : items?._id}})
+                                  }} className="me-2">
+                                    {" "}
+                                    View More
+                                  </a>
+                                  {/* <button className="common-btn table-btn red-btn">
+                                    Mark As Closed
+                                  </button> */}
+                                </td>
+                              </tr>
+                            );
+                          })}
+
+                        {checkForCount == 0 && (
+                          <Col lg={12} className="mt-5 text-center">
                             <img
-                              src="/assets/images/admin/table-img.png"
-                              className="img-fluid"
-                              alt="icon"
-                            />
-                          </td>
-                          <td className="">User</td>
-                          <td className="">user@gmail.com</td>
-
-                          <td className="">+91 &nbsp; 8782772877</td>
-
-                          
-
-                          <td className="">LOrem Ipsum</td>
-                          <td><span className="text-green">Open</span> </td>
-                          <td>
-                            <a href="" className="me-2"> View More</a>
-                            <button className="common-btn table-btn red-btn">
-                              Mark As Closed
-                            </button>
-                          </td>
-                        </tr>
+                              width={50}
+                              src="/assets/images/admin/orange-loader.gif"
+                            />{" "}
+                          </Col>
+                        )}
+                        {checkForCount == 2 && (
+                          <Col lg={12} className="mt-5">
+                            <p className="text-center">No Data Found</p>{" "}
+                          </Col>
+                        )}
 
                         {/* <tr>
                                       <td colSpan={8} className="text-center">
@@ -212,6 +385,31 @@ export const Adminsupport = () => {
                                   </tr> */}
                       </tbody>
                     </Table>
+                  </div>
+                  <div className="mt-3">
+                    <div className="d-flex justify-content-end list-pagination pb-5 pt-0">
+                      <button
+                        className="page-link"
+                        onClick={() => {
+                          decressFunction();
+                        }}
+                      >
+                        <i className="fa fa-angle-left"></i>
+                      </button>
+                      <button className="page-link">
+                        {" "}
+                        Page {pageNumber} of{" "}
+                        {Math.ceil(totalOrderCount / limit)}
+                      </button>
+                      <button
+                        className="page-link"
+                        onClick={() => {
+                          incressFunction();
+                        }}
+                      >
+                        <i className="fa fa-angle-right"></i>
+                      </button>
+                    </div>
                   </div>
                 </div>
               </Col>
