@@ -635,6 +635,12 @@ a{
     position: sticky;
     top: 6rem;
 }
+.text-blue{
+    color: rgb(40, 40, 188) !important;
+}
+.text-yellow{
+    color: yellow !important;
+}
 
 @media (max-width:768px){
     .outer-box-filter {
@@ -647,5 +653,12 @@ a{
     }
     .table-common-new {
         min-width: 900px;
+    }
+    .outer-box-flex {
+        flex-wrap: wrap;
+    }
+    .box-total-user {
+        width: 100%;
+        margin: 1rem 0 0 !important;
     }
 }
