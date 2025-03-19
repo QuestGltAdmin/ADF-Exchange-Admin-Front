@@ -26,6 +26,8 @@ export const AdminSupportdetails = () => {
 
   const [showData, setShowDate] = useState([]);
   const [message, setMessage] = useState("");
+  const [status, setStatus] = useState("");
+  const [disable, setDisable] = useState(false);
   useEffect(() => {
     if (id) {
       getData();
@@ -42,6 +44,7 @@ export const AdminSupportdetails = () => {
       console.log(get_date);
       if (get_date?.data?.status) {
         setShowDate(get_date?.data?.data);
+        setStatus(get_date?.data?.data?.status);
       }
     } catch (err) {}
   };
@@ -68,6 +71,35 @@ export const AdminSupportdetails = () => {
         setMessage("");
       }
     } catch (err) {
+      toast.error(err?.response?.data?.message);
+    }
+  };
+
+  const updateStatus = async () => {
+    try {
+      setDisable(true);
+      const payload = {
+        query_id: id,
+        status: status,
+      };
+      const RowData = await encryptRequestData(payload);
+      const update = await axiosMain.post(
+        "/admin/update-query-status",
+        { data: RowData },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `bearer ${user?.token}`,
+          },
+        }
+      );
+      if (update?.data?.status) {
+        setDisable(false);
+        toast?.success("Status updated successfully");
+        getData();
+      }
+    } catch (err) {
+      setDisable(false);
       toast.error(err?.response?.data?.message);
     }
   };
@@ -106,21 +138,43 @@ export const AdminSupportdetails = () => {
                             Created Date :
                             {moment(showData?.createdAt)?.format("lll")}
                           </p>
-                          <p>
+                          <p className="d-flex justify-content-between mt-2 align-items-center gap-3">
                             Status :{" "}
-                            <span
-                              className={
-                                showData?.status == "RESOLVED"
-                                  ? "text-green"
-                                  : showData?.status == "REJECTED"
-                                  ? "text-red"
-                                  : showData?.status == "ACTIVE"
-                                  ? "text-yellow"
-                                  : "text-blue"
-                              }
+                            <Dropdown
+                              className="dropdwon-border-box"
+                              onSelect={(e) => {
+                                setStatus(e);
+                              }}
                             >
-                              {showData?.status}
-                            </span>
+                              <Dropdown.Toggle>{status}</Dropdown.Toggle>
+
+                              <Dropdown.Menu>
+                                <Dropdown.Item
+                                  className="text-red"
+                                  eventKey="RESOLVED"
+                                >
+                                  RESOLVED
+                                </Dropdown.Item>
+                                <Dropdown.Item eventKey="REJECTED">
+                                  REJECTED
+                                </Dropdown.Item>
+                                <Dropdown.Item eventKey="ACTIVE">
+                                  ACTIVE
+                                </Dropdown.Item>
+                                <Dropdown.Item eventKey="CLOSED">
+                                  CLOSED
+                                </Dropdown.Item>
+                              </Dropdown.Menu>
+                            </Dropdown>
+                            <button
+                              className="common-btn"
+                              onClick={() => {
+                                updateStatus();
+                              }}
+                              disabled={disable}
+                            >
+                              {disable ? "Processing" : "Update"}
+                            </button>
                           </p>
                         </div>
                       </div>
